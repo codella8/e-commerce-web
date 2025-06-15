@@ -9,7 +9,7 @@ venv/
 
 # Django static and media
 staticfiles/
-media/
+mediafiles/upload
 
 # SQLite DB (optional)
 db.sqlite3
