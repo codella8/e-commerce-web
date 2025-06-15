@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}{{ product.name }} | محصولات ویژه{% endblock %}
+
+{% block content1 %}
+<section class="message-section">
+    <div class="container">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show custom-alert" role="alert">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <span>{{ message }}</span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</section>
+
+<section class="more-pro-detail">
+    <div class="more-pro-header-bg">
+        <div class="container">
+            <div class="more-pro-header-content">
+                <h1 class="more-pro-main-title">{{ product.name }}</h1>
+                <div class="more-pro-back">
+                    <a href="{% url 'index' %}">{% trans 'خانه' %}</a>
+                    <span>/</span>
+                    <a href="{% url 'additionalproduct' %}">{% trans 'محصولات بیشتر' %}</a>
+                    <span>/</span>
+                    <span>{{ product.name }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="more-pro-main">
+            <div class="more-pro-gallery">
+                <div class="main-image-container">
+                    <img src="{{ product.picture.url }}" alt="{{ product.name }}" class="main-product-image">
+                </div>
+                {% if product.picture2 or product.picture3 %}
+                <div class="pro-gallery">
+                    {% if product.picture2 %}
+                    <div class="pro-item">
+                        <img src="{{ product.picture2.url }}" alt="{{ product.name }}">
+                    </div>
+                    {% endif %}
+                    {% if product.picture3 %}
+                    <div class="pro-item">
+                        <img src="{{ product.picture3.url }}" alt="{{ product.name }}">
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="more-pro-info">
+                <div class="product-meta">
+                    <span class="product-category">{{ product.category }}</span>
+                </div>
+
+                {% if product.sale %}
+                <div class="price-container">
+                    <span class="old-price">{{ product.price|intcomma }} {% trans 'تومان' %}</span>
+                    <span class="current-price">{{ product.sale_price|intcomma }} {% trans 'تومان' %}</span>
+                    <span class="discount-badge">تخفیف {{ product.discount_percent }}%</span>
+                </div>
+                {% else %}
+                <div class="price-container">
+                    <span class="current-price">{{ product.price|intcomma }} {% trans 'تومان' %}</span>
+                </div>
+                {% endif %}
+
+                <div class="product-description">
+                    <h3>{% trans 'توضیحات محصول' %}</h3>
+                    <p>{{ product.description }}</p>
+                </div>
+
+                <p class="empty-subtitle">{% trans 'میتوانید برای ثبت سفارش محصول در صفحه اصلی جستجو کنید' %}</p>
+                <a href="{% url 'index' %}" class="btn-empty">
+                    <i class="fas fa-arrow-left"></i> {% trans 'صفحه اصلی' %}
+                </a>
+
+                <div class="social-share">
+                    <span>{% trans 'اشتراک گذاری:' %}</span>
+                    <a href="#" class="social-icon whatsapp"><i class="bi bi-whatsapp"></i></a>
+                    <a href="#" class="social-icon telegram"><i class="bi bi-telegram"></i></a>
+                    <a href="#" class="social-icon instagram"><i class="bi bi-instagram"></i></a>
+                </div>
+
+                <div class="product-card-content">
+                    <h2 class="product-title">{% trans 'کفش کارنو' %}</h2>
+                    <p class="product-description">
+                        {% trans "طراحی‌شده برای راحتی در کنار استایل، با استفاده از متریال باکیفیت و دوخت دقیق." %}
+                        {% trans "<مناسب برای استفاده روزمره، سفر و پیاده‌روی." %}
+                    </p>
+                    <ul class="product-features">
+                        <li>✔ {% trans 'سبک و بادوام' %}</li>
+                        <li>✔ {% trans 'طراحی ارگونومیک' %}</li>
+                        <li>✔ {% trans 'مناسب آقایان / بانوان / سایزهای نقلی' %}</li>
+                    </ul>
+                    <p class="product-footer"><strong>{% trans 'کارنو؛ همراهی مطمئن برای قدم‌های شما.' %}</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="more-reviews-section">
+            <h2 class="section-title">{% trans 'نظرات مشتریات' %}</h2>
+
+            <div class="review-form-container">
+                <h3>{% trans 'نظر خودرا ثبت کنید' %}</h3>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="name" required>
+                        <input type="email" name="email" placeholder="email" required>
+                    </div>
+                    <textarea name="message" rows="5" placeholder="massage" required></textarea>
+                    <button type="submit" class="submit-review-btn">{% trans 'ثبت نظر' %}</button>
+                </form>
+            </div>
+
+            <div class="reviews-list">
+                {% for message in messages %}
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <h4>{{ message.name }}</h4>
+                            <div class="review-date">{{ message.created_at|date:"Y-m-d H:i" }}</div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>{{ message.message }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="no-reviews">
+                    <i class="bi bi-chat-square-text"></i>
+                    <p>{% trans 'هنوز هیچ نظری برای این محصول ثبت نشده' %}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+<title>{% block title %}{% trans "خانه" %}{% endblock title %}</title>
+{% block content1 %}
+<header class="modern-header">
+    <div class="header-bg"></div>
+
+    <header class="main-header">
+        <img src="{% static 'img/header.jfif' %}" alt="پس‌زمینه هدر" class="header-bg-image">
+
+        <div class="header-overlay"></div>
+        <div class="header-content container">
+            <h4 class="main-title">
+                <span class="text-karnoo">{% trans 'شرکت کفش کارنو' %}</span><br>
+                <span class="text-karnoo">{% trans 'پیشتازان آریا' %}</span>
+                <span class="light-line"></span>
+            </h4>
+            <h6 class="subtitle">
+                <span class="animated-underline">{% trans 'صندل‌هایی برای آنان که تفاوت را انتخاب می‌کنند' %}</span>
+            </h6>
+            <div class="description">
+                <h6>
+                    {% trans "شرکت کفش کارنو با سالها تخصص و سابقه درخشان در زمینه تولید کفش های ماشینی فعالیت دارد."%} <br>
+                    {% trans "ما درشرکت کارنو همواره در تلاشیم که بهترین محصولات را از بهترین مواد خام و درجه یک تولید و بابهترین قیمت ارائه دهیم." %}
+                </h6>
+            </div>
+            <div class="action-buttons">
+                <a href="#products" class="btn btn-primary pulse-btn">
+                    <i class="bi bi-grid-fill"></i> {% trans 'مشاهده محصولات' %}
+                </a>
+                <a href="#categories" class="btn btn-outline slide-btn text-light">
+                    <i class="bi bi-tags-fill"></i> {% trans 'مشاهده دسته بندی ها' %}
+                </a>
+            </div>
+        </div>
+    </header>
+
+</header>
+<br>
+<section class="search-section">
+    <div class="container">
+        <form method="POST" action="{% url 'search' %}" class="modern-search-form">
+            {% csrf_token %}
+            <div class="search-container">
+                <input name="searched" class="search-input" type="search" placeholder="search" aria-label="search"
+                    autocomplete="off">
+                <button class="search-btn" type="submit">
+                    <i class="bi bi-search"></i>
+                    <span class="search-text">{% trans 'جستجو' %}</span>
+                </button>
+                <div class="search-border"></div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section id="products" class="products-section py-5">
+    <div class="container">
+
+        <div class="section-header text-center mb-5">
+            <h4 class="section-title">
+                <i class="bi bi-box-seam"></i> {% trans 'محصولات ما' %}
+            </h4>
+            <p class="section-subtitle">{% trans 'برترین محصولات با بهترین کیفیت' %}</p>
+            <br>
+
+            <div class="product-count">
+                <span> {% trans 'تعداد محصول :' %} {{ products.count }} </span>
+            </div><br>
+        </div>
+
+        <div class="row g-5">
+            {% for item in products %}
+            <div class="col-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="product-card card h-100 border-0 shadow-sm">
+                    {% if item.is_sale %}
+                    <div class="badge bg-danger position-absolute sale-badge">{% trans 'تخفیف ویژه' %}</div>
+                    {% endif %}
+
+                    <div class="product-img-container">
+                        <img src="{{ item.picture.url }}" alt="{{ item.name }}" class="product-img">
+                        <div class="product-overlay">
+                            <a href="{% url 'product' item.id %}" class="quick-view-btn">
+                                <i class="bi bi-eye"></i> {% trans 'مشاهده' %}
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <h3 class="product-title">{{ item.name }}</h3>
+                        <div class="product-price mb-3">
+                            {% if item.is_sale %}
+                            <span class="text-muted text-decoration-line-through me-2">{{ item.price|intcomma }}
+                                تومان</span><br>
+                            <span class="text-danger fw-bold">{{ item.sale_price|intcomma }} {% trans 'تومان' %}</span>
+                            {% else %}
+                            <span class="text-dark fw-bold">{{ item.price|intcomma }} {% trans 'تومان' %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="card-footer bg-transparent border-top-0">
+                        <a href="{% url 'product' item.id %}" class="btn btn-outline-dark w-100">
+                            <i class="bi bi-eye me-2"></i> {% trans 'مشاهده محصول' %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="auth-form">
+            <a class="btn btn-success" href="{% url 'additionalproduct' %}">{% trans 'محصولات بیشتر' %}</a>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="categories" class="categories-section py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h4 class="section-title">
+                <i class="bi bi-tags"></i> {% trans 'دسته بندی محصولات' %}
+            </h4>
+            <p class="section-subtitle">{% trans 'انتخاب بر اساس نیاز شما' %}</p>
+        </div>
+
+        <div class="category-card card mb-4 border-0 shadow-sm">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-2 text-center">
+                    <h5 class="category-title mb-3 mb-md-0">{% trans 'مردانه' %}</h5>
+                </div>
+                <div class="col-md-2 text-center">
+                    <img src="{% static 'img/men.png' %}" alt="کفش مردانه" class="category-main-img">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-6 col-sm-3">
+                                <img src="{% static 'img/men1.jpg' %}" alt="نمونه ۱"
+                                    class="img-fluid category-sample-img rounded">
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <img src="{% static 'img/men2.jpg' %}" alt="نمونه ۲"
+                                    class="img-fluid category-sample-img rounded">
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <img src="{% static 'img/men3.jpg' %}" alt="نمونه ۳"
+                                    class="img-fluid category-sample-img rounded">
+                            </div>
+                            {% for category in categories %}
+                            <div class="col-6 col-sm-3 d-flex align-items-center justify-content-center">
+                                <a href="{% url 'category' category.slug %}" class="btn btn-primary w-100">
+                                    <i class="bi bi-grid me-2"></i> {{ category.name }}
+                                </a>
+
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'category' 'men' %}" class="btn btn-secondary w-100">
+                            <i class="bi bi-eye me-2"></i> {% trans 'مشاهده همه محصولات مردانه' %}
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-card card border-0 shadow-sm">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-2 text-center">
+                    <h5 class="category-title mb-3 mb-md-0">{% trans 'زنانه' %}</h5>
+                </div>
+                <div class="col-md-2 text-center">
+                    <img src="{% static 'img/women.png' %}" alt="کفش زنانه" class="category-main-img">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-6 col-sm-3">
+                                <img src="{% static 'img/women1.jpg' %}" alt="نمونه ۱"
+                                    class="img-fluid category-sample-img rounded">
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <img src="{% static 'img/women2.jpg' %}" alt="نمونه ۲"
+                                    class="img-fluid category-sample-img rounded">
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <img src="{% static 'img/women3.jpg' %}" alt="نمونه ۳"
+                                    class="img-fluid category-sample-img rounded">
+                            </div>
+                            <!-- دکمه‌های هر دسته‌بندی -->
+                            {% for category in categories %}
+                            <div class="col-6 col-sm-3 d-flex align-items-center justify-content-center">
+                                <a href="{% url 'category' category.slug %}" class="btn btn-primary w-100">
+                                    <i class="bi bi-grid me-2"></i> {{ category.name }}
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'category' 'women' %}" class="btn btn-secondary w-100">
+                            <i class="bi bi-eye me-2"></i> {% trans 'مشاهده همه محصولات زنانه' %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="stats-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md-3 mb-4 mb-md-0">
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">{% trans "جفت کفش تولیدی" %}</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4 mb-md-0">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">{% trans "مشتری راضی" %}</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-4 mb-md-0">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">{% trans "مدل مختلف" %}</div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">{% trans "سال سابقه" %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="super-features">
+    <div class="sf-header">
+        <h2 class="sf-title">{% trans 'چرا از ما خرید کنید؟' %}</h2>
+        <div class="sf-wave"></div>
+    </div>
+
+    <div class="product-features">
+        <div class="row">
+            <div class="col-md-3 col-6">
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h4>{% trans 'کیفیت بی نظیر' %}</h4>
+                    <p>{% trans 'استغاده از بهترین مواد اولیه' %}</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>{% trans 'ضمانت کالا' %}</h4>
+                    <p>{% trans 'گارانتی 24 ماهه' %}</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h4>{% trans 'ارسال سریع' %}</h4>
+                    <p>{% trans 'تحویل فوری' %}</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h4>{% trans 'بازگشت آسان' %}</h4>
+                    <p>{% trans 'ضمانت بازگشت تا 7 روز' %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sf-particle-container" aria-hidden="true"></div>
+</section>
+
+{% endblock content1 %}

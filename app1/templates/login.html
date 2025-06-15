@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'ورود به ناحیه کاربری' %}{% endblock %}
+
+{% block content1 %}
+<section class="login-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="login-card shadow-lg">
+                    <div class="row g-0">
+                        <div class="col-md-6 login-image d-none d-md-block">
+                            <div class="login-overlay d-flex flex-column">
+                                <h2 class="mb-4">{% trans 'به فروشگاه کفش کارنو خوش آمدید!' %}</h2>
+                                <p class="mb-5">{% trans 'با ورود به حساب خود از مزایای ویژه ما بهره مند شوید' %}</p>
+
+                                <div class="login-features mt-auto">
+                                    <div class="feature-item d-flex align-items-center mb-3">
+                                        <i class="bi bi-check-circle-fill me-2"></i>
+                                        <span>{% trans 'تخفیف‌های ویژه اعضا' %}</span>
+                                    </div>
+                                    <div class="feature-item d-flex align-items-center mb-3">
+                                        <i class="bi bi-check-circle-fill me-2"></i>
+                                        <span>{% trans 'پیگیری سفارشات' %}</span>
+                                    </div>
+                                    <div class="feature-item d-flex align-items-center">
+                                        <i class="bi bi-check-circle-fill me-2"></i>
+                                        <span>{% trans 'تاریخچه خرید' %}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="login-form p-4 p-md-5">
+                                <a href="{% url 'index' %}">
+                                    <img src="{% static 'img/karnoo.png' %}" alt="کارنو" class="logo mb-3" width="120">
+                                </a>
+                                <div class="text-center mb-5">
+                                    <h3 class="login-title position-relative">{% trans 'ورود به حساب' %}</h3>
+                                </div>
+
+                                <form method="POST" action="{% url 'login' %}">
+                                    {% csrf_token %}
+                                    <div class="mb-4">
+                                        <label for="username" class="form-label d-flex align-items-center">
+                                            <i class="bi bi-person me-2"></i> {% trans 'نام کاربری یا ایمیل' %}
+                                        </label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-transparent"><i
+                                                    class="bi bi-person"></i></span>
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                placeholder="{% trans 'نام کاربری یا ایمیل' %}" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label d-flex align-items-center">
+                                            <i class="bi bi-lock me-2"></i> {% trans 'رمز عبور' %}
+                                        </label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-transparent"><i
+                                                    class="bi bi-lock"></i></span>
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                placeholder="{% trans 'رمز عبور' %}" required>
+                                            <button class="btn btn-outline-secondary toggle-password" type="button">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid mb-4">
+                                        <button type="submit" class="btn btn-primary login-btn">
+                                            <i class="bi bi-box-arrow-in-right me-2"></i> {% trans 'ورود به حساب' %}
+                                        </button>
+                                    </div>
+                                </form>
+                                <div class="text-center mt-4">
+                                    <p class="register-text">
+                                        {% trans 'حساب ندارید؟' %}
+                                        <a href="{% url 'signup' %}" class="text-decoration-none register-link">
+                                            {% trans 'ثبت نام کنید' %}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><br>
+{% endblock content1 %}

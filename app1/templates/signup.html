@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans 'ثبت‌نام' %}{% endblock %}
+
+{% block content1 %}
+<section class="signup-section">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-6 d-none d-lg-flex signup-bg">
+                <div class="bg-overlay d-flex flex-column justify-content-center p-5">
+                    <h2 class="display-5 mb-4 text-dark fw-normal">{% trans 'به خانواده کارنو بپیوندید!' %}</h2>
+                    <ul class="benefits-list list-unstyled">
+                        <li class="mb-3"><i class="fas fa-check-circle me-2"></i>{% trans 'دسترسی به پیشنهادات ویژه اعضا' %}</li>
+                        <li class="mb-3"><i class="fas fa-check-circle me-2"></i>{% trans 'پیگیری سفارشات و تاریخچه خرید' %}</li>
+                        <li class="mb-3"><i class="fas fa-check-circle me-2"></i>{% trans 'تخفیف‌های اختصاصی برای اعضا' %}</li>
+                        <li class="mb-3"><i class="fas fa-check-circle me-2"></i>{% trans 'اطلاع از جدیدترین محصولات و حراجی‌ها' %}</li>
+                        <li><i class="fas fa-check-circle me-2"></i>{% trans 'پشتیبانی اختصاصی برای اعضا' %}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-6 d-flex align-items-center">
+                <div class="signup-form-container p-4 p-md-5">
+                    <div class="text-center mb-5">
+                        <a href="{% url 'index' %}">
+                            <img src="{% static 'img/karnoo.png' %}" alt="کارنو" class="logo mb-3" width="120">
+                        </a>
+                        <h3 class="fw-bold mb-2">{% trans 'حساب کاربری جدید' %}</h3>
+                        <p class="text-muted">{% trans 'اطلاعات خود را وارد کنید تا ثبت‌نام کنید' %}</p>
+                    </div>
+
+                    <form method="POST" action="{% url 'signup' %}" class="needs-validation" novalidate>
+                        {% csrf_token %}
+
+                        <div class="row g-3">
+                            {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">
+                                    {% if field.name == 'username' %}
+                                    <i class="bi bi-person"></i>
+                                    {% elif field.name == 'email' %}
+                                    <i class="bi bi-envelope"></i>
+                                    {% elif field.name == 'password1' %}
+                                    <i class="bi bi-lock"></i>
+                                    {% elif field.name == 'password2' %}
+                                    <i class="bi bi-shield-lock"></i>
+                                    {% endif %}
+                                    {{ field.label }}
+                                </label>
+                                {{ field }}
+                                {% if field.errors %}
+                                <div class="form-error">
+                                    <i class="bi bi-exclamation-circle"></i> {{ field.errors|striptags }}
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">
+                                    <i class="fas fa-user-plus me-2"></i> {% trans 'ثبت‌نام' %}
+                                </button>
+                            </div>
+
+                            <div class="col-12 text-center">
+                                <p class="mb-0">{% trans 'قبلاً حساب دارید؟' %}
+                                    <a href="{% url 'login' %}" class="text-primary fw-semibold">{% trans 'وارد شوید' %}</a>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><br>
+{% endblock %}

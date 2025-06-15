@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% block title %}{% trans "سفارشات | شرکت کفش کارنو" %}{% endblock title %}
+
+{% block content1 %}
+<section class="order-details-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <div class="page-header text-center mb-5">
+                    <h1 class="page-title fw-normal mb-3">
+                        <i class="fas fa-receipt me-2"></i> {% trans 'جزئیات سفارش' %}
+                    </h1>
+                    <p class="lead text-muted">{% trans 'مشاهده اطلاعات کامل سفارش و وضعیت تحویل' %}</p>
+                </div>
+
+                <div class="card shadow-lg border-0 mb-5">
+                    <div
+                        class="card-header bg-success text-black py-3 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h3 class="card-title mb-0">
+                                <i class="fas fa-hashtag me-2"></i> {% trans 'سفارش' %} {{ order.id }}
+                            </h3>
+                        </div>
+                        <div class="badge bg-white text-black fs-7 p-2">
+                            {{ order.amount_paid|intcomma }} {% trans 'تومان' %}
+                        </div>
+                    </div>
+                    <div class="card-body p-4 p-md-5">
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <div class="info-card h-100">
+                                    <h5 class="info-title">
+                                        <i class="fas fa-user-circle me-2"></i> {% trans 'اطلاعات مشتری' %}
+                                    </h5>
+                                    <ul class="list-unstyled">
+                                        <li class="py-2 border-bottom">
+                                            <strong>{% trans 'نام کامل:' %}</strong> {{ order.full_name }}
+                                        </li>
+                                        <li class="py-2 border-bottom">
+                                            <strong>{% trans 'ایمیل:' %}</strong> {{ order.email }}
+                                        </li>
+                                        <li class="py-2">
+                                            <strong>{% trans 'آدرس:' %}</strong> {{ order.shipping_address }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-card h-100">
+                                    <h5 class="info-title">
+                                        <i class="fas fa-info-circle me-2"></i> {% trans 'اطلاعات سفارش' %}
+                                    </h5>
+                                    <ul class="list-unstyled">
+                                        <li class="py-2 border-bottom">
+                                            <strong>{% trans 'تاریخ ثبت:' %}</strong>
+                                            <span class="persian-date">{{ order.date_ordered|date:"Y/m/d H:i" }}</span>
+                                        </li>
+                                        <li class="py-2 border-bottom">
+                                            <strong>{% trans 'آخرین بروزرسانی:' %}</strong>
+                                            <span class="persian-date">{{ order.last_update|date:"Y/m/d H:i" }}</span>
+                                        </li>
+                                        <li class="py-2">
+                                            <strong>{% trans 'وضعیت:' %}</strong>
+                                            <span class="status-badge badge 
+                                                {% if order.status == 'تحویل داده شده' %}bg-success
+                                                {% elif order.status == 'در حال پردازش' %}bg-warning text-dark
+                                                {% elif order.status == 'لغو شده' %}bg-danger
+                                                {% else %}bg-secondary{% endif %}">
+                                                {{ order.status }}
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order-items">
+                            <h5 class="section-title mb-4">
+                                <i class="fas fa-shopping-basket me-2"></i> {% trans 'محصولات سفارش' %}
+                            </h5>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        {% for item in items %}
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{ item.product.picture.url }}"
+                                                        alt="{{ item.products.name }}" class="product-img me-3 rounded"
+                                                        width="60">
+                                                    <div>
+                                                        <h6 class="mb-0">{{ item.products.name }}</h6>
+                                                        <small class="text-muted"> {% trans 'کد:' %} {{ item.products.id }}</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">{{ item.quantity }} {% trans 'عدد' %}</td>
+                                            <td class="text-end">{{ item.price|intcomma }} {% trans 'تومان' %}</td>
+                                            <td class="text-end">{{ item.get_total|intcomma }} {% trans 'تومان' %}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot class="table-light">
+                                        <tr>
+                                            <td colspan="3" class="text-end fw-bold">{% trans 'جمع کل:' %}</td>
+                                            <td class="text-end fw-bold">{{ order.amount_paid|intcomma }} {% trans 'تومان' %}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer bg-light py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="{% url 'orders' %}" class="btn btn-outline-primary">
+                                <i class="fas fa-arrow-right me-2"></i> {% trans 'بازگشت به سفارشات' %}
+                            </a>
+                            <a href="{% url 'index' %}" class="btn btn-link text-decoration-none">
+                                <i class="fas fa-home me-2"></i> {% trans 'بازگشت به صفحه اصلی' %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content1 %}

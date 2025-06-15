@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+
+{% block content1 %}
+<div class="confirm-page">
+    <div class="order-confirmation-container">
+        <div class="confirmation-header">
+            <h3>{% trans 'تکمیل سفارش شما' %}</h3>
+            <p>{% trans 'لطفا اطلاعات زیر را بررسی و تایید نمایید' %}</p>
+
+            <div class="confirmation-steps">
+                <div class="confirm-step completed">
+                    <div class="confirm-step-number">1</div>
+                    <div class="confirm-step-title">{% trans 'سبد خرید' %}</div>
+                </div>
+
+                <div class="confirm-step completed">
+                    <div class="confirm-step-number">2</div>
+                    <div class="confirm-step-title">{% trans 'اطلاعات ارسال' %}</div>
+                </div>
+
+                <div class="confirm-step active">
+                    <div class="confirm-step-number">3</div>
+                    <div class="confirm-step-title">{% trans 'تایید نهایی' %}</div>
+                </div>
+
+                <div class="confirm-step-connector"></div>
+                <div class="confirm-step-connector active"></div>
+            </div>
+        </div>
+
+        <div class="order-summary-container">
+            <div class="confirm-order-summary-card">
+                <div class="confirm-card-header">
+                    <i class="bi bi-cart-check"></i>
+                    {% trans 'خلاصه سفارش' %}
+                </div>
+
+                <div class="confirm-order-items">
+                    {% for item in items %}
+                    <div class="confirm-order-item">
+                        {% if item.product.picture %}
+                        <img src="{{ item.product.picture.url }}" alt="{{ item.product.name }}"
+                            class="checkout-item-image">
+                        {% else %}
+                        <img src="{% static 'img/default-product.jpg' %}" alt="no image" class="checkout-item-image">
+                        {% endif %}
+
+                        <div class="confirm-item-details">
+                            <h5>{{ item.product.name }}</h5>
+                            <p>{{ item.product.description|truncatechars:120 }}</p>
+
+                            <div class="confirm-item-meta">
+                                <div>
+                                    <span>{% trans 'تعداد' %}</span>
+                                    {{ item.quantity }} {% trans 'عدد' %}
+                                </div>
+                                <div>
+                                    <span>{% trans 'قیمت واحد' %}</span>
+                                    {{ item.product.price|intcomma }} {% trans 'تومان' %}
+                                </div>
+                                <div>
+                                    <span>{% trans 'جمع' %}</span>
+                                    {{ item.total_price|intcomma }} {% trans 'تومان' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="confirm-order-totals">
+                    <div class="confirm-total-row">
+                        <span>{% trans 'جمع کل :' %}</span>
+                        <span>{{ total_price|intcomma }} {% trans 'تومان' %}</span>
+                    </div>
+
+                    <div class="confirm-total-row">
+                        <span>{% trans 'مبلغ قابل پرداخت :' %}</span>
+                        <span>{{ total_price|intcomma }} {% trans 'تومان' %}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="confirm-shipping-info-card">
+                <div class="confirm-card-header">
+                    <i class="bi bi-truck"></i>
+                    {% trans 'اطلاعات تحویل گیرنده' %}
+                </div>
+
+                <div class="confirm-shipping-info-grid">
+                    <div class="confirm-info-item">
+                        <span class="confirm-info-label">{% trans 'نام کامل' %}</span>
+                        <span class="confirm-info-value">{{ shipping_info.shipping_full_name }}</span>
+                    </div>
+
+                    <div class="confirm-info-item">
+                        <span class="confirm-info-label">{% trans 'ایمیل' %}</span>
+                        <span class="confirm-info-value">{{ shipping_info.shipping_email }}</span>
+                    </div>
+
+                    <div class="confirm-info-item">
+                        <span class="confirm-info-label">{% trans 'تلفن همراه' %}</span>
+                        <span class="confirm-info-value">{{ shipping_info.shipping_phone }}</span>
+                    </div>
+
+                    <div class="confirm-info-item">
+                        <span class="confirm-info-label">{% trans 'آدرس اصلی' %}</span>
+                        <span class="confirm-info-value">{{ shipping_info.shipping_address1 }}</span>
+                    </div>
+
+                    <div class="confirm-info-item">
+                        <span class="confirm-info-label">{% trans 'آدرس تکمیلی' %}</span>
+                        <span class="confirm-info-value">{{ shipping_info.shipping_address2 }}</span>
+                    </div>
+
+                    <div class="confirm-info-item">
+                        <span class="confirm-info-label">{% trans 'شهر' %}</span>
+                        <span class="confirm-info-value">{{ shipping_info.shipping_city }}</span>
+                    </div>
+
+                    <div class="confirm-info-item">
+                        <span class="confirm-info-label">{% trans 'استان' %}</span>
+                        <span class="confirm-info-value">{{ shipping_info.shipping_state }}</span>
+                    </div>
+
+                    <div class="confirm-info-item">
+                        <span class="confirm-info-label">{% trans 'کدپستی ' %}</span>
+                        <span class="confirm-info-value">{{ shipping_info.shipping_zipcode }}</span>
+                    </div>
+                </div>
+
+                <form action="{% url 'process_order' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="confirm-actions">
+                        <a href="{% url 'checkout' %}" class="confirm-btn confirm-btn-outline">
+                            <i class="bi bi-arrow-right"></i>
+                            {% trans 'بازگشت به مرحله قبل' %}
+                        </a>
+
+                        <button type="submit" class="confirm-btn confirm-btn-primary">
+                            <i class="bi bi-credit-card"></i>
+                            {% trans 'پرداخت نهایی' %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

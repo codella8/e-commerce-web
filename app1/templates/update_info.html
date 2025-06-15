@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'ویرایش اطلاعات' %}{% endblock %}
+
+{% block content1 %}
+
+<section class="profile-edit-section">
+    <div class="container">
+        <div class="profile-edit-header">
+            <h1 class="page-title">
+                <i class="fas fa-user-edit"></i> {% trans 'ویرایش اطلاعات کاربری' %}
+            </h1>
+            <p class="page-subtitle">{% trans 'اطلاعات حساب کاربری خود را مدیریت کنید' %}</p>
+        </div>
+
+        <div class="profile-edit-container">
+            <div class="profile-sidebar">
+
+                <ul class="profile-menu">
+                    <li class="menu-item active">
+                        <a href="{% url 'update_info' %}">
+                            <i class="fas fa-user-cog"></i> {% trans 'اطلاعات شخصی' %}
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{% url 'update_password' %}">
+                            <i class="fas fa-lock"></i> {% trans 'تغییر رمز عبور' %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="profile-edit-form">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h2>
+                            <i class="fas fa-id-card"></i> {% trans 'اطلاعات شخصی ' %}
+                        </h2>
+                        <p>{% trans 'اطلاعات شناسایی و تماس خودرا بروز کنید' %}</p>
+                    </div>
+
+                    <form method="POST" action="{% url 'update_info' %}" class="edit-form">
+                        {% csrf_token %}
+
+                        <div class="form-row">
+                            {% for field in form %}
+                            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                <label for="{{ field.id_for_label }}">
+                                    {{ field.label }}
+                                    {% if field.field.required %}<span class="required">*</span>{% endif %}
+                                </label>
+
+                                {% if field.name == 'gender' %}
+                                <div class="gender-select">
+                                    {% for choice in field %}
+                                    <div class="gender-option">
+                                        {{ choice.tag }}
+                                        <label for="{{ choice.id_for_label }}">{{ choice.choice_label }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ field }}
+                                {% endif %}
+
+                                {% if field.help_text %}
+                                <small class="form-help">{{ field.help_text }}</small>
+                                {% endif %}
+
+                                {% if field.errors %}
+                                <div class="form-errors">
+                                    {% for error in field.errors %}
+                                    <span class="error-message"><i class="fas fa-exclamation-circle"></i> {{ error
+                                        }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-save">
+                                <i class="fas fa-save"></i> {% trans 'ذخیره تغییرات' %}
+                            </button>
+                            <a href="" class="btn-cancel">
+                                <i class="fas fa-times"></i> {% trans 'انصراف' %}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "تماس با ما" %}{% endblock title %}
+
+{% block content1 %}
+<div class="contact-main">
+    <div class="container contact-content">
+        <div class="row gx-5">
+            <div class="col-lg-5 mb-4 mb-lg-0">
+                <div class="contact-info-card shadow-lg">
+                    <h2 class="section-title">{% trans "اطلاعات تماس" %}</h2>
+                    <div class="divider mb-4"></div>
+
+                    <div class="info-item">
+                        <div class="icon-box bg-primary">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>{% trans "آدرس" %}</h3>
+                            <p>{% trans 'قم, بلوار خلیج فارس, جاده کاشان بعد از پل بقیع اولین دور برگردان جنب باسکول زمرد' %}</p>
+                        </div> 
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon-box bg-success">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>{% trans "تلفن" %}</h3>
+                            <p>025-37213748</p>
+                            <p>025-37213749</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon-box bg-info">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>{% trans "واتساپ" %}</h3>
+                            <p><a href="https://wa.me/">https://wa.me/</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon-box bg-warning">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>{% trans "ایمیل" %}</h3>
+                            <p><a href="mailto:papashoespu@gmail.com">karnoshoepu@gmail.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="social-media mt-4">
+                        <h3 class="mb-3">{% trans "ما را دنبال کنید" %}</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://t.me/KarnoShoes_2024" class="social-icon telegram"><i class="fab fa-telegram"></i></a>
+                            <a href="https://wa.me/989300080027" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="contact-form-card shadow-lg">
+                    <h2 class="section-title">{% trans "پیام بگذارید" %}</h2>
+                    <div class="divider mb-4"></div>
+
+                    <form class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">{% trans "نام کامل" %}</label>
+                                    <input type="text" class="form-control" id="name" placeholder="full name">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-group">
+                                    <label for="email" class="form-label">{% trans "ایمیل" %}</label>
+                                    <input type="email" class="form-control" id="email" placeholder="email">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="-reviews-section">
+                            <div class="review-form-container">
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <textarea name="message" rows="5" placeholder="massage" required></textarea>
+                                    <button type="submit" class="submit-review-btn">{% trans 'ارسال پیام' %}</button>
+                                </form>
+                            </div>
+
+                            <div class="reviews-list">
+                                {% for message in messages %}
+                                <div class="review-card">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <h4>{{ message.name }}</h4>
+                                            <div class="review-date">{{ message.created_at|date:"Y-m-d H:i" }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-content">
+                                        <p>{{ message.message }}</p>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                <div class="no-reviews">
+                                    <i class="bi bi-chat-square-text"></i>
+                                    <p>{% trans 'هنوز هیچ نظری ثبت نشده' %}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="map-section">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">{% trans "ما روی نقشه" %}</h2>
+                <div class="divider mx-auto"></div>
+            </div>
+
+            <div class="map-container shadow-lg">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6569.730815623634!2d50.935687!3d34.582272!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzTCsDM0JzU2LjIiTiA1MMKwNTYnMDguNSJF!5e0!3m2!1sen!2sus!4v1731915466052!5m2!1sen!2sus"
+                    allowfullscreen="" loading="lazy" class="google-map">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    
+    <div class="back-section text-center py-4">
+        <a href="{% url 'index' %}" class="back-link">
+            <i class="fas fa-arrow-right me-2"></i> {% trans "بازگشت به صفحه اصلی" %}
+        </a>
+    </div>
+</div>
+{% endblock content1 %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}{% trans "محصولات ویژه" %} | {{ category }}{% endblock %}
+
+{% block content1 %}
+<section class="more-products-head">
+    <div class="container"> 
+        <div class="more-header">
+            <h1 class="more-title">
+            {% trans 'محولات ویژه و خاص' %}
+            </h1>
+            <p class="more-subtitle">{% trans 'انتخابی از بهترین ها فقط برای شما' %}</p>
+            <div class="more-back">
+                <a href="{% url 'index' %}">{% trans 'خانه' %}</a>
+                <span>/</span>
+                <a href="{% url 'additionalproduct' %}">{% trans 'محصولات بیشتر' %}</a>
+                <span>/</span>
+                <span>{{ category }}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="more-products-section">
+    <div class="container">
+        <div class="more-filter-bar">
+            <div class="filter-options">
+                <a href="?sort=popular" class="filter-btn active">{% trans 'پربازدید ترین' %}</a>
+            </div>
+            <div class="product-count">
+                <span>{{ additionalproducts.count }} {% trans 'محصول' %}</span>
+            </div>
+        </div>
+
+        <div class="more-products-grid">
+            {% for item in additionalproducts %}
+            <div class="more-product-card">
+                {% if item.is_sale %}
+                <div class="badge bg-danger position-absolute sale-badge">{% trans 'تخفیف ویژه' %}</div>
+                {% endif %}
+
+                <div class="product-media">
+                    <img src="{{ item.picture.url }}" alt="{{ item.name }}" class="product-image">
+                    <div class="product-actions">
+                        <button class="action-btn wishlist-btn" data-product-id="{{ item.id }}">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                        <button class="action-btn quick-view-btn" data-product-id="{{ item.id }}">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <a href="{% url 'additionalproduct_detail' item.id %}" class="product-link-overlay"></a>
+                </div><br>
+
+                <div class="card-body">
+                    <h3 class="product-title">{{ item.name }}</h3>
+                    <div class="product-price mb-3">
+                        {% if item.is_sale %}
+                        <span class="text-muted text-decoration-line-through me-2">{{ item.price|intcomma }}
+                            تومان</span><br>
+                        <span class="text-danger fw-bold">{{ item.sale_price|intcomma }} {% trans 'تومان' %}</span>
+                        {% else %}
+                        <span class="text-dark fw-bold">{{ item.price|intcomma }} {% trans 'تومان' %}</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="{% url 'additionalproduct_detail' item.id %}" class="btn btn-outline-primary w-100">
+                        <i class="bi bi-eye me-2"></i> {% trans 'مشاهده جزییات' %}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

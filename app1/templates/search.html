@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}{% trans "جستجو" %}{% endblock title %}
+
+{% block content1 %}
+<link rel="stylesheet" href="{% static 'css/search_results.css' %}">
+
+<section class="search-results-page">
+    <div class="container">
+        {% if searched %}
+        <div class="search-header">
+            <h1 class="search-title">
+                <i class="fas fa-search"></i> {% trans 'نتایج برای جستجو' %} "<span class="search-query">{{ searched }}</span>"
+            </h1>
+            <p class="search-count">
+                {% if products %}
+                {{ products|length }} {% trans 'محصولی یافت نشد' %}
+                {% endif %}
+            </p>
+        </div>
+
+        {% if products %}
+        <div class="search-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <div class="product-badge">
+                    {% if product.is_sale %}
+                    <span class="badge-discount"> {% trans 'تخفیف' %} {{ product.discount_percent }}%</span>
+                    {% endif %}
+                </div>
+
+                <div class="product-image">
+                    <img src="{{ product.picture.url }}" alt="{{ product.name }}" loading="lazy">
+                    <div class="image-overlay">
+                        <a href="{{ product.get_absolute_url }}" class="quick-view">
+                            <i class="fas fa-eye"></i> {% trans 'مشاهده سریع' %}
+                        </a>
+                    </div>
+                </div>
+
+                    <h3 class="product-title">
+                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                    </h3>
+
+                    <p class="product-description">{{ product.description|truncatewords:20 }}</p>
+
+                    <div class="product-price">
+                        {% if product.sale %}
+                        <span class="price-old">{{ product.price|intcomma }} {% trans 'تومان' %} </span>
+                        <span class="price-new">{{ product.sale_price|intcomma }} {% trans 'تومان' %} </span>
+                        {% else %}
+                        <span class="price-current">{{ product.price|intcomma }} {% trans 'تومان' %} </span>
+                        {% endif %}
+                    </div> 
+
+                    <form action="{% url 'add_to_cart' product.id %}" method="post" class="add-to-cart-form">
+                        {% csrf_token %}
+                        <div class="quantity-selector">
+                            <button type="button" class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+                            <input type="number" name="quantity" value="1" min="1" max="10" class="quantity-input">
+                            <button type="button" class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <button type="submit" class="btn-add-to-cart">
+                            <i class="fas fa-shopping-cart"></i> {% trans 'افزودن به سبد خرید' %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-results">
+            <div class="no-results-content">
+                <img src="{% static 'images/no-results.svg' %}" alt="نتیجه‌ای یافت نشد" class="no-results-image">
+                <h3>{% trans 'نتیجه ای یافت نشد' %}</h3>
+                <p>{% trans 'متاسفانه هیچ محصولی مطابق جستجوی شما یافت نشد' %}</p>
+                <div class="search-suggestions">
+                    <p>{% trans 'پیشنهادات :' %}</p>
+                    <ul>
+                        <li>{% trans 'از کلمات کلیدی متفاوت استفاده کنید' %}</li>
+                        <li>{% trans 'املای کلمات را بررسی کنید' %}</li>
+                        <li>{% trans 'جستجوی عمومی تری انجام دهید' %}</li>
+                    </ul>
+                </div>
+                <a href="{% url 'index' %}" class="btn-back-to-home">
+                    <i class="fas fa-arrow-right"></i> {% trans 'بازگشت' %} 
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+</section>
+{% endblock content1 %}

@@ -1,0 +1,1361 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-04 01:29-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\app1\forms.py:11 .\app1\templates\contact.html:30
+msgid "تلفن"
+msgstr "هاتف"
+
+#: .\app1\forms.py:15
+msgid "1 آدرس"
+msgstr "1 عنوان"
+
+#: .\app1\forms.py:20
+msgid "2 آدرس"
+msgstr "2 عنوان"
+
+#: .\app1\forms.py:25 .\payment\templates\payment\confirm_order.html:116
+msgid "شهر"
+msgstr "مدينة"
+
+#: .\app1\forms.py:30
+msgid "کشور"
+msgstr "البلاد"
+
+#: .\app1\forms.py:45
+msgid "رمز جدید را وارد کنید"
+msgstr "أدخل كلمة المرور الجديدة."
+
+#: .\app1\forms.py:55
+msgid "رمز جدید را دوباره وارد کنید"
+msgstr "أعد إدخال كلمة المرور الجديدة."
+
+#: .\app1\forms.py:65
+msgid "اسم"
+msgstr "اسم"
+
+#: .\app1\forms.py:73 .\app1\forms.py:107
+msgid "نام خانوادگی"
+msgstr "اسم عائلة مثلي الجنس"
+
+#: .\app1\forms.py:79 .\app1\forms.py:112 .\app1\templates\contact.html:51
+#: .\app1\templates\contact.html:82
+#: .\payment\templates\payment\confirm_order.html:96
+msgid "ایمیل"
+msgstr "بريد إلكتروني"
+
+#: .\app1\forms.py:86 .\app1\forms.py:118
+msgid "نام کاربری"
+msgstr "ملف تعريف المستخدم"
+
+#: .\app1\forms.py:100
+msgid "نام "
+msgstr "اسم :"
+
+#: .\app1\forms.py:128
+msgid "رمز خودرا وارد کنید"
+msgstr "أدخل كلمة المرور الجديدة."
+
+#: .\app1\forms.py:140
+msgid "دوباره رمز خودرا وارد کنید"
+msgstr "أدخل كلمة المرور الجديدة."
+
+#: .\app1\templates\about.html:4
+msgid "درباره ما"
+msgstr "معلومات عنا"
+
+#: .\app1\templates\about.html:15
+msgid "سال تجربه"
+msgstr "سنوات من الخبرة"
+
+#: .\app1\templates\about.html:21
+msgid "درباره شرکت کفش کارنو"
+msgstr "نبذة عن شركة كارنو للأحذية"
+
+#: .\app1\templates\about.html:24
+msgid ""
+"شرکت کفش کارنو با سالها تخصص و سابقه درخشان در زمینه تولید کفش های ماشینی "
+"فعالیت دارد."
+msgstr ""
+"تتمتع شركة كارنو للأحذية بخبرة لسنوات عديدة وتاريخ لامع في مجال تصنيع "
+"الأحذية المصنوعة آليًا إنه نشط"
+
+#: .\app1\templates\about.html:25
+msgid ""
+"ما درشرکت کارنو همواره در تلاشیم که بهترین محصولات را از بهترین مواد خام و "
+"درجه یک تولید و بابهترین قیمت ارائه دهیم."
+msgstr ""
+"في شركة كارنو، نسعى دائمًا إلى إنتاج أفضل المنتجات من أفضل المواد الخام و نحن "
+"نقدم إنتاجًا من الدرجة الأولى وأفضل الأسعار."
+
+#: .\app1\templates\about.html:26
+msgid ""
+"کارنو یک برند تخصصی در زمینه طراحی و تولید صندل‌های باکیفیت مردانه، زنانه و "
+"میانه(نقلی) است."
+msgstr ""
+"كارنو هي علامة تجارية متخصصة في تصميم وإنتاج الصنادل عالية الجودة للرجال "
+"والنساء إنه الوسط (المقتبس)."
+
+#: .\app1\templates\about.html:27
+msgid ""
+"که با رویکردی نوین در صنعت پوشاک پا، تلاش دارد ترکیبی از راحتی، دوام و "
+"زیبایی را دراختیار مشتریان خود قرار دهد."
+msgstr ""
+"مع نهج جديد لصناعة الأحذية، تسعى إلى الجمع بين الراحة والمتانة توفير الجمال "
+"لعملائها."
+
+#: .\app1\templates\about.html:31
+msgid "ما در کارنو با بهره‌گیری از مواد اولیه مرغوب،"
+msgstr "في كارنو، نستخدم مواد خام عالية الجودة،"
+
+#: .\app1\templates\about.html:32
+msgid "تکنولوژی روز و طراحی‌های کاربردی،"
+msgstr "التكنولوجيا الحديثة والتصاميم العملية،"
+
+#: .\app1\templates\about.html:33
+msgid "محصولاتی تولید می‌کنیم که نه‌تنها پاسخ‌گوی نیاز روزمره مصرف‌کننده باشند، "
+msgstr "نحن ننتج منتجات لا تلبي فقط الاحتياجات اليومية للمستهلكين،"
+
+#: .\app1\templates\about.html:34
+msgid ""
+"بلکه تجربه‌ای لذت‌بخش و ماندگار از پوشیدن یک صندل استاندارد و خوش‌دوخت را فراهم "
+"کنند."
+msgstr "بل إنها توفر تجربة ممتعة ودائمة لارتداء صندل قياسي مصمم بشكل جيد."
+
+#: .\app1\templates\about.html:38
+msgid "صندل‌های کارنو به‌گونه‌ای طراحی شده‌اند که در کنار سبُکی و راحتی،"
+msgstr "تم تصميم صنادل كارنو بطريقة تجعلها خفيفة الوزن ومريحة،"
+
+#: .\app1\templates\about.html:39
+msgid " استایلی شیک و چشم‌نواز را نیز به همراه داشته باشند؛"
+msgstr "يجب أن يكون لديهم أيضًا أسلوب أنيق وجذاب للنظر."
+
+#: .\app1\templates\about.html:40
+msgid "چه برای استفاده روزمره، چه برای سفر، پیاده‌روی یا محیط‌های نیمه‌رسمی."
+msgstr ""
+"سواء للاستخدام اليومي، أو السفر، أو المشي لمسافات طويلة، أو الإعدادات شبه "
+"الرسمية."
+
+#: .\app1\templates\about.html:44
+msgid "کیفیت تولید، احترام به نیاز مشتری و طراحی متعهدانه،"
+msgstr "جودة الإنتاج واحترام احتياجات العملاء والتصميم الملتزم،"
+
+#: .\app1\templates\about.html:45
+msgid "که برند کارنو از ابتدای مسیر بر آن‌ها پایبند بوده"
+msgstr "وهو ما التزمت به علامة كارنو منذ بداية الرحلة."
+
+#: .\app1\templates\about.html:46
+msgid ""
+"و همواره در تلاش است تا با ارتقاء مستمر محصولات، رضایت و اعتماد مصرف‌کنندگان "
+"را حفظ کند."
+msgstr ""
+"وتسعى دائمًا إلى الحفاظ على رضا المستهلكين وثقتهم من خلال تحسين منتجاتها بشكل "
+"مستمر."
+
+#: .\app1\templates\about.html:47
+msgid "کارنو، همراهی مطمئن در هر قدم."
+msgstr "كارنو، رفيق موثوق به في كل خطوة."
+
+#: .\app1\templates\about.html:56
+msgid "کیفیت بالا"
+msgstr "جودة عالية"
+
+#: .\app1\templates\about.html:57 .\app1\templates\product.html:119
+msgid "استفاده از بهترین مواد اولیه"
+msgstr "استخدام أفضل المواد الخام"
+
+#: .\app1\templates\about.html:66
+msgid "رضایت مشتری"
+msgstr "رضا العملاء"
+
+#: .\app1\templates\about.html:67
+msgid "اولویت اصلی ما رضایت شماست"
+msgstr "أولويتنا الرئيسية هي رضاكم."
+
+#: .\app1\templates\about.html:76
+msgid "تولید سریع"
+msgstr "إنتاج سريع"
+
+#: .\app1\templates\about.html:77
+msgid "ارسال به موقع محصولات"
+msgstr "التسليم في الوقت المناسب للمنتجات"
+
+#: .\app1\templates\about.html:86
+msgid "تضمین کیفیت"
+msgstr "ضمان الجودة"
+
+#: .\app1\templates\about.html:87
+msgid "گارانتی تمام محصولات"
+msgstr "ضمان لجميع المنتجات"
+
+#: .\app1\templates\about.html:99
+msgid "ماموریت و چشم انداز"
+msgstr "الرسالة والرؤية"
+
+#: .\app1\templates\about.html:109
+msgid "ماموریت ما"
+msgstr "مهمتنا"
+
+#: .\app1\templates\about.html:110
+msgid "تولید کفش با کیفیت با استفاده از بهترین مواد اولیه و تکنولوژی روز دنیا"
+msgstr ""
+"إنتاج أحذية عالية الجودة باستخدام أفضل المواد الخام وأحدث التقنيات في العالم"
+
+#: .\app1\templates\about.html:119
+msgid "چشم انداز"
+msgstr "وجهة نظر"
+
+#: .\app1\templates\about.html:120
+msgid "تبدیل شدن به برند پیشرو در صنعت کفش کشور و حضور در بازارهای بین المللی"
+msgstr ""
+"أن نصبح العلامة التجارية الرائدة في صناعة الأحذية في البلاد وأن نتمتع بحضور "
+"قوي في الأسواق العالمية"
+
+#: .\app1\templates\about.html:133 .\app1\templates\index.html:221
+msgid "جفت کفش تولیدی"
+msgstr "زوج من الأحذية المصنعة"
+
+#: .\app1\templates\about.html:140 .\app1\templates\index.html:228
+msgid "مشتری راضی"
+msgstr "عميل راضٍ"
+
+#: .\app1\templates\about.html:147 .\app1\templates\index.html:235
+msgid "مدل مختلف"
+msgstr "نماذج مختلفة"
+
+#: .\app1\templates\about.html:154 .\app1\templates\index.html:242
+msgid "سال سابقه"
+msgstr "سنة التسجيل"
+
+#: .\app1\templates\about.html:163 .\app1\templates\contact.html:142
+#: .\app1\templates\order_details.html:132 .\app1\templates\orders.html:89
+msgid "بازگشت به صفحه اصلی"
+msgstr "العودة إلى الصفحة الرئيسية"
+
+#: .\app1\templates\additionalproduct.html:6
+msgid "محصولات ویژه"
+msgstr "منتجات خاصة"
+
+#: .\app1\templates\additionalproduct.html:13
+msgid "محولات ویژه و خاص"
+msgstr "منتجات خاصة"
+
+#: .\app1\templates\additionalproduct.html:15
+msgid "انتخابی از بهترین ها فقط برای شما"
+msgstr "مجموعة مختارة من الأفضل خصيصًا لك"
+
+#: .\app1\templates\additionalproduct.html:17
+#: .\app1\templates\additionalproduct_detail.html:31
+#: .\app1\templates\index.html:5 .\app1\templates\navbar.html:8
+#: .\app1\templates\navbar.html:109 .\app1\templates\product.html:14
+msgid "خانه"
+msgstr "بيت"
+
+#: .\app1\templates\additionalproduct.html:19
+#: .\app1\templates\additionalproduct_detail.html:33
+#: .\app1\templates\index.html:116
+msgid "محصولات بیشتر"
+msgstr "المزيد من المنتجات"
+
+#: .\app1\templates\additionalproduct.html:31
+msgid "پربازدید ترین"
+msgstr "الأكثر زيارة"
+
+#: .\app1\templates\additionalproduct.html:34
+#: .\app1\templates\order_details.html:89
+msgid "محصول"
+msgstr "منتج"
+
+#: .\app1\templates\additionalproduct.html:42 .\app1\templates\index.html:80
+msgid "تخفیف ویژه"
+msgstr "خصم خاص"
+
+#: .\app1\templates\additionalproduct.html:64
+#: .\app1\templates\additionalproduct.html:66
+#: .\app1\templates\additionalproduct_detail.html:70
+#: .\app1\templates\additionalproduct_detail.html:71
+#: .\app1\templates\additionalproduct_detail.html:76
+#: .\app1\templates\category.html:47 .\app1\templates\category.html:48
+#: .\app1\templates\category.html:50 .\app1\templates\index.html:98
+#: .\app1\templates\index.html:100 .\app1\templates\order_details.html:29
+#: .\app1\templates\order_details.html:110
+#: .\app1\templates\order_details.html:111
+#: .\app1\templates\order_details.html:118 .\app1\templates\product.html:67
+#: .\app1\templates\product.html:68 .\app1\templates\product.html:73
+#: .\app1\templates\search.html:52 .\app1\templates\search.html:53
+#: .\app1\templates\search.html:55 .\cart\templates\cart\cart_detail.html:65
+#: .\cart\templates\cart\cart_detail.html:67
+#: .\cart\templates\cart\cart_detail.html:80
+#: .\cart\templates\cart\cart_detail.html:111
+#: .\cart\templates\cart\cart_detail.html:118
+#: .\payment\templates\payment\checkout.html:38
+#: .\payment\templates\payment\checkout.html:41
+#: .\payment\templates\payment\checkout.html:49
+#: .\payment\templates\payment\confirm_order.html:58
+#: .\payment\templates\payment\confirm_order.html:62
+#: .\payment\templates\payment\confirm_order.html:73
+#: .\payment\templates\payment\confirm_order.html:78
+msgid "تومان"
+msgstr "تومان"
+
+#: .\app1\templates\additionalproduct.html:73
+msgid "مشاهده جزییات"
+msgstr "عرض التفاصيل"
+
+#: .\app1\templates\additionalproduct_detail.html:81
+msgid "توضیحات محصول"
+msgstr "وصف المنتج"
+
+#: .\app1\templates\additionalproduct_detail.html:85
+msgid "میتوانید برای ثبت سفارش محصول در صفحه اصلی جستجو کنید"
+msgstr "يمكنك البحث عن المنتج في الصفحة الرئيسية لتقديم الطلب."
+
+#: .\app1\templates\additionalproduct_detail.html:87
+#: .\cart\templates\cart\cart_detail.html:131
+#: .\cart\templates\cart\cart_detail.html:157
+msgid "صفحه اصلی"
+msgstr "الصفحة الرئيسية"
+
+#: .\app1\templates\additionalproduct_detail.html:91
+msgid "اشتراک گذاری:"
+msgstr "مشاركة:"
+
+#: .\app1\templates\additionalproduct_detail.html:98
+#: .\app1\templates\product.html:41
+msgid "کفش کارنو"
+msgstr "حذاء كارنو"
+
+#: .\app1\templates\additionalproduct_detail.html:100
+#: .\app1\templates\product.html:43
+msgid ""
+"طراحی‌شده برای راحتی در کنار استایل، با استفاده از متریال باکیفیت و دوخت دقیق."
+msgstr ""
+"تم تصميمه لتوفير الراحة إلى جانب الأناقة، باستخدام مواد عالية الجودة وخياطة "
+"دقيقة."
+
+#: .\app1\templates\additionalproduct_detail.html:101
+#: .\app1\templates\product.html:44
+#, fuzzy
+#| msgid "مناسب برای استفاده روزمره، سفر و پیاده‌روی."
+msgid "<مناسب برای استفاده روزمره، سفر و پیاده‌روی."
+msgstr "مناسب للاستخدام اليومي والسفر والمشي لمسافات طويلة."
+
+#: .\app1\templates\additionalproduct_detail.html:104
+#: .\app1\templates\product.html:47
+msgid "سبک و بادوام"
+msgstr "ضوء ومع فخ"
+
+#: .\app1\templates\additionalproduct_detail.html:105
+#: .\app1\templates\product.html:48
+msgid "طراحی ارگونومیک"
+msgstr "تصميم مريح"
+
+#: .\app1\templates\additionalproduct_detail.html:106
+#: .\app1\templates\product.html:49
+msgid "مناسب آقایان / بانوان / سایزهای نقلی"
+msgstr "مناسب للرجال / النساء / المقاسات الكبيرة"
+
+#: .\app1\templates\additionalproduct_detail.html:108
+#: .\app1\templates\product.html:51
+msgid "کارنو؛ همراهی مطمئن برای قدم‌های شما."
+msgstr "كارنوت. رفيق موثوق لخطواتك."
+
+#: .\app1\templates\additionalproduct_detail.html:114
+msgid "نظرات مشتریات"
+msgstr "مراجعات العملاء"
+
+#: .\app1\templates\additionalproduct_detail.html:117
+#: .\app1\templates\product.html:156
+msgid "نظر خودرا ثبت کنید"
+msgstr "أرسل تعليقك."
+
+#: .\app1\templates\additionalproduct_detail.html:125
+#: .\app1\templates\product.html:165
+msgid "ثبت نظر"
+msgstr "تسجيل تعليق"
+
+#: .\app1\templates\additionalproduct_detail.html:145
+msgid "هنوز هیچ نظری برای این محصول ثبت نشده"
+msgstr "لا توجد تعليقات على هذا المنتج حتى الآن."
+
+#: .\app1\templates\base.html:10
+msgid "کارنو"
+msgstr "کارنو"
+
+#: .\app1\templates\base.html:70 .\app1\templates\contact.html:4
+msgid "تماس با ما"
+msgstr "اتصل بنا"
+
+#: .\app1\templates\base.html:103
+msgid "گروه تولیدی کفش کارنو"
+msgstr "مجموعة كارنو لتصنيع الأحذية"
+
+#: .\app1\templates\base.html:104
+msgid "سال ها تجربه را به خدمت گرفته ایم و سخت تلاش کرده ایم برای بهتر بودن."
+msgstr "لقد وضعنا سنوات من الخبرة في العمل وعملنا بجد لنكون أفضل."
+
+#: .\app1\templates\base.html:105
+msgid "ما اولین نیستیم ولی بهترینیم"
+msgstr "نحن لسنا الأوائل ولكننا الأفضل."
+
+#: .\app1\templates\category.html:6
+msgid "دسته بندی"
+msgstr "فئة"
+
+#: .\app1\templates\category.html:12
+msgid "محصولات ویژه و با کیفیت در این دسته بندی"
+msgstr "منتجات خاصة وعالية الجودة في هذه الفئة"
+
+#: .\app1\templates\category.html:14 .\app1\templates\category.html:29
+#: .\app1\templates\search.html:89
+msgid "بازگشت"
+msgstr "يعود"
+
+#: .\app1\templates\category.html:37 .\app1\templates\category.html:56
+#: .\app1\templates\index.html:107
+msgid "مشاهده محصول"
+msgstr "عرض المنتج"
+
+#: .\app1\templates\contact.html:12
+msgid "اطلاعات تماس"
+msgstr "معلومات الاتصال"
+
+#: .\app1\templates\contact.html:20
+msgid "آدرس"
+msgstr "عنوان"
+
+#: .\app1\templates\contact.html:21
+msgid ""
+"قم, بلوار خلیج فارس, جاده کاشان بعد از پل بقیع اولین دور برگردان جنب باسکول "
+"زمرد"
+msgstr ""
+"قم، شارع الخليج الفارسي، طريق كاشان بعد جسر البقيع، أول منعطف للخلف بجوار "
+"مقياس الزمرد"
+
+#: .\app1\templates\contact.html:41
+msgid "واتساپ"
+msgstr "واتس اب"
+
+#: .\app1\templates\contact.html:57
+msgid "ما را دنبال کنید"
+msgstr "تابعنا"
+
+#: .\app1\templates\contact.html:69
+msgid "پیام بگذارید"
+msgstr "ترك رسالة"
+
+#: .\app1\templates\contact.html:76
+#: .\payment\templates\payment\confirm_order.html:91
+msgid "نام کامل"
+msgstr "الاسم الكامل"
+
+#: .\app1\templates\contact.html:93
+msgid "ارسال پیام"
+msgstr "أرسل رسالة"
+
+#: .\app1\templates\contact.html:113
+msgid "هنوز هیچ نظری ثبت نشده"
+msgstr "لا توجد تعليقات حتى الآن."
+
+#: .\app1\templates\contact.html:127
+msgid "ما روی نقشه"
+msgstr "نحن على الخريطة"
+
+#: .\app1\templates\index.html:16
+msgid "شرکت کفش کارنو"
+msgstr "شركة كارنو للأحذية"
+
+#: .\app1\templates\index.html:17
+msgid "پیشتازان آریا"
+msgstr "رواد الآريين"
+
+#: .\app1\templates\index.html:21
+msgid "صندل‌هایی برای آنان که تفاوت را انتخاب می‌کنند"
+msgstr "صنادل لأولئك الذين يختارون الاختلاف"
+
+#: .\app1\templates\index.html:25
+msgid ""
+"!با بیش از 15 سال تجربه در طراحی و تولید صندل‌های سبک، شیک و بادوام — برای "
+"تمام سلیقه‌ها"
+msgstr ""
+"مع أكثر من 15 عامًا من الخبرة في تصميم وتصنيع الصنادل خفيفة الوزن والأنيقة "
+"والمتينة - لتناسب جميع الأذواق!"
+
+#: .\app1\templates\index.html:26
+#, fuzzy
+#| msgid ""
+#| ".ما درشرکت کارنو همواره در تلاشیم که بهترین محصولات را از بهترین مواد خام "
+#| "و درجه یک تولید و بابهترین قیمت ارائه دهیم"
+msgid ""
+".ما درشرکت کارنو همواره در تلاشیم که بهترین محصولات را از بهترین مواد خام و "
+"درجه یک تولیدو بابهترین قیمت ارائه دهیم"
+msgstr ""
+"في شركة كارنو، نسعى دائمًا إلى تقديم أفضل المنتجات المصنوعة من أفضل المواد "
+"الخام والإنتاج من الدرجة الأولى بأفضل الأسعار."
+
+#: .\app1\templates\index.html:32 .\app1\templates\orders.html:82
+msgid "مشاهده محصولات"
+msgstr "عرض المنتجات"
+
+#: .\app1\templates\index.html:35
+msgid "مشاهده دسته بندی ها"
+msgstr "عرض الفئات"
+
+#: .\app1\templates\index.html:52 .\app1\templates\search.html:6
+msgid "جستجو"
+msgstr "يبحث"
+
+#: .\app1\templates\index.html:65
+msgid "محصولات ما"
+msgstr "منتجاتنا"
+
+#: .\app1\templates\index.html:67
+msgid "برترین محصولات با بهترین کیفیت"
+msgstr "أفضل المنتجات بأفضل جودة"
+
+#: .\app1\templates\index.html:71
+msgid "تعداد محصول :"
+msgstr "رقم المنتج:"
+
+#: .\app1\templates\index.html:87
+msgid "مشاهده"
+msgstr "منظر"
+
+#: .\app1\templates\index.html:126
+msgid "دسته بندی محصولات"
+msgstr "فئات المنتجات"
+
+#: .\app1\templates\index.html:128
+msgid "انتخاب بر اساس نیاز شما"
+msgstr "اختر بناءً على احتياجاتك"
+
+#: .\app1\templates\index.html:134
+msgid "مردانه"
+msgstr "مذكر"
+
+#: .\app1\templates\index.html:164
+#, fuzzy
+#| msgid "مشاهده محصولات"
+msgid "مشاهده همه محصولات مردانه"
+msgstr "عرض المنتجات"
+
+#: .\app1\templates\index.html:175
+msgid "زنانه"
+msgstr "المؤنث"
+
+#: .\app1\templates\index.html:205
+#, fuzzy
+#| msgid "مشاهده محصولات"
+msgid "مشاهده همه محصولات زنانه"
+msgstr "عرض المنتجات"
+
+#: .\app1\templates\index.html:251
+msgid "چرا از ما خرید کنید؟"
+msgstr "لماذا تشتري منا؟"
+
+#: .\app1\templates\index.html:262 .\app1\templates\product.html:118
+msgid "کیفیت بی نظیر"
+msgstr "جودة عالية"
+
+#: .\app1\templates\index.html:263
+msgid "استغاده از بهترین مواد اولیه"
+msgstr "استخدام أفضل المواد الخام"
+
+#: .\app1\templates\index.html:271 .\app1\templates\product.html:127
+msgid "ضمانت کالا"
+msgstr "ضمان المنتج"
+
+#: .\app1\templates\index.html:272 .\app1\templates\product.html:128
+msgid "گارانتی 24 ماهه"
+msgstr "ضمان لمدة 24 شهرًا"
+
+#: .\app1\templates\index.html:280 .\app1\templates\product.html:136
+msgid "ارسال سریع"
+msgstr "أرسل سلسلة "
+
+#: .\app1\templates\index.html:281 .\app1\templates\product.html:137
+msgid "تحویل فوری"
+msgstr "تسليم فوري"
+
+#: .\app1\templates\index.html:289
+msgid "بازگشت آسان"
+msgstr "عودة سهلة "
+
+#: .\app1\templates\index.html:290
+msgid "ضمانت بازگشت تا 7 روز"
+msgstr "ضمان إرجاع لمدة 7 أيام"
+
+#: .\app1\templates\login.html:4
+msgid "ورود به ناحیه کاربری"
+msgstr "تسجيل الدخول إلى منطقة المستخدم"
+
+#: .\app1\templates\login.html:15
+msgid "به فروشگاه کفش کارنو خوش آمدید!"
+msgstr "مرحباً بكم في متجر كارنو للأحذية!"
+
+#: .\app1\templates\login.html:16
+msgid "با ورود به حساب خود از مزایای ویژه ما بهره مند شوید"
+msgstr "استفد من مزايانا الخاصة عن طريق تسجيل الدخول إلى حسابك."
+
+#: .\app1\templates\login.html:21
+msgid "تخفیف‌های ویژه اعضا"
+msgstr "خصومات خاصة للأعضاء"
+
+#: .\app1\templates\login.html:25
+msgid "پیگیری سفارشات"
+msgstr "تتبع الطلبات"
+
+#: .\app1\templates\login.html:29
+msgid "تاریخچه خرید"
+msgstr "خریداری کی تاریخ"
+
+#: .\app1\templates\login.html:41 .\app1\templates\login.html:73
+msgid "ورود به حساب"
+msgstr "تسجيل الدخول"
+
+#: .\app1\templates\login.html:48 .\app1\templates\login.html:54
+msgid "نام کاربری یا ایمیل"
+msgstr "اسم المستخدم أو البريد الإلكتروني"
+
+#: .\app1\templates\login.html:59 .\app1\templates\login.html:65
+msgid "رمز عبور"
+msgstr "كلمة المرور"
+
+#: .\app1\templates\login.html:79
+msgid "حساب ندارید؟"
+msgstr "ليس لديك حساب؟"
+
+#: .\app1\templates\login.html:81
+msgid "ثبت نام کنید"
+msgstr "اشتراك"
+
+#: .\app1\templates\navbar.html:12
+msgid "محصولات"
+msgstr "منتجات"
+
+#: .\app1\templates\navbar.html:31
+msgid "فارسی"
+msgstr ""
+
+#: .\app1\templates\navbar.html:37
+msgid "زبان"
+msgstr "لغة"
+
+#: .\app1\templates\navbar.html:42
+msgid "منو"
+msgstr "القائمة"
+
+#: .\app1\templates\navbar.html:51 .\app1\templates\navbar.html:114
+msgid "درباره"
+msgstr "معلومات عنا"
+
+#: .\app1\templates\navbar.html:54 .\app1\templates\navbar.html:119
+msgid "ارتباط"
+msgstr "تواصل"
+
+#: .\app1\templates\navbar.html:60 .\app1\templates\navbar.html:127
+msgid "پروفایل"
+msgstr "حساب تعريفي"
+
+#: .\app1\templates\navbar.html:63 .\app1\templates\navbar.html:130
+msgid "پروفایل کاربری"
+msgstr "ملف تعريف المستخدم"
+
+#: .\app1\templates\navbar.html:65 .\app1\templates\navbar.html:132
+msgid "اطلاعات کاربری"
+msgstr "معلومات المستخدم"
+
+#: .\app1\templates\navbar.html:67 .\app1\templates\navbar.html:134
+#: .\payment\models.py:46
+msgid "سفارشات"
+msgstr "التوصيات"
+
+#: .\app1\templates\navbar.html:72 .\app1\templates\navbar.html:139
+msgid "خروج"
+msgstr "رحيل"
+
+#: .\app1\templates\navbar.html:78 .\app1\templates\navbar.html:146
+msgid "پنل مدیریت"
+msgstr "لوحة الإدارة"
+
+#: .\app1\templates\navbar.html:85 .\app1\templates\navbar.html:153
+msgid "ورود"
+msgstr "تسجيل الدخول"
+
+#: .\app1\templates\navbar.html:90 .\app1\templates\navbar.html:158
+msgid "ثبت نام"
+msgstr "تسجيل"
+
+#: .\app1\templates\navbar.html:179
+msgid "زبانها"
+msgstr "اللغات"
+
+#: .\app1\templates\order_details.html:5 .\app1\templates\orders.html:4
+msgid "سفارشات | شرکت کفش کارنو"
+msgstr "طلبات شركة كارنو للأحذية"
+
+#: .\app1\templates\order_details.html:15
+msgid "جزئیات سفارش"
+msgstr "آرڈر کی تفصیلات"
+
+#: .\app1\templates\order_details.html:17
+msgid "مشاهده اطلاعات کامل سفارش و وضعیت تحویل"
+msgstr "عرض معلومات الطلب الكاملة وحالة التسليم"
+
+#: .\app1\templates\order_details.html:25 .\payment\models.py:45
+msgid "سفارش"
+msgstr "طلب"
+
+#: .\app1\templates\order_details.html:37
+msgid "اطلاعات مشتری"
+msgstr "معلومات العملاء"
+
+#: .\app1\templates\order_details.html:41
+msgid "نام کامل:"
+msgstr "الاسم الكامل"
+
+#: .\app1\templates\order_details.html:44
+msgid "ایمیل:"
+msgstr "بريد إلكتروني :"
+
+#: .\app1\templates\order_details.html:47
+msgid "آدرس:"
+msgstr "عنوان :"
+
+#: .\app1\templates\order_details.html:55
+msgid "اطلاعات سفارش"
+msgstr "معلومات الاتصال"
+
+#: .\app1\templates\order_details.html:59
+msgid "تاریخ ثبت:"
+msgstr "تاريخ التسجيل :"
+
+#: .\app1\templates\order_details.html:63
+msgid "آخرین بروزرسانی:"
+msgstr "تاريخ التسجيل :"
+
+#: .\app1\templates\order_details.html:67
+msgid "وضعیت:"
+msgstr "حالة"
+
+#: .\app1\templates\order_details.html:83
+msgid "محصولات سفارش"
+msgstr "منتجاتنا"
+
+#: .\app1\templates\order_details.html:90 .\cart\forms.py:10
+#: .\payment\templates\payment\confirm_order.html:53
+msgid "تعداد"
+msgstr "رقم :"
+
+#: .\app1\templates\order_details.html:91
+#: .\payment\templates\payment\confirm_order.html:57
+msgid "قیمت واحد"
+msgstr "سعر الوحدة"
+
+#: .\app1\templates\order_details.html:92
+#: .\payment\templates\payment\confirm_order.html:61
+msgid "جمع"
+msgstr "جمع"
+
+#: .\app1\templates\order_details.html:105
+msgid "کد:"
+msgstr "شفرة:"
+
+#: .\app1\templates\order_details.html:109
+#: .\cart\templates\cart\cart_detail.html:106
+#: .\payment\templates\payment\checkout.html:35
+#: .\payment\templates\payment\confirm_order.html:54
+msgid "عدد"
+msgstr "عدد"
+
+#: .\app1\templates\order_details.html:117
+msgid "جمع کل:"
+msgstr "المبلغ الإجمالي"
+
+#: .\app1\templates\order_details.html:129
+msgid "بازگشت به سفارشات"
+msgstr "العودة إلى الأوامر"
+
+#: .\app1\templates\orders.html:12
+msgid "سفارشات من"
+msgstr "أوامري"
+
+#: .\app1\templates\orders.html:15
+msgid "مشاهده و پیگیری تمام سفارش‌های شما"
+msgstr "عرض وتتبع جميع طلباتك"
+
+#: .\app1\templates\orders.html:26
+msgid "سفارشات جاری"
+msgstr "الطلبات الحالية"
+
+#: .\app1\templates\orders.html:36
+msgid "شماره سفارش"
+msgstr "رقم الاتصال"
+
+#: .\app1\templates\orders.html:37
+msgid "به نام"
+msgstr "في الاسم"
+
+#: .\app1\templates\orders.html:38
+msgid "تاریخ ثبت"
+msgstr "تاريخ التسجيل :"
+
+#: .\app1\templates\orders.html:39
+msgid "وضعیت"
+msgstr "حالة"
+
+#: .\app1\templates\orders.html:77
+msgid "سفارشی ثبت نشده است"
+msgstr "الطلب غير مسجل"
+
+#: .\app1\templates\orders.html:79
+msgid "شما هنوز هیچ سفارشی ثبت نکرده‌اید. می‌توانید از فروشگاه ما دیدن کنید."
+msgstr "لم تقم بوضع أي طلبات بعد. يمكنك زيارة متجرنا."
+
+#: .\app1\templates\product.html:60
+msgid "کد محصول :"
+msgstr "رمز المنتج:"
+
+#: .\app1\templates\product.html:69 .\app1\templates\search.html:31
+msgid "تخفیف"
+msgstr "تخفيض"
+
+#: .\app1\templates\product.html:79
+msgid "توضیحات کامل محصول"
+msgstr "وصف المنتج الكامل"
+
+#: .\app1\templates\product.html:87
+#: .\payment\templates\payment\checkout.html:35
+msgid "تعداد :"
+msgstr "رقم :"
+
+#: .\app1\templates\product.html:96 .\app1\templates\search.html:67
+msgid "افزودن به سبد خرید"
+msgstr "أضف إلى السلة"
+
+#: .\app1\templates\product.html:101
+msgid "اشتراک گذاری :"
+msgstr "مشاركة :"
+
+#: .\app1\templates\product.html:145
+msgid "ضمانت بازگشت"
+msgstr "ضمان العودة"
+
+#: .\app1\templates\product.html:146
+msgid "مدت زمان بازگشت کالا 7 روز"
+msgstr "فترة الإرجاع هي 7 أيام."
+
+#: .\app1\templates\product.html:153
+msgid "نظرات مشتریان"
+msgstr "مراجعات العملاء"
+
+#: .\app1\templates\product.html:185
+msgid "هنوز هیچ نظری در مورد این محصول وجود ندارد"
+msgstr "لا توجد مراجعات لهذا المنتج حتى الآن."
+
+#: .\app1\templates\search.html:16
+msgid "نتایج برای جستجو"
+msgstr "نتائج البحث"
+
+#: .\app1\templates\search.html:20
+msgid "محصولی یافت نشد"
+msgstr "لم يتم العثور على منتج"
+
+#: .\app1\templates\search.html:39
+msgid "مشاهده سریع"
+msgstr "عرض سريع"
+
+#: .\app1\templates\search.html:78
+msgid "نتیجه ای یافت نشد"
+msgstr "لم يتم العثور على نتائج"
+
+#: .\app1\templates\search.html:79
+msgid "متاسفانه هیچ محصولی مطابق جستجوی شما یافت نشد"
+msgstr "لسوء الحظ، لم يتم العثور على أي منتجات تطابق بحثك."
+
+#: .\app1\templates\search.html:81
+msgid "پیشنهادات :"
+msgstr "اقتراحات :"
+
+#: .\app1\templates\search.html:83
+msgid "از کلمات کلیدی متفاوت استفاده کنید"
+msgstr "استخدم كلمات رئيسية مختلفة."
+
+#: .\app1\templates\search.html:84
+msgid "املای کلمات را بررسی کنید"
+msgstr "تحقق من تهجئة الكلمات."
+
+#: .\app1\templates\search.html:85
+msgid "جستجوی عمومی تری انجام دهید"
+msgstr "قم بإجراء بحث أكثر عمومية."
+
+#: .\app1\templates\signup.html:5 .\app1\templates\signup.html:63
+msgid "ثبت‌نام"
+msgstr "تسجيل"
+
+#: .\app1\templates\signup.html:13
+msgid "به خانواده کارنو بپیوندید!"
+msgstr "انضم إلى عائلة كارنو!"
+
+#: .\app1\templates\signup.html:15
+msgid "دسترسی به پیشنهادات ویژه اعضا"
+msgstr "الوصول إلى عروض خاصة للأعضاء"
+
+#: .\app1\templates\signup.html:16
+msgid "پیگیری سفارشات و تاریخچه خرید"
+msgstr "تتبع الطلبات وسجل المشتريات"
+
+#: .\app1\templates\signup.html:17
+msgid "تخفیف‌های اختصاصی برای اعضا"
+msgstr "خصومات حصرية للأعضاء"
+
+#: .\app1\templates\signup.html:18
+msgid "اطلاع از جدیدترین محصولات و حراجی‌ها"
+msgstr "معلومات عن أحدث المنتجات والمزادات"
+
+#: .\app1\templates\signup.html:19
+msgid "پشتیبانی اختصاصی برای اعضا"
+msgstr "دعم مخصص للأعضاء"
+
+#: .\app1\templates\signup.html:30
+msgid "حساب کاربری جدید"
+msgstr "حساب مستخدم جديد"
+
+#: .\app1\templates\signup.html:31
+msgid "اطلاعات خود را وارد کنید تا ثبت‌نام کنید"
+msgstr "أدخل معلوماتك للتسجيل."
+
+#: .\app1\templates\signup.html:68
+msgid "قبلاً حساب دارید؟"
+msgstr "هل لديك حساب بالفعل؟"
+
+#: .\app1\templates\signup.html:69
+msgid "وارد شوید"
+msgstr "تسجيل الدخول"
+
+#: .\app1\templates\update_info.html:5
+msgid "ویرایش اطلاعات"
+msgstr "تحرير المعلومات"
+
+#: .\app1\templates\update_info.html:13
+msgid "ویرایش اطلاعات کاربری"
+msgstr "تحرير معلومات المستخدم"
+
+#: .\app1\templates\update_info.html:15
+msgid "اطلاعات حساب کاربری خود را مدیریت کنید"
+msgstr "إدارة معلومات حسابك"
+
+#: .\app1\templates\update_info.html:24
+msgid "اطلاعات شخصی"
+msgstr "معلومات شخصية"
+
+#: .\app1\templates\update_info.html:29 .\app1\templates\update_password.html:5
+#: .\app1\templates\update_password.html:17
+#: .\app1\templates\update_user.html:21
+msgid "تغییر رمز عبور"
+msgstr "تغيير كلمة المرور"
+
+#: .\app1\templates\update_info.html:39
+msgid "اطلاعات شخصی "
+msgstr "معلومات شخصية"
+
+#: .\app1\templates\update_info.html:41
+msgid "اطلاعات شناسایی و تماس خودرا بروز کنید"
+msgstr "قم بتحديث هويتك ومعلومات الاتصال الخاصة بك."
+
+#: .\app1\templates\update_info.html:86
+#: .\app1\templates\update_password.html:115
+#: .\app1\templates\update_user.html:18
+msgid "ذخیره تغییرات"
+msgstr "حفظ التغييرات"
+
+#: .\app1\templates\update_info.html:89
+msgid "انصراف"
+msgstr "انسحب"
+
+#: .\app1\templates\update_password.html:18
+msgid "لطفاً رمز عبور جدید خود را وارد نمایید"
+msgstr "الرجاء إدخال كلمة المرور الجديدة."
+
+#: .\app1\templates\update_password.html:30
+msgid "رمز عبور فعلی"
+msgstr "كلمة المرور الحالية"
+
+#: .\app1\templates\update_password.html:53
+msgid "رمز عبور جدید"
+msgstr "كلمة المرور الجديدة"
+
+#: .\app1\templates\update_password.html:67
+msgid "حداقل 8 کاراکتر"
+msgstr "8 أحرف على الأقل"
+
+#: .\app1\templates\update_password.html:71
+msgid "حروف بزرگ و کوچک"
+msgstr "الأحرف الكبيرة والصغيرة"
+
+#: .\app1\templates\update_password.html:75
+msgid "اعداد و نمادهای ویژه"
+msgstr "الأرقام والرموز الخاصة"
+
+#: .\app1\templates\update_password.html:94
+msgid "تکرار رمز عبور جدید"
+msgstr "كرر كلمة المرور الجديدة"
+
+#: .\app1\templates\update_password.html:119
+msgid "بازگشت به پروفایل"
+msgstr "العودة إلى الملف الشخصي"
+
+#: .\app1\templates\update_password.html:127
+msgid "برای کمک با پشتیبانی تماس بگیرید:"
+msgstr "اتصل بالدعم للحصول على المساعدة:"
+
+#: .\app1\templates\update_user.html:4 .\app1\templates\update_user.html:10
+msgid "ویرایش پروفایل"
+msgstr "تحرير الملف الشخصي"
+
+#: .\app1\templates\update_user.html:11
+msgid "اطلاعات شخصی خودرا بروز کنید"
+msgstr "تحديث معلوماتك الشخصية."
+
+#: .\app1\views.py:31
+msgid "Hello Welcome!"
+msgstr "مرحباً"
+
+#: .\app1\views.py:89
+msgid "با موفقیت خارج شدید"
+msgstr "لقد خرجت بنجاح"
+
+#: .\app1\views.py:94
+msgid "شما قبلاً وارد شده‌اید."
+msgstr "لقد قمت بتسجيل الدخول بالفعل."
+
+#: .\app1\views.py:107
+msgid "شما دسترسی به پنل مدیریت ندارید"
+msgstr "ليس لديك إمكانية الوصول إلى لوحة الإدارة."
+
+#: .\app1\views.py:112
+msgid "نام کاربری یا رمز عبور اشتباه است"
+msgstr "اسم المستخدم أو كلمة المرور غير صحيحة."
+
+#: .\app1\views.py:125
+msgid "این نام کاربری قبلاً ثبت شده است."
+msgstr "لقد قمت بتسجيل الدخول بالفعل."
+
+#: .\app1\views.py:127
+msgid "این ایمیل قبلاً ثبت شده است."
+msgstr "لقد تم تسجيل هذا البريد الإلكتروني بالفعل."
+
+#: .\app1\views.py:133
+msgid "اکانت شما ساخته شد."
+msgstr "لقد تم إنشاء حسابك."
+
+#: .\app1\views.py:136
+msgid "لطفاً خطاهای فرم را بررسی و اصلاح کنید."
+msgstr "يرجى مراجعة المعلومات التالية والتأكد منها."
+
+#: .\app1\views.py:160
+msgid "لطفاً ابتدا وارد شوید."
+msgstr "الرجاء تسجيل الدخول أولاً."
+
+#: .\app1\views.py:184
+msgid "لطفاً ابتدا وارد حساب کاربری شوید."
+msgstr "الرجاء تسجيل الدخول أولاً."
+
+#: .\app1\views.py:193 .\app1\views.py:196
+msgid "اطلاعات با موفقیت بروزرسانی شد."
+msgstr "تم تحديث عدد المنتجات بنجاح."
+
+#: .\cart\templates\cart\cart_detail.html:10
+msgid "سبد خرید | فروشگاه کفش کارنو"
+msgstr "طلبات | شركة كارنو للأحذية"
+
+#: .\cart\templates\cart\cart_detail.html:21
+msgid "سبد خرید شما"
+msgstr "عربة التسوق"
+
+#: .\cart\templates\cart\cart_detail.html:22
+msgid "مدیریت محصولات انتخابی"
+msgstr "إدارة المنتج"
+
+#: .\cart\templates\cart\cart_detail.html:43
+msgid "محصولات انتخابی"
+msgstr "إدارة المنتج"
+
+#: .\cart\templates\cart\cart_detail.html:87
+msgid "حذف"
+msgstr "يزيل"
+
+#: .\cart\templates\cart\cart_detail.html:100
+msgid "فاکتور نهایی"
+msgstr "الدفع النهائي"
+
+#: .\cart\templates\cart\cart_detail.html:105
+msgid "تعداد محصولات :"
+msgstr "رقم المنتج:"
+
+#: .\cart\templates\cart\cart_detail.html:110
+msgid "مبلغ کل :"
+msgstr "المبلغ الإجمالي"
+
+#: .\cart\templates\cart\cart_detail.html:117
+#: .\payment\templates\payment\confirm_order.html:77
+msgid "مبلغ قابل پرداخت :"
+msgstr "التأكيد والدفع"
+
+#: .\cart\templates\cart\cart_detail.html:124
+#: .\payment\templates\payment\confirm_order.html:141
+msgid "پرداخت نهایی"
+msgstr "الدفع النهائي"
+
+#: .\cart\templates\cart\cart_detail.html:127
+msgid "ادامه خرید"
+msgstr "مواصلة التسوق"
+
+#: .\cart\templates\cart\cart_detail.html:139
+msgid "گارانتی اصل بودن کالا"
+msgstr "ضمان أصالة البضائع"
+
+#: .\cart\templates\cart\cart_detail.html:143
+msgid "تحویل سریع و با تخفیف"
+msgstr "التسليم السريع والخصم"
+
+#: .\cart\templates\cart\cart_detail.html:154
+msgid "سبد خرید شما خالی است!"
+msgstr "سلة التسوق الخاصة بك فارغة!"
+
+#: .\cart\templates\cart\cart_detail.html:155
+msgid "میتوانید از فروشگاه ما دیدن کنید و محصولات مارا ببینید"
+msgstr "يمكنكم زيارة متجرنا ورؤية منتجاتنا."
+
+#: .\cart\views.py:25
+msgid "محصول با موفقیت به سبد خرید اضافه شد"
+msgstr "لقد تمت إضافة المنتج إلى سلة التسوق بنجاح."
+
+#: .\cart\views.py:51
+msgid "محصول از سبد خرید حذف شد"
+msgstr "تمت إزالة المنتج من سلة التسوق."
+
+#: .\cart\views.py:59
+msgid "تعداد باید حداقل 1 باشد"
+msgstr "يجب أن يكون الرقم 1 على الأقل."
+
+#: .\cart\views.py:69
+msgid "تعداد محصول با موفقیت به‌روزرسانی شد"
+msgstr "تم تحديث عدد المنتجات بنجاح."
+
+#: .\cart\views.py:71
+msgid "لطفاً یک عدد معتبر وارد کنید"
+msgstr "الرجاء تسجيل الدخول أولاً."
+
+#: .\payment\models.py:22
+msgid "آدرس پرداخت"
+msgstr "عنوان الدفع"
+
+#: .\payment\models.py:23
+msgid "آدرس‌های پرداخت"
+msgstr "عناوين الدفع"
+
+#: .\payment\models.py:26
+#, fuzzy, python-brace-format
+#| msgid "آدرس پرداخت"
+msgid "فرم آدرس پرداخت: {name}"
+msgstr "عنوان الدفع"
+
+#: .\payment\models.py:70
+msgid "آیتم های سفارش"
+msgstr "ترتيب العناصر"
+
+#: .\payment\models.py:74
+#, python-brace-format
+msgid "آیتم سفارش - {product} - برای {user}"
+msgstr ""
+
+#: .\payment\models.py:78
+#, python-brace-format
+msgid "آیتم سفارش - {product} - برای سفارش {order}"
+msgstr ""
+
+#: .\payment\templates\payment\checkout.html:6
+msgid "صورت حساب"
+msgstr "فاتورة"
+
+#: .\payment\templates\payment\checkout.html:13
+msgid "تکمیل سفارش"
+msgstr "إكمال الطلب"
+
+#: .\payment\templates\payment\checkout.html:14
+msgid "لطفا اطلاعات ارسال را با دقت بررسی و تکمیل نمایید"
+msgstr "يرجى التحقق من معلومات الإرسال واستكمالها بعناية"
+
+#: .\payment\templates\payment\checkout.html:21
+msgid "خلاصه سفارش شما"
+msgstr "ملخص طلبك"
+
+#: .\payment\templates\payment\checkout.html:38
+msgid "قیمت واحد :"
+msgstr "سعر الوحدة"
+
+#: .\payment\templates\payment\checkout.html:41
+msgid "قیمت کل :"
+msgstr "السعر الإجمالي"
+
+#: .\payment\templates\payment\checkout.html:55
+msgid "ویرایش سفارش"
+msgstr "تحرير الطلب"
+
+#: .\payment\templates\payment\checkout.html:64
+msgid "مشخصات ارسال"
+msgstr "تفاصيل الشحن"
+
+#: .\payment\templates\payment\checkout.html:84
+msgid "تایید و پرداخت"
+msgstr "التأكيد والدفع"
+
+#: .\payment\templates\payment\confirm_order.html:10
+msgid "تکمیل سفارش شما"
+msgstr "إكمال طلبك"
+
+#: .\payment\templates\payment\confirm_order.html:11
+msgid "لطفا اطلاعات زیر را بررسی و تایید نمایید"
+msgstr "يرجى مراجعة المعلومات التالية والتأكد منها."
+
+#: .\payment\templates\payment\confirm_order.html:16
+msgid "سبد خرید"
+msgstr "عربة التسوق"
+
+#: .\payment\templates\payment\confirm_order.html:21
+msgid "اطلاعات ارسال"
+msgstr "معلومات الشحن"
+
+#: .\payment\templates\payment\confirm_order.html:26
+msgid "تایید نهایی"
+msgstr "الموافقة النهائية"
+
+#: .\payment\templates\payment\confirm_order.html:38
+msgid "خلاصه سفارش"
+msgstr "ملخص الطلب"
+
+#: .\payment\templates\payment\confirm_order.html:72
+msgid "جمع کل :"
+msgstr "المبلغ الإجمالي"
+
+#: .\payment\templates\payment\confirm_order.html:86
+msgid "اطلاعات تحویل گیرنده"
+msgstr "معلومات مستلم التسليم"
+
+#: .\payment\templates\payment\confirm_order.html:101
+msgid "تلفن همراه"
+msgstr "الهاتف المحمول"
+
+#: .\payment\templates\payment\confirm_order.html:106
+msgid "آدرس اصلی"
+msgstr "العنوان الرئيسي"
+
+#: .\payment\templates\payment\confirm_order.html:111
+msgid "آدرس تکمیلی"
+msgstr "عنوان إضافي"
+
+#: .\payment\templates\payment\confirm_order.html:121
+msgid "استان"
+msgstr "مقاطعة"
+
+#: .\payment\templates\payment\confirm_order.html:126
+msgid "کدپستی "
+msgstr "الرمز البريدي"
+
+#: .\payment\templates\payment\confirm_order.html:136
+msgid "بازگشت به مرحله قبل"
+msgstr "العودة إلى الصفحة الرئيسية"
+
+#: .\payment\views.py:89
+msgid "سفارش بدون ورود کاربر ثبت می‌شود."
+msgstr "يتم تقديم الطلب دون تسجيل دخول المستخدم."
+
+#: .\payment\views.py:118
+msgid "سفارش با موفقیت ثبت شد."
+msgstr "الطلب غير مسجل"
+
+#: .\payment\views.py:122
+msgid "درخواست نامعتبر بود."
+msgstr "الطلب غير صالح."
+
+#~ msgid "تولید کننده برتر کفش با کیفیت در ایران."
+#~ msgstr "الشركة الرائدة في تصنيع الأحذية ذات الجودة العالية في إيران."
+
+#~ msgid "داستان ما"
+#~ msgstr "قصتنا"
+
+#~ msgid ""
+#~ "آدرس: قم, بلوار خلیج فارس, جاده کاشان بعد از پل بقیع اولین دور برگردان "
+#~ "جنب باسکول زمرد"
+#~ msgstr ""
+#~ "العنوان: قم، شارع الخليج الفارسي، طريق كاشان، بعد جسر البقيع، أول منعطف "
+#~ "للخلف بجوار مقياس الزمرد."
+
+#~ msgid "با ما در تماس باشید"
+#~ msgstr "ابقى على تواصل معنا."
+
+#~ msgid "ما آماده پاسخگویی به سوالات شما هستیم"
+#~ msgstr "نحن مستعدون للإجابة على أسئلتكم."
+
+#~ msgid "همه محصولات"
+#~ msgstr "جميع المنتجات"
+
+#~ msgid "دسته بندی وجود ندارد"
+#~ msgstr "فئات المنتجات"
+
+#~ msgid "نام :"
+#~ msgstr "اسم :"
+
+#~ msgid "کالا ها :"
+#~ msgstr "بضائع"
+
+#~ msgid "تارخ ثبت شده"
+#~ msgstr "التاريخ المسجل"
+
+#~ msgid "ثبت نام در کارنو"
+#~ msgstr "سجل في كارنو"
+
+#~ msgid "مزایای عضویت در شرکت کفش کارنو'"
+#~ msgstr "فوائد العضوية في شركة كارنو للأحذية"
+
+#~ msgid "برای امنیت حساب خود یک رمز قوی انتخاب کنید"
+#~ msgstr "اختر كلمة مرور قوية لتأمين حسابك."
+
+#~ msgid "رمز جدید"
+#~ msgstr "كلمة المرور الجديدة"
+
+#~ msgid "رمز عبور قوی باید شامل:"
+#~ msgstr "يجب أن تتضمن كلمة المرور القوية ما يلي:"
+
+#~ msgid "حداقل یک عدد"
+#~ msgstr "رقم واحد على الأقل"
+
+#~ msgid "حداقل یک کاراکتر خاص"
+#~ msgstr "على الأقل حرف خاص واحد"
+
+#~ msgid "شماره تلفن"
+#~ msgstr "رقم الاتصال"
+
+#~ msgid "آدرس 1"
+#~ msgstr "1 عنوان :"
+
+#~ msgid "آدرس 2"
+#~ msgstr "2 عنوان :"

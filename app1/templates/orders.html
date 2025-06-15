@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "سفارشات | شرکت کفش کارنو" %}{% endblock title %}
+
+{% block content1 %}
+<section class="order-list-section">
+    <div class="order-head bg-success-gradient">
+        <div class="container">
+            <div class="order-content text-center py-5">
+                <h1 class="order-title text-blck mb-3">
+                    <i class="fas fa-clipboard-list me-2"></i> {% trans 'سفارشات من' %}
+                </h1>
+                <p class="order-subtitle text-white-50 mb-0">
+                    {% trans 'مشاهده و پیگیری تمام سفارش‌های شما' %}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        {% if current_orders %}
+        <div class="order-list-card card shadow-lg border-0">
+            <div class="card-header bg-white">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-clock me-2 text-primary"></i> {% trans 'سفارشات جاری' %}
+                    <span class="badge bg-primary ms-2">{{ current_orders|length }}</span>
+                </h3>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" width="60">#</th>
+                                <th scope="col">{% trans 'شماره سفارش' %}</th>
+                                <th scope="col">{% trans 'به نام' %}</th>
+                                <th scope="col">{% trans 'تاریخ ثبت' %}</th>
+                                <th scope="col" class="text-center">{% trans 'وضعیت' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in current_orders %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>
+                                    <a href="{% url 'order_details' order.id %}" class="order-id-link">
+                                        #{{ order.id }}
+                                    </a>
+                                </td>
+                                <td>{{ order.full_name }}</td>
+                                <td>
+                                    <span class="d-none d-md-inline">{{ order.last_update|date:"Y/m/d - H:i" }}</span>
+                                    <span class="d-md-none">{{ order.last_update|date:"Y/m/d" }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="status-badge badge 
+                                        {% if order.status == 'تحویل داده شده' %}bg-success
+                                        {% elif order.status == 'در حال پردازش' %}bg-warning text-dark
+                                        {% elif order.status == 'لغو شده' %}bg-danger
+                                        {% else %}bg-secondary{% endif %}">
+                                        {{ order.status }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="empty-order text-center py-5">
+            <div class="empty-icon mb-4">
+                <i class="fas fa-shopping-bag fa-4x text-muted"></i>
+            </div>
+            <h4 class="empty-title mb-3">{% trans 'سفارشی ثبت نشده است' %}</h4>
+            <p class="empty-text text-muted mb-4">
+                {% trans 'شما هنوز هیچ سفارشی ثبت نکرده‌اید. می‌توانید از فروشگاه ما دیدن کنید.' %}
+            </p>
+            <a href="{% url 'index' %}" class="btn btn-primary px-4">
+                <i class="fas fa-store me-2"></i> {% trans 'مشاهده محصولات' %}
+            </a>
+        </div>
+        {% endif %}
+        
+        <div class="text-center mt-5">
+            <a href="{% url 'index' %}" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-right me-2"></i> {% trans 'بازگشت به صفحه اصلی' %}
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock content1 %}

@@ -1,0 +1,192 @@
+{% load i18n %}
+{% load static %}
+<nav class="mobile-navbar navbar-glass fixed-bottom d-lg-none">
+    <div class="container">
+        <div class="mobile-navbar-inner">
+            <a href="{% url 'index' %}" class="mobile-nav-item">
+                <i class="bi bi-house-door"></i>
+                <span class="mobile-nav-text">{% trans 'خانه' %}</span>
+            </a>
+            <a href="#products" class="mobile-nav-item">
+                <i class="bi bi-grid"></i>
+                <span class="mobile-nav-text">{% trans 'محصولات' %}</span>
+            </a>
+
+            <li class="nav-item position-relative">
+                <a class="cart-icon" href="{% url 'cart_detail' %}">
+                    <i class="fas fa-shopping-cart"></i>
+                    {% if cart_items_count > 0 %}
+                    <span class="cart-badge">
+                        {{ cart_items_count }}
+                    </span>
+                    {% endif %}
+                </a>
+            </li>
+
+            <div class="mobile-nav-item lang-switcher">
+                <form action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path_info }}">
+                    <select class="mobile-lang-select" name="language" onchange="this.form.submit()">
+                        <option value="fa" {% if LANGUAGE_CODE == 'fa' %}selected{% endif %}>{% trans 'زبانها' %}</option>
+                        <option value="fa" {% if LANGUAGE_CODE == 'fa' %}selected{% endif %}>{% trans 'فارسی' %}</option>
+                        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                        <option value="ar" {% if LANGUAGE_CODE == 'ar' %}selected{% endif %}>العربية</option>
+                        <option value="ur" {% if LANGUAGE_CODE == 'ur' %}selected{% endif %}>اردو</option>
+                    </select>
+                </form>
+                <span class="mobile-nav-text">{% trans 'زبان' %}</span>
+            </div>
+            <button class="mobile-nav-item navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mobileMenuContent" aria-controls="mobileMenuContent">
+                <i class="bi bi-list"></i>
+                <span class="mobile-nav-text">{% trans 'منو' %}</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="mobile-menu collapse" id="mobileMenuContent">
+        <div class="container">
+            <div class="mobile-menu-inner">
+                <a href="{% url 'about' %}" class="mobile-menu-item">
+                    <i class="bi bi-info-circle"></i> {% trans 'درباره' %}
+                </a>
+                <a href="{% url 'contact' %}" class="mobile-menu-item">
+                    <i class="bi bi-telephone"></i> {% trans 'ارتباط' %}
+                </a>
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle hover-underline" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-person-circle me-1"></i> {% trans 'پروفایل' %}
+                    </a>
+                    <ul class="dropdown-menu dropdown-glass">
+                        <li><a class="dropdown-item" href="{% url 'update_user' %}">{% trans 'پروفایل کاربری' %}</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'update_info' %}">{% trans 'اطلاعات کاربری' %}</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'orders' %}">{% trans 'سفارشات' %}</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">{% trans 'خروج' %}</a></li>
+                    </ul>
+                </li>
+                {% if user.is_staff %}
+                <li class="nav-item">
+                    <a class="mobile-menu-item" href="{% url 'admin:index' %}">
+                        <i class="fas fa-cog"></i> {% trans 'پنل مدیریت' %}
+                    </a>
+                </li>
+                {% endif %}
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link hover-underline" href="{% url 'login' %}">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> {% trans 'ورود' %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link hover-underline" href="{% url 'signup' %}">
+                        <i class="bi bi-person-plus me-1"></i> {% trans 'ثبت نام' %}
+                    </a>
+                </li>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-glass fixed-top">
+    <div class="container">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'img/karnoo.png' %}" alt="کارنو" class="logo mb-3" width="120">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link hover-underline" href="{% url 'index' %}">
+                        <i class="bi bi-house-door me-1"></i> {% trans 'خانه' %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link hover-underline" href="{% url 'about' %}">
+                        <i class="bi bi-info-circle me-1"></i> {% trans 'درباره' %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link hover-underline" href="{% url 'contact' %}">
+                        <i class="bi bi-telephone me-1"></i> {% trans 'ارتباط' %}
+                    </a>
+                </li>
+
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle hover-underline" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-person-circle me-1"></i> {% trans 'پروفایل' %}
+                    </a>
+                    <ul class="dropdown-menu dropdown-glass">
+                        <li><a class="dropdown-item" href="{% url 'update_user' %}">{% trans 'پروفایل کاربری' %}</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'update_info' %}">{% trans 'اطلاعات کاربری' %}</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'orders' %}">{% trans 'سفارشات' %}</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">{% trans 'خروج' %}</a></li>
+                    </ul>
+                </li>
+
+                {% if user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link hover-underline" href="{% url 'admin:index' %}">
+                        <i class="fas fa-cog"></i> {% trans 'پنل مدیریت' %}
+                    </a>
+                </li>
+                {% endif %}
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link hover-underline" href="{% url 'login' %}">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> {% trans 'ورود' %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link hover-underline" href="{% url 'signup' %}">
+                        <i class="bi bi-person-plus me-1"></i> {% trans 'ثبت نام' %}
+                    </a>
+                </li>
+                {% endif %}
+
+                <li class="nav-item position-relative">
+                    <a class="cart-icon" href="{% url 'cart_detail' %}">
+                        <i class="fas fa-shopping-cart"></i>
+                        {% if cart_items_count > 0 %}
+                        <span class="cart-badge">
+                            {{ cart_items_count }}
+                        </span>
+                        {% endif %}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <form action="{% url 'set_language' %}" method="post" class="lang-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path_info }}">
+                        <select class="form-select lang-select" name="language" onchange="this.form.submit()">
+                            <option value="fa" {% if LANGUAGE_CODE == 'fa' %}selected{% endif %}>{% trans 'زبانها' %}
+                            </option>
+                            <option value="fa" {% if LANGUAGE_CODE == 'fa' %}selected{% endif %}>فارسی</option>
+                            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                            <option value="ar" {% if LANGUAGE_CODE == 'ar' %}selected{% endif %}>العربية</option>
+                            <option value="ur" {% if LANGUAGE_CODE == 'ur' %}selected{% endif %}>اردو</option>
+                        </select>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'ویرایش پروفایل' %}{% endblock title %}
+
+{% block content1 %}
+<section class="auth-section">
+    <div class="auth-container">
+        <div class="auth-form">
+            <h2>{% trans 'ویرایش پروفایل' %}</h2>
+            <p class="subtitle">{% trans 'اطلاعات شخصی خودرا بروز کنید' %}</p>
+
+            <form method="POST" action="{% url 'update_user' %}">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                <div class="form-actions">
+                    <button class="btn btn-success" type="submit">
+                        <i class="bi bi-check-circle"></i> {% trans 'ذخیره تغییرات' %}
+                    </button>
+                    <a class="btn btn-info" href="{% url 'update_password' %}">
+                        <i class="bi bi-shield-lock"></i> {% trans 'تغییر رمز عبور' %}
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content1 %}

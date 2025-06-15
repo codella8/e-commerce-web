@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "درباره ما" %}{% endblock title %}
+
+{% block content1 %}
+<div class="about-main">
+    <div class="container about-content">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="about-image-container">
+                    <img src="{% static 'img/karnoo.png' %}" alt="درباره کارنو" class="about-image shadow-lg">
+                    <div class="experience-badge">
+                        <span class="years">10+</span>
+                        <span class="text">{% trans "سال تجربه" %}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-text-content">
+                    <h2 class="section-title">{% trans "درباره شرکت کفش کارنو" %}</h2>
+    
+                    <p class="about-description">
+                        {% trans "شرکت کفش کارنو با سالها تخصص و سابقه درخشان در زمینه تولید کفش های ماشینی فعالیت دارد."%}
+                        {% trans "ما درشرکت کارنو همواره در تلاشیم که بهترین محصولات را از بهترین مواد خام و درجه یک تولید و بابهترین قیمت ارائه دهیم." %}
+                        {% trans "کارنو یک برند تخصصی در زمینه طراحی و تولید صندل‌های باکیفیت مردانه، زنانه و میانه(نقلی) است." %}
+                        {% trans "که با رویکردی نوین در صنعت پوشاک پا، تلاش دارد ترکیبی از راحتی، دوام و زیبایی را دراختیار مشتریان خود قرار دهد." %}
+                        
+                    </p>
+                    <p>
+                        {% trans "ما در کارنو با بهره‌گیری از مواد اولیه مرغوب،" %}
+                        {% trans "تکنولوژی روز و طراحی‌های کاربردی،" %}
+                        {% trans "محصولاتی تولید می‌کنیم که نه‌تنها پاسخ‌گوی نیاز روزمره مصرف‌کننده باشند، " %}
+                        {% trans "بلکه تجربه‌ای لذت‌بخش و ماندگار از پوشیدن یک صندل استاندارد و خوش‌دوخت را فراهم کنند." %}
+                    </p>
+
+                    <p>
+                        {% trans "صندل‌های کارنو به‌گونه‌ای طراحی شده‌اند که در کنار سبُکی و راحتی،" %}
+                        {% trans " استایلی شیک و چشم‌نواز را نیز به همراه داشته باشند؛" %}
+                        {% trans "چه برای استفاده روزمره، چه برای سفر، پیاده‌روی یا محیط‌های نیمه‌رسمی." %}
+                    </p>
+
+                    <p>
+                        <strong>{% trans "کیفیت تولید، احترام به نیاز مشتری و طراحی متعهدانه،" %}</strong>
+                        {% trans "که برند کارنو از ابتدای مسیر بر آن‌ها پایبند بوده" %}
+                        {% trans "و همواره در تلاش است تا با ارتقاء مستمر محصولات، رضایت و اعتماد مصرف‌کنندگان را حفظ کند." %}
+                        <strong>{% trans "کارنو، همراهی مطمئن در هر قدم." %}</strong>        
+                    </p>
+
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon bg-primary">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>{% trans "کیفیت بالا" %}</h3>
+                                <p>{% trans "استفاده از بهترین مواد اولیه" %}</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon bg-success">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>{% trans "رضایت مشتری" %}</h3>
+                                <p>{% trans "اولویت اصلی ما رضایت شماست" %}</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon bg-warning">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>{% trans "تولید سریع" %}</h3>
+                                <p>{% trans "ارسال به موقع محصولات" %}</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon bg-danger">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>{% trans "تضمین کیفیت" %}</h3>
+                                <p>{% trans "گارانتی تمام محصولات" %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mission-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">{% trans "ماموریت و چشم انداز" %}</h2>
+                <div class="divider mx-auto"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <div class="mission-card h-100">
+                        <div class="card-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>{% trans "ماموریت ما" %}</h3>
+                        <p>{% trans "تولید کفش با کیفیت با استفاده از بهترین مواد اولیه و تکنولوژی روز دنیا" %}</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="vision-card h-100">
+                        <div class="card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>{% trans "چشم انداز" %}</h3>
+                        <p>{% trans "تبدیل شدن به برند پیشرو در صنعت کفش کشور و حضور در بازارهای بین المللی" %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="stats-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    <div class="stat-item">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">{% trans "جفت کفش تولیدی" %}</div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">{% trans "مشتری راضی" %}</div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">{% trans "مدل مختلف" %}</div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">{% trans "سال سابقه" %}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-section text-center py-4">
+        <a href="{% url 'index' %}" class="back-link">
+            <i class="fas fa-arrow-right me-2"></i> {% trans "بازگشت به صفحه اصلی" %}
+        </a>
+    </div>
+</div>
+{% endblock content1 %}

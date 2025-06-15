@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+
+{% block title %}{{ product.name }} | فروشگاه کفش کارنو{% endblock %}
+{% block content1 %}
+
+<section class="product-detail mt-5">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="product-back">
+            {% for category in categories %}
+            <ol class="breadcrumb">
+                <li class="back-item"><a href="{% url 'index' %}">{% trans 'خانه' %}</a></li>
+                <li class="back-item"><a href="{% url 'category' category.slug %}">{{ product.category }}</a>
+                </li>
+                <li class="back-item active" aria-current="page">{{ product.name }}</li>
+            </ol>
+            {% endfor %}
+        </nav>
+
+        <div class="product-main">
+            <div class="product-gallery">
+                <div class="main-image-container">
+                    <img src="{{ product.picture.url }}" alt="{{ product.name }}" class="main-image img-fluid">
+                </div>
+                {% if product.picture2 or product.picture3 %}
+                <div class="thumbnail-gallery">
+                    <div class="thumbnail-container">
+                        <img src="{{ product.picture.url }}" alt="{{ product.name }}" class="thumbnail active">
+                        {% if product.picture2 %}
+                        <img src="{{ product.picture2.url }}" alt="{{ product.name }}" class="thumbnail">
+                        {% endif %}
+                        {% if product.picture3 %}
+                        <img src="{{ product.picture3.url }}" alt="{{ product.name }}" class="thumbnail">
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="product-card-content">
+                    <h2 class="product-title">{% trans 'کفش کارنو' %}</h2>
+                    <p class="product-description">
+                        {% trans "طراحی‌شده برای راحتی در کنار استایل، با استفاده از متریال باکیفیت و دوخت دقیق." %}
+                        {% trans "<مناسب برای استفاده روزمره، سفر و پیاده‌روی." %} </p>
+                            <ul class="product-features">
+                                <li>✔ {% trans 'سبک و بادوام' %}</li>
+                                <li>✔ {% trans 'طراحی ارگونومیک' %}</li>
+                                <li>✔ {% trans 'مناسب آقایان / بانوان / سایزهای نقلی' %}</li>
+                            </ul>
+                            <p class="product-footer"><strong>{% trans 'کارنو؛ همراهی مطمئن برای قدم‌های شما.' %}</strong></p>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="product-header">
+                    <h1 class="product-title">{{ product.name }}</h1>
+                    <div class="product-meta">
+                        <span class="product-category badge bg-primary">{{ product.category }}</span>
+                        <span class="product-code">{% trans 'کد محصول :' %} {{ product.id }}</span>
+                    </div>
+                </div>
+
+                <div class="price-section">
+                    {% if product.is_sale %}
+                    <span class="text-muted text-decoration-line-through me-2">{{ product.price|intcomma }} تومان</span><br>
+                    <span class="text-danger fw-bold">{{ product.sale_price|intcomma }} {% trans 'تومان' %}</span>
+                    {% else %}
+                    <span class="text-dark fw-bold">{{ product.price|intcomma }} {% trans 'تومان' %}</span>
+                    {% endif %}
+                </div>
+
+                <div class="short-description">
+                    <h3>{% trans 'توضیحات کامل محصول' %}</h3>
+                    <ul class="features-list">
+                        <p>{{ product.description }}</p>
+                    </ul>
+                </div>
+                <form action="{% url 'add_to_cart' product.id %}" method="post" class="add-to-cart-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="quantity">{% trans 'تعداد :' %}</label>
+                        <div class="quantity-selector">
+                            <button type="button" class="quantity-btn minus">-</button>
+                            <input type="number" id="quantity" name="quantity" value="1" min="1" max="10"
+                                class="quantity-input">
+                            <button type="button" class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> {% trans 'افزودن به سبد خرید' %}
+                    </button>
+                </form>
+
+                <div class="share-section">
+                    <span class="share-title">{% trans 'اشتراک گذاری :' %}</span>
+                    <div class="social-share">
+                        <a href="https://wa.me/989300080027" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://t.me/KarnoShoes_2024" class="social-btn telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-features">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4>{% trans 'کیفیت بی نظیر' %}</h4>
+                        <p>{% trans 'استفاده از بهترین مواد اولیه' %}</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>{% trans 'ضمانت کالا' %}</h4>
+                        <p>{% trans 'گارانتی 24 ماهه' %}</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h4>{% trans 'ارسال سریع' %}</h4>
+                        <p>{% trans 'تحویل فوری' %}</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <h4>{% trans 'ضمانت بازگشت' %}</h4>
+                        <p>{% trans 'مدت زمان بازگشت کالا 7 روز' %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="premium-reviews-section">
+            <h2 class="section-title">{% trans 'نظرات مشتریان' %}</h2>
+
+            <div class="review-form-container">
+                <h3>{% trans 'نظر خودرا ثبت کنید' %}</h3>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="name" required>
+                        <input type="email" name="email" placeholder="email" required>
+                    </div>
+                    <textarea name="message" rows="5" placeholder="message" required></textarea>
+                    <button type="submit" class="submit-review-btn">{% trans 'ثبت نظر' %}</button>
+                </form>
+            </div>
+
+            <div class="reviews-list">
+                {% for message in messages %}
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <h4>{{ message.name }}</h4>
+                            <div class="review-date">{{ message.created_at|date:"Y-m-d H:i" }}</div>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>{{ message.message }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="no-reviews">
+                    <i class="bi bi-chat-square-text"></i>
+                    <p>{% trans 'هنوز هیچ نظری در مورد این محصول وجود ندارد' %}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

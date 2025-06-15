@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+
+{% block title %}{% trans "صورت حساب" %}{% endblock title %}
+
+{% block content1 %}
+<div class="checkout-page">
+    <div class="checkout-container">
+        <div class="container">
+            <div class="checkout-header">
+                <h2>{% trans 'تکمیل سفارش' %}</h2>
+                <p>{% trans 'لطفا اطلاعات ارسال را با دقت بررسی و تکمیل نمایید' %}</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="card checkout-summary-card">
+                        <div class="checkout-card-header">
+                            <i class="bi bi-cart-check"></i> {% trans 'خلاصه سفارش شما' %}
+                        </div>
+                        <div class="card-body p-0">
+                            {% for item in items %}
+                            <div class="checkout-order-item">
+                                {% if item.product.picture %}
+                                <img src="{{ item.product.picture.url }}" alt="{{ item.product.name }}"
+                                    class="checkout-item-image">
+                                {% else %}
+                                <img src="{% static 'img/default-product.jpg' %}" alt="no image"
+                                    class="checkout-item-image">
+                                {% endif %}
+                                <div class="checkout-summary-row">
+                                    <div>
+                                        <span>{% trans 'تعداد :' %}</span> {{ item.quantity }} {% trans 'عدد' %}
+                                    </div><br>
+                                    <div>
+                                        <span>{% trans 'قیمت واحد :' %}</span>
+                                        {{ item.price|intcomma }} {% trans 'تومان' %}
+                                        <!-- از item.price استفاده می‌کند -->
+                                    </div><br>
+                                    <div>
+                                        <span>{% trans 'قیمت کل :' %}</span>
+                                        {{ item.total_price|intcomma }} {% trans 'تومان' %}
+                                        <!-- از item.total_price استفاده می‌کند -->
+                                    </div><br>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <div class="checkout-total-price">
+                                <span>{{ total_price|intcomma }} {% trans 'تومان' %}</span>
+                            </div>
+                        </div>
+
+                        <div class="card-footer bg-transparent border-top-0 text-end">
+                            <a href="{% url 'cart_detail' %}" class="checkout-btn checkout-btn-outline">
+                                <i class="bi bi-pencil"></i> {% trans 'ویرایش سفارش' %}
+                            </a>
+                        </div>
+                    </div>
+
+                    <form action="{% url 'checkout' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="card checkout-shipping-card">
+                            <div class="checkout-card-header">
+                                <i class="bi bi-truck"></i> {% trans 'مشخصات ارسال' %}
+                            </div>
+                            <div class="card-body">
+                                {% for field in shipping_form %}
+                                <div class="checkout-form-group floating-label-group">
+                                    {{ field }}
+                                    <label class="floating-label" for="{{ field.id_for_label }}">
+                                        {{ field.label }}
+                                    </label>
+                                    {% if field.help_text %}
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                                    {% endif %}
+                                    {% for error in field.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                                {% endfor %}
+
+                                <div class="text-end mt-4">
+                                    <button type="submit" class="checkout-btn checkout-btn-primary">
+                                        <i class="bi bi-check-circle"></i> {% trans 'تایید و پرداخت' %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content1 %}
