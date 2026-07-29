@@ -3,95 +3,318 @@
 {% load static %}
 {% load humanize %}
 
-{% block title %}{% trans "جستجو" %}{% endblock title %}
+{% block title %}{% trans "نتایج جستجو - کارنو" %}{% endblock title %}
 
 {% block content1 %}
-<link rel="stylesheet" href="{% static 'css/search_results.css' %}">
 
-<section class="search-results-page">
-    <div class="container">
-        {% if searched %}
-        <div class="search-header">
-            <h1 class="search-title">
-                <i class="fas fa-search"></i> {% trans 'نتایج برای جستجو' %} "<span class="search-query">{{ searched }}</span>"
-            </h1>
-            <p class="search-count">
+<!-- ============================================
+     KARNO SEARCH RESULTS - PREMIUM LUXURY EXPERIENCE
+     ============================================ -->
+
+<section class="search-results-section" id="searchResults">
+    <div class="search-results-container">
+        
+        <!-- ===== Search Header ===== -->
+        <div class="search-header reveal">
+            <div class="search-header-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="search-header-content">
+                <h1 class="search-title">
+                    {% trans 'نتایج جستجو برای' %}
+                    <span class="search-query">"{{ searched }}"</span>
+                </h1>
                 {% if products %}
-                {{ products|length }} {% trans 'محصولی یافت نشد' %}
+                <p class="search-count">
+                    <span class="count-number">{{ products|length }}</span>
+                    {% trans 'محصول یافت شد' %}
+                </p>
                 {% endif %}
-            </p>
+            </div>
         </div>
-
+        
         {% if products %}
-        <div class="search-grid">
+        <!-- ===== Results Grid ===== -->
+        <div class="results-grid">
             {% for product in products %}
-            <div class="product-card">
-                <div class="product-badge">
+            <div class="product-card-wrapper reveal">
+                <div class="product-card-luxury">
                     {% if product.is_sale %}
-                    <span class="badge-discount"> {% trans 'تخفیف' %} {{ product.discount_percent }}%</span>
+                    <div class="product-badge sale-badge">
+                        <span class="badge-text">{% trans 'تخفیف' %}</span>
+                        <span class="badge-percent">{{ product.discount_percent }}%</span>
+                    </div>
                     {% endif %}
-                </div>
-
-                <div class="product-image">
-                    <img src="{{ product.picture.url }}" alt="{{ product.name }}" loading="lazy">
-                    <div class="image-overlay">
-                        <a href="{{ product.get_absolute_url }}" class="quick-view">
-                            <i class="fas fa-eye"></i> {% trans 'مشاهده سریع' %}
+                    
+                    <div class="product-card-image">
+                        <img src="{{ product.picture.url }}" alt="{{ product.name }}" loading="lazy">
+                        <div class="product-card-actions">
+                            <a href="{{ product.get_absolute_url }}" class="quick-view-btn" title="{% trans 'مشاهده محصول' %}">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <button class="wishlist-btn" data-product-id="{{ product.id }}" title="{% trans 'افزودن به علاقه‌مندی‌ها' %}">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card-info">
+                        <h3 class="product-name">
+                            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                        </h3>
+                        
+                        <p class="product-description">{{ product.description|truncatewords:15 }}</p>
+                        
+                        <div class="product-price-wrapper">
+                            {% if product.is_sale %}
+                            <span class="product-price-original">{{ product.price|intcomma }}</span>
+                            <span class="product-price-sale">{{ product.sale_price|intcomma }}</span>
+                            <span class="product-price-currency">{% trans 'تومان' %}</span>
+                            {% else %}
+                            <span class="product-price">{{ product.price|intcomma }}</span>
+                            <span class="product-price-currency">{% trans 'تومان' %}</span>
+                            {% endif %}
+                        </div>
+                        
+                        <form action="{% url 'add_to_cart' product.id %}" method="post" class="add-to-cart-form">
+                            {% csrf_token %}
+                            <div class="quantity-selector">
+                                <button type="button" class="quantity-btn minus" aria-label="{% trans 'کاهش' %}">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" name="quantity" value="1" min="1" max="10" class="quantity-input">
+                                <button type="button" class="quantity-btn plus" aria-label="{% trans 'افزایش' %}">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <button type="submit" class="btn-add-to-cart">
+                                <i class="fas fa-shopping-bag"></i>
+                                {% trans 'افزودن به سبد خرید' %}
+                            </button>
+                        </form>
+                        
+                        <a href="{{ product.get_absolute_url }}" class="product-detail-link">
+                            {% trans 'مشاهده جزئیات' %}
+                            <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
-                </div>
-
-                    <h3 class="product-title">
-                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                    </h3>
-
-                    <p class="product-description">{{ product.description|truncatewords:20 }}</p>
-
-                    <div class="product-price">
-                        {% if product.sale %}
-                        <span class="price-old">{{ product.price|intcomma }} {% trans 'تومان' %} </span>
-                        <span class="price-new">{{ product.sale_price|intcomma }} {% trans 'تومان' %} </span>
-                        {% else %}
-                        <span class="price-current">{{ product.price|intcomma }} {% trans 'تومان' %} </span>
-                        {% endif %}
-                    </div> 
-
-                    <form action="{% url 'add_to_cart' product.id %}" method="post" class="add-to-cart-form">
-                        {% csrf_token %}
-                        <div class="quantity-selector">
-                            <button type="button" class="quantity-btn minus"><i class="fas fa-minus"></i></button>
-                            <input type="number" name="quantity" value="1" min="1" max="10" class="quantity-input">
-                            <button type="button" class="quantity-btn plus"><i class="fas fa-plus"></i></button>
-                        </div>
-                        <button type="submit" class="btn-add-to-cart">
-                            <i class="fas fa-shopping-cart"></i> {% trans 'افزودن به سبد خرید' %}
-                        </button>
-                    </form>
                 </div>
             </div>
             {% endfor %}
         </div>
+        
+        <!-- ===== Pagination (if needed) ===== -->
+        {% if products.has_other_pages %}
+        <div class="pagination-wrapper reveal">
+            <nav class="pagination-nav" aria-label="{% trans 'صفحه‌بندی' %}">
+                <ul class="pagination-list">
+                    {% if products.has_previous %}
+                    <li class="pagination-item">
+                        <a href="?q={{ searched }}&page={{ products.previous_page_number }}" class="pagination-link" aria-label="{% trans 'قبلی' %}">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+                    
+                    {% for num in products.paginator.page_range %}
+                        {% if num == products.number %}
+                        <li class="pagination-item active">
+                            <span class="pagination-link">{{ num }}</span>
+                        </li>
+                        {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                        <li class="pagination-item">
+                            <a href="?q={{ searched }}&page={{ num }}" class="pagination-link">{{ num }}</a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if products.has_next %}
+                    <li class="pagination-item">
+                        <a href="?q={{ searched }}&page={{ products.next_page_number }}" class="pagination-link" aria-label="{% trans 'بعدی' %}">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {% endif %}
+        
         {% else %}
-        <div class="no-results">
-            <div class="no-results-content">
-                <img src="{% static 'images/no-results.svg' %}" alt="نتیجه‌ای یافت نشد" class="no-results-image">
-                <h3>{% trans 'نتیجه ای یافت نشد' %}</h3>
-                <p>{% trans 'متاسفانه هیچ محصولی مطابق جستجوی شما یافت نشد' %}</p>
+        <!-- ===== No Results ===== -->
+        <div class="no-results-wrapper reveal">
+            <div class="no-results-card">
+                <div class="no-results-icon">
+                    <i class="fas fa-search-minus"></i>
+                </div>
+                <h2 class="no-results-title">{% trans 'نتیجه‌ای یافت نشد' %}</h2>
+                <p class="no-results-description">
+                    {% trans 'متاسفانه هیچ محصولی مطابق جستجوی شما یافت نشد.' %}
+                </p>
+                
                 <div class="search-suggestions">
-                    <p>{% trans 'پیشنهادات :' %}</p>
+                    <h4>{% trans 'پیشنهادات:' %}</h4>
                     <ul>
-                        <li>{% trans 'از کلمات کلیدی متفاوت استفاده کنید' %}</li>
-                        <li>{% trans 'املای کلمات را بررسی کنید' %}</li>
-                        <li>{% trans 'جستجوی عمومی تری انجام دهید' %}</li>
+                        <li>
+                            <i class="fas fa-lightbulb"></i>
+                            {% trans 'از کلمات کلیدی متفاوت استفاده کنید' %}
+                        </li>
+                        <li>
+                            <i class="fas fa-lightbulb"></i>
+                            {% trans 'املای کلمات را بررسی کنید' %}
+                        </li>
+                        <li>
+                            <i class="fas fa-lightbulb"></i>
+                            {% trans 'جستجوی عمومی‌تری انجام دهید' %}
+                        </li>
                     </ul>
                 </div>
-                <a href="{% url 'index' %}" class="btn-back-to-home">
-                    <i class="fas fa-arrow-right"></i> {% trans 'بازگشت' %} 
-                </a>
+                
+                <div class="no-results-actions">
+                    <a href="{% url 'index' %}" class="btn-karno btn-karno-primary">
+                        <i class="fas fa-arrow-right"></i>
+                        {% trans 'بازگشت به صفحه اصلی' %}
+                    </a>
+                    <a href="{% url 'products' %}" class="btn-karno btn-karno-outline">
+                        <i class="fas fa-box"></i>
+                        {% trans 'مشاهده همه محصولات' %}
+                    </a>
+                </div>
             </div>
         </div>
         {% endif %}
-        {% endif %}
     </div>
 </section>
+
+<!-- ============================================
+     SEARCH RESULTS JAVASCRIPT
+     ============================================ -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        'use strict';
+
+        // ========================================
+        // 1. QUANTITY SELECTOR
+        // ========================================
+        document.querySelectorAll('.quantity-selector').forEach(selector => {
+            const input = selector.querySelector('.quantity-input');
+            const minusBtn = selector.querySelector('.minus');
+            const plusBtn = selector.querySelector('.plus');
+
+            if (input && minusBtn && plusBtn) {
+                minusBtn.addEventListener('click', function() {
+                    const current = parseInt(input.value) || 1;
+                    if (current > 1) {
+                        input.value = current - 1;
+                        input.dispatchEvent(new Event('change'));
+                    }
+                });
+
+                plusBtn.addEventListener('click', function() {
+                    const current = parseInt(input.value) || 1;
+                    const max = parseInt(input.getAttribute('max')) || 10;
+                    if (current < max) {
+                        input.value = current + 1;
+                        input.dispatchEvent(new Event('change'));
+                    }
+                });
+
+                input.addEventListener('change', function() {
+                    let value = parseInt(this.value) || 1;
+                    const min = parseInt(this.getAttribute('min')) || 1;
+                    const max = parseInt(this.getAttribute('max')) || 10;
+                    
+                    if (value < min) value = min;
+                    if (value > max) value = max;
+                    this.value = value;
+                });
+            }
+        });
+
+        // ========================================
+        // 2. WISHLIST BUTTON
+        // ========================================
+        document.querySelectorAll('.wishlist-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const icon = this.querySelector('i');
+                icon.classList.toggle('far');
+                icon.classList.toggle('fas');
+                this.classList.toggle('active');
+                
+                // Visual feedback
+                this.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+
+        // ========================================
+        // 3. ADD TO CART ANIMATION
+        // ========================================
+        document.querySelectorAll('.add-to-cart-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                const btn = this.querySelector('.btn-add-to-cart');
+                const originalHTML = btn.innerHTML;
+                
+                // Show loading state
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ...';
+                btn.disabled = true;
+                
+                // Reset after form submission (actual submission handled by Django)
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check"></i> {% trans "افزوده شد!" %}';
+                    btn.style.background = 'var(--color-success)';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalHTML;
+                        btn.disabled = false;
+                        btn.style.background = '';
+                    }, 1500);
+                }, 1000);
+            });
+        });
+
+        // ========================================
+        // 4. REVEAL ON SCROLL
+        // ========================================
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        revealElements.forEach(el => {
+            el.style.transform = 'translateY(40px)';
+            el.style.opacity = '0';
+            el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            revealObserver.observe(el);
+        });
+
+        // ========================================
+        // 5. PRODUCT CARD HOVER EFFECT
+        // ========================================
+        document.querySelectorAll('.product-card-luxury').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const image = this.querySelector('.product-card-image img');
+                if (image) {
+                    image.style.transition = 'transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                }
+            });
+        });
+
+        console.log('🖤 Karno Search Results v1.0');
+        console.log('✨ Premium Search Experience Loaded');
+    });
+</script>
+
 {% endblock content1 %}

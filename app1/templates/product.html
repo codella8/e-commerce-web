@@ -3,184 +3,537 @@
 {% load i18n %}
 {% load humanize %}
 
-{% block title %}{{ product.name }} | فروشگاه کفش کارنو{% endblock %}
+{% block title %}{{ product.name }} | کارنو - تجربه لوکس خرید کفش{% endblock %}
+
 {% block content1 %}
 
-<section class="product-detail mt-5">
-    <div class="container">
-        <nav aria-label="breadcrumb" class="product-back">
-            {% for category in categories %}
-            <ol class="breadcrumb">
-                <li class="back-item"><a href="{% url 'index' %}">{% trans 'خانه' %}</a></li>
-                <li class="back-item"><a href="{% url 'category' category.slug %}">{{ product.category }}</a>
-                </li>
-                <li class="back-item active" aria-current="page">{{ product.name }}</li>
-            </ol>
-            {% endfor %}
-        </nav>
+<!-- ============================================
+     KARNO PRODUCT DETAIL - PREMIUM LUXURY EXPERIENCE
+     ============================================ -->
 
-        <div class="product-main">
-            <div class="product-gallery">
-                <div class="main-image-container">
-                    <img src="{{ product.picture.url }}" alt="{{ product.name }}" class="main-image img-fluid">
-                </div>
-                {% if product.picture2 or product.picture3 %}
-                <div class="thumbnail-gallery">
-                    <div class="thumbnail-container">
-                        <img src="{{ product.picture.url }}" alt="{{ product.name }}" class="thumbnail active">
-                        {% if product.picture2 %}
-                        <img src="{{ product.picture2.url }}" alt="{{ product.name }}" class="thumbnail">
-                        {% endif %}
-                        {% if product.picture3 %}
-                        <img src="{{ product.picture3.url }}" alt="{{ product.name }}" class="thumbnail">
-                        {% endif %}
-                    </div>
-                </div>
-                {% endif %}
-
-                <div class="product-card-content">
-                    <h2 class="product-title">{% trans 'کفش کارنو' %}</h2>
-                    <p class="product-description">
-                        {% trans "طراحی‌شده برای راحتی در کنار استایل، با استفاده از متریال باکیفیت و دوخت دقیق." %}
-                        {% trans "<مناسب برای استفاده روزمره، سفر و پیاده‌روی." %} </p>
-                            <ul class="product-features">
-                                <li>✔ {% trans 'سبک و بادوام' %}</li>
-                                <li>✔ {% trans 'طراحی ارگونومیک' %}</li>
-                                <li>✔ {% trans 'مناسب آقایان / بانوان / سایزهای نقلی' %}</li>
-                            </ul>
-                            <p class="product-footer"><strong>{% trans 'کارنو؛ همراهی مطمئن برای قدم‌های شما.' %}</strong></p>
-                </div>
+<section class="product-detail-section" id="productDetail">
+    <div class="product-detail-container">
+        
+        <!-- ===== Breadcrumb ===== -->
+        <nav class="product-breadcrumb" aria-label="{% trans 'مسیریابی' %}">
+            <div class="breadcrumb-wrapper">
+                <a href="{% url 'index' %}" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    {% trans 'خانه' %}
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                {% for category in categories %}
+                <a href="{% url 'category' category.slug %}" class="breadcrumb-link">
+                    {{ product.category }}
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                {% endfor %}
+                <span class="breadcrumb-current">{{ product.name }}</span>
             </div>
-
-            <div class="product-info">
-                <div class="product-header">
-                    <h1 class="product-title">{{ product.name }}</h1>
-                    <div class="product-meta">
-                        <span class="product-category badge bg-primary">{{ product.category }}</span>
-                        <span class="product-code">{% trans 'کد محصول :' %} {{ product.id }}</span>
+        </nav>
+        
+        <!-- ===== Product Main ===== -->
+        <div class="product-main-grid">
+            
+            <!-- ===== Left: Gallery ===== -->
+            <div class="product-gallery-wrapper">
+                <div class="product-gallery">
+                    <!-- Main Image -->
+                    <div class="main-image-container" id="mainImageContainer">
+                        <img src="{{ product.picture.url }}" 
+                             alt="{{ product.name }}" 
+                             class="main-image" 
+                             id="mainImage">
+                        <div class="image-zoom-hint">
+                            <i class="fas fa-search-plus"></i>
+                            <span>{% trans 'هاور کنید تا بزرگنمایی کنید' %}</span>
+                        </div>
+                        {% if product.is_sale %}
+                        <div class="product-badge sale-badge">{% trans 'تخفیف ویژه' %}</div>
+                        {% endif %}
                     </div>
-                </div>
-
-                <div class="price-section">
-                    {% if product.is_sale %}
-                    <span class="text-muted text-decoration-line-through me-2">{{ product.price|intcomma }} تومان</span><br>
-                    <span class="text-danger fw-bold">{{ product.sale_price|intcomma }} {% trans 'تومان' %}</span>
-                    {% else %}
-                    <span class="text-dark fw-bold">{{ product.price|intcomma }} {% trans 'تومان' %}</span>
+                    
+                    <!-- Thumbnails -->
+                    {% if product.picture2 or product.picture3 %}
+                    <div class="thumbnail-gallery">
+                        <button class="thumbnail-nav prev" id="thumbPrev" aria-label="{% trans 'قبلی' %}">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="thumbnail-track" id="thumbnailTrack">
+                            <img src="{{ product.picture.url }}" 
+                                 alt="{{ product.name }}" 
+                                 class="thumbnail active" 
+                                 data-index="0">
+                            {% if product.picture2 %}
+                            <img src="{{ product.picture2.url }}" 
+                                 alt="{{ product.name }}" 
+                                 class="thumbnail" 
+                                 data-index="1">
+                            {% endif %}
+                            {% if product.picture3 %}
+                            <img src="{{ product.picture3.url }}" 
+                                 alt="{{ product.name }}" 
+                                 class="thumbnail" 
+                                 data-index="2">
+                            {% endif %}
+                        </div>
+                        <button class="thumbnail-nav next" id="thumbNext" aria-label="{% trans 'بعدی' %}">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
                     {% endif %}
                 </div>
-
-                <div class="short-description">
-                    <h3>{% trans 'توضیحات کامل محصول' %}</h3>
-                    <ul class="features-list">
-                        <p>{{ product.description }}</p>
-                    </ul>
-                </div>
-                <form action="{% url 'add_to_cart' product.id %}" method="post" class="add-to-cart-form">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="quantity">{% trans 'تعداد :' %}</label>
-                        <div class="quantity-selector">
-                            <button type="button" class="quantity-btn minus">-</button>
-                            <input type="number" id="quantity" name="quantity" value="1" min="1" max="10"
-                                class="quantity-input">
-                            <button type="button" class="quantity-btn plus">+</button>
+            </div>
+            
+            <!-- ===== Right: Product Info ===== -->
+            <div class="product-info-wrapper">
+                <div class="product-info-card">
+                    <!-- Product Header -->
+                    <div class="product-header">
+                        <div class="product-meta">
+                            <span class="product-category">{{ product.category }}</span>
+                            <span class="product-code">{% trans 'کد' %}: {{ product.id }}</span>
+                        </div>
+                        <h1 class="product-title">{{ product.name }}</h1>
+                    </div>
+                    
+                    <!-- Price -->
+                    <div class="product-price-section">
+                        {% if product.is_sale %}
+                        <div class="price-wrapper">
+                            <span class="price-original">{{ product.price|intcomma }} {% trans 'تومان' %}</span>
+                            <span class="price-sale">{{ product.sale_price|intcomma }} {% trans 'تومان' %}</span>
+                            <span class="discount-badge">
+                                {{ product.price|floatformat:0|add:"-"|add:product.sale_price|floatformat:0 }}
+                                {% trans '٪ تخفیف' %}
+                            </span>
+                        </div>
+                        {% else %}
+                        <div class="price-wrapper">
+                            <span class="price-regular">{{ product.price|intcomma }} {% trans 'تومان' %}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Description -->
+                    <div class="product-description-section">
+                        <p class="product-description">{{ product.description }}</p>
+                    </div>
+                    
+                    <!-- Features -->
+                    <div class="product-features-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>{% trans 'سبک و بادوام' %}</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>{% trans 'طراحی ارگونومیک' %}</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>{% trans 'مناسب آقایان / بانوان' %}</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>{% trans 'چرم مرغوب ایتالیایی' %}</span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-add-to-cart">
-                        <i class="fas fa-shopping-cart"></i> {% trans 'افزودن به سبد خرید' %}
+                    
+                    <!-- Add to Cart -->
+                    <form action="{% url 'add_to_cart' product.id %}" method="post" class="add-to-cart-form">
+                        {% csrf_token %}
+                        
+                        <div class="quantity-section">
+                            <label for="quantity" class="quantity-label">{% trans 'تعداد' %}</label>
+                            <div class="quantity-selector">
+                                <button type="button" class="quantity-btn minus" aria-label="{% trans 'کاهش' %}">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" 
+                                       id="quantity" 
+                                       name="quantity" 
+                                       value="1" 
+                                       min="1" 
+                                       max="10" 
+                                       class="quantity-input">
+                                <button type="button" class="quantity-btn plus" aria-label="{% trans 'افزایش' %}">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-karno btn-karno-primary btn-karno-lg add-to-cart-btn">
+                            <i class="fas fa-shopping-bag"></i>
+                            {% trans 'افزودن به سبد خرید' %}
+                        </button>
+                    </form>
+                    
+                    <!-- Trust Badges -->
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>{% trans 'ضمانت اصالت' %}</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-truck"></i>
+                            <span>{% trans 'ارسال سریع' %}</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-undo"></i>
+                            <span>{% trans 'بازگشت ۷ روزه' %}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Share -->
+                    <div class="share-section">
+                        <span class="share-label">{% trans 'اشتراک‌گذاری' %}</span>
+                        <div class="share-links">
+                            <a href="https://wa.me/989300080027" class="share-link whatsapp" target="_blank" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://t.me/KarnoShoes_2024" class="share-link telegram" target="_blank" title="Telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="#" class="share-link instagram" target="_blank" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <button class="share-link copy-link" id="copyLink" title="{% trans 'کپی لینک' %}">
+                                <i class="fas fa-link"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ===== Product Features ===== -->
+        <section class="product-features-section">
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h4>{% trans 'کیفیت بی‌نظیر' %}</h4>
+                    <p>{% trans 'استفاده از بهترین مواد اولیه و استانداردهای جهانی' %}</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>{% trans 'ضمانت ۲۴ ماهه' %}</h4>
+                    <p>{% trans 'گارانتی تعویض و بازگشت کالا' %}</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-truck-fast"></i>
+                    </div>
+                    <h4>{% trans 'ارسال سریع' %}</h4>
+                    <p>{% trans 'تحویل فوری و بسته‌بندی لوکس' %}</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h4>{% trans 'بازگشت آسان' %}</h4>
+                    <p>{% trans 'ضمانت بازگشت تا ۷ روز' %}</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== Reviews Section ===== -->
+        <section class="reviews-section" id="reviewsSection">
+            <div class="reviews-header">
+                <h2 class="reviews-title">{% trans 'نظرات مشتریان' %}</h2>
+                <span class="reviews-count">{{ messages|length }} {% trans 'نظر' %}</span>
+            </div>
+            
+            <!-- Review Form -->
+            <div class="review-form-wrapper">
+                <h3 class="review-form-title">{% trans 'نظر خود را ثبت کنید' %}</h3>
+                <form method="post" action="" class="review-form">
+                    {% csrf_token %}
+                    <div class="review-form-row">
+                        <div class="form-group">
+                            <label for="reviewName" class="form-label">{% trans 'نام' %}</label>
+                            <input type="text" id="reviewName" name="name" class="form-control" 
+                                   placeholder="{% trans 'نام خود را وارد کنید' %}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewEmail" class="form-label">{% trans 'ایمیل' %}</label>
+                            <input type="email" id="reviewEmail" name="email" class="form-control" 
+                                   placeholder="{% trans 'ایمیل خود را وارد کنید' %}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewMessage" class="form-label">{% trans 'پیام' %}</label>
+                        <textarea id="reviewMessage" name="message" rows="4" class="form-control" 
+                                  placeholder="{% trans 'نظر خود را بنویسید...' %}" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-karno btn-karno-primary submit-review-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        {% trans 'ثبت نظر' %}
                     </button>
                 </form>
-
-                <div class="share-section">
-                    <span class="share-title">{% trans 'اشتراک گذاری :' %}</span>
-                    <div class="social-share">
-                        <a href="https://wa.me/989300080027" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://t.me/KarnoShoes_2024" class="social-btn telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="#" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
             </div>
-        </div>
-
-        <div class="product-features">
-            <div class="row">
-                <div class="col-md-3 col-6">
-                    <div class="feature-box">
-                        <div class="feature-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <h4>{% trans 'کیفیت بی نظیر' %}</h4>
-                        <p>{% trans 'استفاده از بهترین مواد اولیه' %}</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="feature-box">
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h4>{% trans 'ضمانت کالا' %}</h4>
-                        <p>{% trans 'گارانتی 24 ماهه' %}</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="feature-box">
-                        <div class="feature-icon">
-                            <i class="fas fa-truck"></i>
-                        </div>
-                        <h4>{% trans 'ارسال سریع' %}</h4>
-                        <p>{% trans 'تحویل فوری' %}</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="feature-box">
-                        <div class="feature-icon">
-                            <i class="fas fa-undo"></i>
-                        </div>
-                        <h4>{% trans 'ضمانت بازگشت' %}</h4>
-                        <p>{% trans 'مدت زمان بازگشت کالا 7 روز' %}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="premium-reviews-section">
-            <h2 class="section-title">{% trans 'نظرات مشتریان' %}</h2>
-
-            <div class="review-form-container">
-                <h3>{% trans 'نظر خودرا ثبت کنید' %}</h3>
-                <form method="post" action="">
-                    {% csrf_token %}
-                    <div class="form-row">
-                        <input type="text" name="name" placeholder="name" required>
-                        <input type="email" name="email" placeholder="email" required>
-                    </div>
-                    <textarea name="message" rows="5" placeholder="message" required></textarea>
-                    <button type="submit" class="submit-review-btn">{% trans 'ثبت نظر' %}</button>
-                </form>
-            </div>
-
+            
+            <!-- Reviews List -->
             <div class="reviews-list">
                 {% for message in messages %}
                 <div class="review-card">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <h4>{{ message.name }}</h4>
-                            <div class="review-date">{{ message.created_at|date:"Y-m-d H:i" }}</div>
+                    <div class="review-card-header">
+                        <div class="review-avatar">
+                            <span>{{ message.name|slice:":1"|upper }}</span>
+                        </div>
+                        <div class="review-user-info">
+                            <h4 class="review-name">{{ message.name }}</h4>
+                            <span class="review-date">{{ message.created_at|date:"Y/m/d H:i" }}</span>
                         </div>
                     </div>
-                    <div class="review-content">
-                        <p>{{ message.message }}</p>
+                    <div class="review-card-body">
+                        <p class="review-text">{{ message.message }}</p>
                     </div>
                 </div>
                 {% empty %}
-                <div class="no-reviews">
-                    <i class="bi bi-chat-square-text"></i>
-                    <p>{% trans 'هنوز هیچ نظری در مورد این محصول وجود ندارد' %}</p>
+                <div class="empty-reviews">
+                    <div class="empty-reviews-icon">
+                        <i class="fas fa-comment-slash"></i>
+                    </div>
+                    <h3>{% trans 'هنوز نظری ثبت نشده' %}</h3>
+                    <p>{% trans 'اولین نفری باشید که نظر خود را درباره این محصول ثبت می‌کند.' %}</p>
                 </div>
                 {% endfor %}
             </div>
-        </div>
+        </section>
+        
+        <!-- ===== Related Products ===== -->
+        <!-- This section can be added if you have related products -->
+        
     </div>
 </section>
-{% endblock %}
+
+<!-- ============================================
+     PRODUCT DETAIL JAVASCRIPT
+     ============================================ -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        'use strict';
+
+        // ========================================
+        // 1. THUMBNAIL GALLERY
+        // ========================================
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const mainImage = document.getElementById('mainImage');
+        const thumbTrack = document.getElementById('thumbnailTrack');
+        const thumbPrev = document.getElementById('thumbPrev');
+        const thumbNext = document.getElementById('thumbNext');
+        let currentIndex = 0;
+
+        if (thumbnails.length > 0 && mainImage) {
+            thumbnails.forEach((thumb, index) => {
+                thumb.addEventListener('click', function() {
+                    updateMainImage(index);
+                });
+            });
+
+            function updateMainImage(index) {
+                currentIndex = index;
+                const src = thumbnails[index].getAttribute('src');
+                mainImage.setAttribute('src', src);
+                
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumbnails[index].classList.add('active');
+                
+                // Scroll thumbnail into view
+                if (thumbTrack) {
+                    const thumbWidth = thumbnails[0].offsetWidth + 12;
+                    thumbTrack.scrollLeft = index * thumbWidth - thumbTrack.offsetWidth / 2 + thumbWidth / 2;
+                }
+            }
+
+            // Navigation buttons
+            if (thumbPrev) {
+                thumbPrev.addEventListener('click', function() {
+                    if (currentIndex > 0) {
+                        updateMainImage(currentIndex - 1);
+                    }
+                });
+            }
+
+            if (thumbNext) {
+                thumbNext.addEventListener('click', function() {
+                    if (currentIndex < thumbnails.length - 1) {
+                        updateMainImage(currentIndex + 1);
+                    }
+                });
+            }
+        }
+
+        // ========================================
+        // 2. QUANTITY SELECTOR
+        // ========================================
+        const quantityInput = document.getElementById('quantity');
+        const minusBtn = document.querySelector('.quantity-btn.minus');
+        const plusBtn = document.querySelector('.quantity-btn.plus');
+
+        if (quantityInput && minusBtn && plusBtn) {
+            minusBtn.addEventListener('click', function() {
+                const current = parseInt(quantityInput.value) || 1;
+                if (current > 1) {
+                    quantityInput.value = current - 1;
+                    quantityInput.dispatchEvent(new Event('change'));
+                }
+            });
+
+            plusBtn.addEventListener('click', function() {
+                const current = parseInt(quantityInput.value) || 1;
+                const max = parseInt(quantityInput.getAttribute('max')) || 10;
+                if (current < max) {
+                    quantityInput.value = current + 1;
+                    quantityInput.dispatchEvent(new Event('change'));
+                }
+            });
+
+            quantityInput.addEventListener('change', function() {
+                let value = parseInt(this.value) || 1;
+                const min = parseInt(this.getAttribute('min')) || 1;
+                const max = parseInt(this.getAttribute('max')) || 10;
+                
+                if (value < min) value = min;
+                if (value > max) value = max;
+                this.value = value;
+            });
+        }
+
+        // ========================================
+        // 3. IMAGE ZOOM ON HOVER
+        // ========================================
+        const imageContainer = document.getElementById('mainImageContainer');
+        
+        if (imageContainer && mainImage) {
+            imageContainer.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width * 100;
+                const y = (e.clientY - rect.top) / rect.height * 100;
+                
+                mainImage.style.transformOrigin = `${x}% ${y}%`;
+                mainImage.style.transform = 'scale(1.5)';
+            });
+            
+            imageContainer.addEventListener('mouseleave', function() {
+                mainImage.style.transform = 'scale(1)';
+                mainImage.style.transformOrigin = 'center center';
+            });
+        }
+
+        // ========================================
+        // 4. ADD TO CART ANIMATION
+        // ========================================
+        const addToCartForm = document.querySelector('.add-to-cart-form');
+        
+        if (addToCartForm) {
+            addToCartForm.addEventListener('submit', function(e) {
+                const btn = this.querySelector('.add-to-cart-btn');
+                const originalHTML = btn.innerHTML;
+                
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> {% trans "در حال افزودن..." %}';
+                btn.disabled = true;
+                
+                // Reset after form submission (actual submission handled by Django)
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check"></i> {% trans "افزوده شد!" %}';
+                    btn.style.background = 'var(--color-success)';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalHTML;
+                        btn.disabled = false;
+                        btn.style.background = '';
+                    }, 1500);
+                }, 1000);
+            });
+        }
+
+        // ========================================
+        // 5. COPY LINK
+        // ========================================
+        const copyLinkBtn = document.getElementById('copyLink');
+        
+        if (copyLinkBtn) {
+            copyLinkBtn.addEventListener('click', function() {
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    const original = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    this.style.background = 'var(--color-success)';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = original;
+                        this.style.background = '';
+                    }, 2000);
+                }).catch(() => {
+                    // Fallback
+                    const input = document.createElement('input');
+                    input.value = url;
+                    document.body.appendChild(input);
+                    input.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(input);
+                    
+                    const original = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    this.style.background = 'var(--color-success)';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = original;
+                        this.style.background = '';
+                    }, 2000);
+                });
+            });
+        }
+
+        // ========================================
+        // 6. KEYBOARD NAVIGATION
+        // ========================================
+        document.addEventListener('keydown', function(e) {
+            if (thumbnails.length > 1) {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    if (currentIndex > 0) {
+                        updateMainImage(currentIndex - 1);
+                    }
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    if (currentIndex < thumbnails.length - 1) {
+                        updateMainImage(currentIndex + 1);
+                    }
+                }
+            }
+        });
+
+        // ========================================
+        // 7. REVIEW FORM ANIMATION
+        // ========================================
+        const reviewForms = document.querySelectorAll('.review-form');
+        
+        reviewForms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                const btn = this.querySelector('.submit-review-btn');
+                const originalHTML = btn.innerHTML;
+                
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> {% trans "در حال ارسال..." %}';
+                btn.disabled = true;
+                
+                // Reset after submission (actual submission handled by Django)
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.disabled = false;
+                }, 1500);
+            });
+        });
+
+        console.log('🖤 Karno Product Detail v1.0');
+        console.log('✨ Premium Product Experience Loaded');
+    });
+</script>
+
+{% endblock content1 %}

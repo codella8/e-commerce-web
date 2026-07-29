@@ -1,28 +1,353 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
-{% block title %}{% trans 'ویرایش پروفایل' %}{% endblock title %}
+
+{% block title %}{% trans 'ویرایش پروفایل - کارنو' %}{% endblock title %}
 
 {% block content1 %}
-<section class="auth-section">
-    <div class="auth-container">
-        <div class="auth-form">
-            <h2>{% trans 'ویرایش پروفایل' %}</h2>
-            <p class="subtitle">{% trans 'اطلاعات شخصی خودرا بروز کنید' %}</p>
 
-            <form method="POST" action="{% url 'update_user' %}">
-                {% csrf_token %}
-                {{ user_form.as_p }}
-                <div class="form-actions">
-                    <button class="btn btn-success" type="submit">
-                        <i class="bi bi-check-circle"></i> {% trans 'ذخیره تغییرات' %}
-                    </button>
-                    <a class="btn btn-info" href="{% url 'update_password' %}">
-                        <i class="bi bi-shield-lock"></i> {% trans 'تغییر رمز عبور' %}
-                    </a>
+<!-- ============================================
+     KARNO UPDATE USER PROFILE - PREMIUM LUXURY EXPERIENCE
+     ============================================ -->
+
+<section class="profile-update-section" id="profileUpdateSection">
+    <div class="profile-update-container">
+        
+        <!-- ===== Page Header ===== -->
+        <div class="profile-update-header reveal">
+            <div class="header-icon-wrapper">
+                <i class="fas fa-user-cog"></i>
+            </div>
+            <div class="header-content">
+                <h1 class="page-title">{% trans 'ویرایش پروفایل' %}</h1>
+                <p class="page-subtitle">{% trans 'اطلاعات شخصی خود را به‌روز کنید و حساب کاربری خود را مدیریت نمایید' %}</p>
+            </div>
+        </div>
+        
+        <!-- ===== Main Content ===== -->
+        <div class="profile-update-grid">
+            
+            <!-- ===== Sidebar ===== -->
+            <div class="profile-sidebar reveal-left">
+                <div class="profile-card">
+                    <div class="profile-avatar-wrapper">
+                        <div class="profile-avatar">
+                            <span>{{ user.get_full_name|default:user.username|slice:":1"|upper }}</span>
+                        </div>
+                        <div class="profile-name">{{ user.get_full_name|default:user.username }}</div>
+                        <div class="profile-email">{{ user.email }}</div>
+                        <div class="profile-joined">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>{% trans 'عضویت از' %} {{ user.date_joined|date:"Y/m/d" }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-divider"></div>
+                    
+                    <ul class="profile-menu">
+                        <li class="menu-item active">
+                            <a href="{% url 'update_user' %}">
+                                <i class="fas fa-user-cog"></i>
+                                <span>{% trans 'ویرایش پروفایل' %}</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{% url 'update_info' %}">
+                                <i class="fas fa-id-card"></i>
+                                <span>{% trans 'اطلاعات شخصی' %}</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{% url 'update_password' %}">
+                                <i class="fas fa-lock"></i>
+                                <span>{% trans 'تغییر رمز عبور' %}</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{% url 'orders' %}">
+                                <i class="fas fa-shopping-bag"></i>
+                                <span>{% trans 'سفارشات من' %}</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{% url 'logout' %}" class="logout-item">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>{% trans 'خروج از حساب' %}</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            </form>
+            </div>
+            
+            <!-- ===== Edit Form ===== -->
+            <div class="profile-update-form reveal-right">
+                <div class="form-card">
+                    <div class="form-header">
+                        <div class="form-header-icon">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                        <div>
+                            <h2>{% trans 'اطلاعات پروفایل' %}</h2>
+                            <p>{% trans 'نام، ایمیل و سایر اطلاعات خود را ویرایش کنید' %}</p>
+                        </div>
+                    </div>
+                    
+                    <form method="POST" action="{% url 'update_user' %}" class="update-form" id="updateUserForm">
+                        {% csrf_token %}
+                        
+                        <div class="form-fields">
+                            {% for field in user_form %}
+                            <div class="form-group {% if field.errors %}has-error{% endif %} 
+                                        {% if field.name == 'username' or field.name == 'email' %}full-width{% endif %}">
+                                <label for="{{ field.id_for_label }}" class="form-label">
+                                    {{ field.label }}
+                                    {% if field.field.required %}
+                                    <span class="required-star">*</span>
+                                    {% endif %}
+                                </label>
+                                
+                                <div class="input-wrapper">
+                                    <i class="fas {% if field.name == 'username' %}fa-user{% elif field.name == 'first_name' %}fa-user-tag{% elif field.name == 'last_name' %}fa-user-tag{% elif field.name == 'email' %}fa-envelope{% else %}fa-pen{% endif %} input-icon"></i>
+                                    {{ field }}
+                                    {% if field.name == 'email' %}
+                                    <span class="input-verified" title="{% trans 'تایید شده' %}">
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                    {% endif %}
+                                </div>
+                                
+                                {% if field.help_text %}
+                                <small class="form-help-text">{{ field.help_text }}</small>
+                                {% endif %}
+                                
+                                {% if field.errors %}
+                                <div class="form-errors">
+                                    {% for error in field.errors %}
+                                    <span class="error-message">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        {{ error }}
+                                    </span>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn-karno btn-karno-primary btn-karno-lg save-btn">
+                                <i class="fas fa-save"></i>
+                                {% trans 'ذخیره تغییرات' %}
+                            </button>
+                            <a href="{% url 'update_password' %}" class="btn-karno btn-karno-outline password-btn">
+                                <i class="fas fa-shield-alt"></i>
+                                {% trans 'تغییر رمز عبور' %}
+                            </a>
+                        </div>
+                    </form>
+                    
+                    <!-- Account Info -->
+                    <div class="account-info">
+                        <div class="info-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>{% trans 'تاریخ عضویت:' %}</span>
+                            <strong>{{ user.date_joined|date:"Y/m/d" }}</strong>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>{% trans 'آخرین ورود:' %}</span>
+                            <strong>{{ user.last_login|date:"Y/m/d H:i"|default:"-" }}</strong>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer Help -->
+                    <div class="form-footer-info">
+                        <i class="fas fa-info-circle"></i>
+                        <span>{% trans 'برای تغییر رمز عبور، روی دکمه "تغییر رمز عبور" کلیک کنید.' %}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+
+<!-- ============================================
+     UPDATE USER PROFILE JAVASCRIPT
+     ============================================ -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        'use strict';
+
+        // ========================================
+        // 1. FORM VALIDATION
+        // ========================================
+        const updateForm = document.getElementById('updateUserForm');
+        
+        if (updateForm) {
+            // Real-time validation on blur
+            const formInputs = updateForm.querySelectorAll('.form-control');
+            
+            formInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('error') || this.classList.contains('is-valid')) {
+                        validateField(this);
+                    }
+                });
+            });
+            
+            function validateField(input) {
+                const wrapper = input.closest('.input-wrapper');
+                const formGroup = input.closest('.form-group');
+                
+                if (!wrapper || !formGroup) return;
+                
+                // Remove existing states
+                input.classList.remove('error', 'is-valid');
+                formGroup.classList.remove('has-error');
+                
+                // Check required
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    input.classList.add('error');
+                    formGroup.classList.add('has-error');
+                    return false;
+                }
+                
+                // Check email
+                if (input.type === 'email' && input.value.trim()) {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(input.value.trim())) {
+                        input.classList.add('error');
+                        formGroup.classList.add('has-error');
+                        return false;
+                    }
+                }
+                
+                // Check username (if present)
+                if (input.name === 'username' && input.value.trim()) {
+                    const usernamePattern = /^[a-zA-Z0-9_]{3,20}$/;
+                    if (!usernamePattern.test(input.value.trim())) {
+                        input.classList.add('error');
+                        formGroup.classList.add('has-error');
+                        return false;
+                    }
+                }
+                
+                if (input.value.trim()) {
+                    input.classList.add('is-valid');
+                }
+                return true;
+            }
+            
+            // Form submission
+            updateForm.addEventListener('submit', function(e) {
+                const submitBtn = this.querySelector('.save-btn');
+                const originalHTML = submitBtn.innerHTML;
+                
+                // Validate all fields
+                let isValid = true;
+                const inputs = this.querySelectorAll('.form-control');
+                inputs.forEach(input => {
+                    if (!validateField(input)) {
+                        isValid = false;
+                    }
+                });
+                
+                if (!isValid) {
+                    e.preventDefault();
+                    // Scroll to first error
+                    const firstError = this.querySelector('.form-control.error');
+                    if (firstError) {
+                        firstError.focus();
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> {% trans "در حال ذخیره..." %}';
+                submitBtn.disabled = true;
+                
+                // Remove loading state after submission (will be replaced by actual response)
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalHTML;
+                    submitBtn.disabled = false;
+                }, 3000);
+            });
+        }
+
+        // ========================================
+        // 2. REVEAL ON SCROLL
+        // ========================================
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        revealElements.forEach(el => {
+            if (el.classList.contains('reveal-left')) {
+                el.style.transform = 'translateX(-40px)';
+                el.style.opacity = '0';
+                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            } else if (el.classList.contains('reveal-right')) {
+                el.style.transform = 'translateX(40px)';
+                el.style.opacity = '0';
+                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            } else if (el.classList.contains('reveal')) {
+                el.style.transform = 'translateY(40px)';
+                el.style.opacity = '0';
+                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            }
+            
+            revealObserver.observe(el);
+        });
+
+        // ========================================
+        // 3. INPUT FOCUS EFFECTS
+        // ========================================
+        document.querySelectorAll('.input-wrapper .form-control').forEach(input => {
+            input.addEventListener('focus', function() {
+                const wrapper = this.closest('.input-wrapper');
+                if (wrapper) {
+                    wrapper.style.transform = 'scale(1.01)';
+                    wrapper.style.transition = 'transform 0.3s var(--transition-smooth)';
+                }
+            });
+            
+            input.addEventListener('blur', function() {
+                const wrapper = this.closest('.input-wrapper');
+                if (wrapper) {
+                    wrapper.style.transform = 'scale(1)';
+                }
+            });
+        });
+
+        // ========================================
+        // 4. AVATAR HOVER EFFECT
+        // ========================================
+        const avatar = document.querySelector('.profile-avatar');
+        if (avatar) {
+            avatar.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.4s var(--transition-spring)';
+            });
+        }
+
+        console.log('🖤 Karno Update User Profile v1.0');
+        console.log('✨ Premium Profile Update Experience Loaded');
+    });
+</script>
+
 {% endblock content1 %}

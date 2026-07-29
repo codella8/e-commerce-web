@@ -2,78 +2,453 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %} {% trans 'ثبت‌نام' %}{% endblock %}
+{% block title %}{% trans 'ثبت‌نام - کارنو' %}{% endblock %}
 
 {% block content1 %}
-<section class="signup-section">
-    <div class="container-fluid p-0">
-        <div class="row g-0">
-            <div class="col-lg-6 d-none d-lg-flex signup-bg">
-                <div class="bg-overlay d-flex flex-column justify-content-center p-5">
-                    <h2 class="display-5 mb-4 text-dark fw-normal">{% trans 'به خانواده کارنو بپیوندید!' %}</h2>
-                    <ul class="benefits-list list-unstyled">
-                        <li class="mb-3"><i class="fas fa-check-circle me-2"></i>{% trans 'دسترسی به پیشنهادات ویژه اعضا' %}</li>
-                        <li class="mb-3"><i class="fas fa-check-circle me-2"></i>{% trans 'پیگیری سفارشات و تاریخچه خرید' %}</li>
-                        <li class="mb-3"><i class="fas fa-check-circle me-2"></i>{% trans 'تخفیف‌های اختصاصی برای اعضا' %}</li>
-                        <li class="mb-3"><i class="fas fa-check-circle me-2"></i>{% trans 'اطلاع از جدیدترین محصولات و حراجی‌ها' %}</li>
-                        <li><i class="fas fa-check-circle me-2"></i>{% trans 'پشتیبانی اختصاصی برای اعضا' %}</li>
-                    </ul>
+
+<!-- ============================================
+     KARNO SIGNUP PAGE - PREMIUM LUXURY EXPERIENCE
+     ============================================ -->
+
+<section class="signup-section" id="signupSection">
+    <div class="signup-container">
+        <div class="signup-grid">
+            
+            <!-- Left: Brand Benefits -->
+            <div class="signup-brand-side reveal-left">
+                <div class="signup-brand-content">
+                    <div class="brand-badge">
+                        <span class="badge-dot"></span>
+                        {% trans 'عضویت ویژه' %}
+                    </div>
+                    
+                    <h1 class="brand-title">
+                        {% trans 'به خانواده' %}
+                        <span class="brand-highlight">{% trans 'کارنو' %}</span>
+                        {% trans 'بپیوندید' %}
+                    </h1>
+                    
+                    <p class="brand-description">
+                        {% trans 'با ثبت‌نام در کارنو، از مزایای ویژه و تجربه‌ای لوکس در خرید کفش بهره‌مند شوید.' %}
+                    </p>
+                    
+                    <div class="brand-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon-wrapper">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>{% trans 'تخفیف‌های ویژه اعضا' %}</h4>
+                                <p>{% trans 'تا ۳۰٪ تخفیف برای خریدهای اول و ویژه‌های ماهانه' %}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon-wrapper">
+                                <i class="fas fa-box-open"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>{% trans 'پیگیری سفارشات' %}</h4>
+                                <p>{% trans 'مشاهده لحظه‌ای وضعیت سفارشات و تاریخچه کامل خرید' %}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon-wrapper">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>{% trans 'اخبار و حراجی‌ها' %}</h4>
+                                <p>{% trans 'اولین نفری باشید که از جدیدترین محصولات و تخفیف‌ها مطلع می‌شوید' %}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon-wrapper">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>{% trans 'پشتیبانی اختصاصی' %}</h4>
+                                <p>{% trans 'تیم پشتیبانی ویژه برای پاسخگویی به سوالات و نیازهای شما' %}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="brand-cta">
+                        <div class="brand-stat">
+                            <span class="stat-number">10K+</span>
+                            <span class="stat-label">{% trans 'کاربران فعال' %}</span>
+                        </div>
+                        <div class="brand-stat-divider"></div>
+                        <div class="brand-stat">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">{% trans 'رضایت کاربران' %}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-lg-6 d-flex align-items-center">
-                <div class="signup-form-container p-4 p-md-5">
-                    <div class="text-center mb-5">
-                        <a href="{% url 'index' %}">
-                            <img src="{% static 'img/karnoo.png' %}" alt="کارنو" class="logo mb-3" width="120">
+            
+            <!-- Right: Signup Form -->
+            <div class="signup-form-side reveal-right">
+                <div class="signup-form-card">
+                    <!-- Logo -->
+                    <div class="form-logo-wrapper">
+                        <a href="{% url 'index' %}" class="form-logo">
+                            <span class="logo-text">Karno</span>
+                            <span class="logo-dot"></span>
                         </a>
-                        <h3 class="fw-bold mb-2">{% trans 'حساب کاربری جدید' %}</h3>
-                        <p class="text-muted">{% trans 'اطلاعات خود را وارد کنید تا ثبت‌نام کنید' %}</p>
                     </div>
-
-                    <form method="POST" action="{% url 'signup' %}" class="needs-validation" novalidate>
+                    
+                    <div class="form-header">
+                        <h2 class="form-title">{% trans 'ایجاد حساب کاربری' %}</h2>
+                        <p class="form-subtitle">{% trans 'اطلاعات خود را وارد کنید تا ثبت‌نام کنید' %}</p>
+                    </div>
+                    
+                    <form method="POST" action="{% url 'signup' %}" class="signup-form" id="signupForm" novalidate>
                         {% csrf_token %}
-
-                        <div class="row g-3">
+                        
+                        <div class="form-fields">
                             {% for field in form %}
                             <div class="form-group">
-                                <label for="{{ field.id_for_label }}">
-                                    {% if field.name == 'username' %}
-                                    <i class="bi bi-person"></i>
-                                    {% elif field.name == 'email' %}
-                                    <i class="bi bi-envelope"></i>
-                                    {% elif field.name == 'password1' %}
-                                    <i class="bi bi-lock"></i>
-                                    {% elif field.name == 'password2' %}
-                                    <i class="bi bi-shield-lock"></i>
-                                    {% endif %}
+                                <label for="{{ field.id_for_label }}" class="form-label">
+                                    <i class="{% if field.name == 'username' %}fas fa-user{% elif field.name == 'email' %}fas fa-envelope{% elif field.name == 'password1' %}fas fa-lock{% elif field.name == 'password2' %}fas fa-shield-alt{% else %}fas fa-circle{% endif %}"></i>
                                     {{ field.label }}
                                 </label>
-                                {{ field }}
+                                <div class="input-wrapper">
+                                    <i class="{% if field.name == 'username' %}fas fa-user{% elif field.name == 'email' %}fas fa-envelope{% elif field.name == 'password1' %}fas fa-lock{% elif field.name == 'password2' %}fas fa-shield-alt{% else %}fas fa-circle{% endif %} input-icon"></i>
+                                    {{ field }}
+                                    {% if field.name == 'password1' or field.name == 'password2' %}
+                                    <button type="button" class="password-toggle" aria-label="{% trans 'نمایش رمز عبور' %}">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    {% endif %}
+                                </div>
+                                {% if field.help_text %}
+                                <small class="form-help-text">{{ field.help_text }}</small>
+                                {% endif %}
                                 {% if field.errors %}
                                 <div class="form-error">
-                                    <i class="bi bi-exclamation-circle"></i> {{ field.errors|striptags }}
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    {{ field.errors|striptags }}
                                 </div>
                                 {% endif %}
                             </div>
                             {% endfor %}
-
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">
-                                    <i class="fas fa-user-plus me-2"></i> {% trans 'ثبت‌نام' %}
-                                </button>
-                            </div>
-
-                            <div class="col-12 text-center">
-                                <p class="mb-0">{% trans 'قبلاً حساب دارید؟' %}
-                                    <a href="{% url 'login' %}" class="text-primary fw-semibold">{% trans 'وارد شوید' %}</a>
-                                </p>
-                            </div>
                         </div>
+                        
+                        <!-- Password Strength Indicator -->
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-bar">
+                                <div class="strength-progress" id="strengthProgress"></div>
+                            </div>
+                            <span class="strength-text" id="strengthText">{% trans 'قدرت رمز عبور' %}</span>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn-karno btn-karno-primary btn-karno-lg submit-btn">
+                            <i class="fas fa-user-plus"></i>
+                            {% trans 'ثبت‌نام' %}
+                        </button>
                     </form>
+                    
+                    <!-- Divider -->
+                    <div class="form-divider">
+                        <span>{% trans 'قبلاً حساب دارید؟' %}</span>
+                    </div>
+                    
+                    <!-- Login Link -->
+                    <div class="form-footer">
+                        <p class="login-text">
+                            {% trans 'قبلاً حساب کاربری دارید؟' %}
+                            <a href="{% url 'login' %}" class="login-link">
+                                {% trans 'وارد شوید' %}
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </p>
+                    </div>
+                    
+                    <!-- Back to Home -->
+                    <div class="form-back">
+                        <a href="{% url 'index' %}" class="back-link">
+                            <i class="fas fa-arrow-right"></i>
+                            {% trans 'بازگشت به صفحه اصلی' %}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</section><br>
-{% endblock %}
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        'use strict';
+
+        // ========================================
+        // 1. PASSWORD TOGGLE
+        // ========================================
+        const passwordToggles = document.querySelectorAll('.password-toggle');
+        
+        passwordToggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const input = this.closest('.input-wrapper').querySelector('.form-control');
+                const icon = this.querySelector('i');
+                
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                    this.setAttribute('aria-label', '{% trans "مخفی کردن رمز عبور" %}');
+                } else {
+                    input.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                    this.setAttribute('aria-label', '{% trans "نمایش رمز عبور" %}');
+                }
+            });
+        });
+
+        // ========================================
+        // 2. PASSWORD STRENGTH INDICATOR
+        // ========================================
+        const passwordInput = document.querySelector('input[name="password1"]');
+        const strengthProgress = document.getElementById('strengthProgress');
+        const strengthText = document.getElementById('strengthText');
+
+        if (passwordInput && strengthProgress && strengthText) {
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                const strength = checkPasswordStrength(password);
+                
+                strengthProgress.style.width = strength.percentage + '%';
+                strengthProgress.style.background = strength.color;
+                strengthText.textContent = strength.label;
+                strengthText.style.color = strength.color;
+                
+                // Update password input class
+                if (password.length > 0) {
+                    if (strength.percentage >= 80) {
+                        this.classList.remove('error');
+                        this.classList.add('is-valid');
+                    } else if (strength.percentage >= 40) {
+                        this.classList.remove('error', 'is-valid');
+                    } else {
+                        this.classList.remove('is-valid');
+                        this.classList.add('error');
+                    }
+                } else {
+                    this.classList.remove('error', 'is-valid');
+                }
+            });
+        }
+
+        function checkPasswordStrength(password) {
+            let score = 0;
+            
+            // Length check
+            if (password.length >= 8) score += 1;
+            if (password.length >= 12) score += 1;
+            
+            // Contains number
+            if (/\d/.test(password)) score += 1;
+            
+            // Contains lowercase
+            if (/[a-z]/.test(password)) score += 1;
+            
+            // Contains uppercase
+            if (/[A-Z]/.test(password)) score += 1;
+            
+            // Contains special character
+            if (/[^a-zA-Z0-9]/.test(password)) score += 1;
+            
+            const percentage = Math.min((score / 6) * 100, 100);
+            
+            let label, color;
+            if (percentage <= 20) {
+                label = '{% trans "ضعیف" %}';
+                color = '#E31B23';
+            } else if (percentage <= 40) {
+                label = '{% trans "ضعیف" %}';
+                color = '#E85D3A';
+            } else if (percentage <= 60) {
+                label = '{% trans "متوسط" %}';
+                color = '#F5A623';
+            } else if (percentage <= 80) {
+                label = '{% trans "قوی" %}';
+                color = '#4A90D9';
+            } else {
+                label = '{% trans "بسیار قوی" %}';
+                color = '#2D7D46';
+            }
+            
+            return { percentage, label, color };
+        }
+
+        // ========================================
+        // 3. FORM VALIDATION
+        // ========================================
+        const signupForm = document.getElementById('signupForm');
+        
+        if (signupForm) {
+            // Real-time validation on blur
+            const formInputs = signupForm.querySelectorAll('.form-control');
+            
+            formInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('error') || this.classList.contains('is-valid')) {
+                        validateField(this);
+                    }
+                });
+            });
+            
+            function validateField(input) {
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    input.classList.add('error');
+                    input.classList.remove('is-valid');
+                    return false;
+                }
+                
+                if (input.type === 'email' && input.value.trim()) {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(input.value.trim())) {
+                        input.classList.add('error');
+                        input.classList.remove('is-valid');
+                        return false;
+                    }
+                }
+                
+                // Password match validation for confirm password
+                if (input.name === 'password2') {
+                    const password1 = document.querySelector('input[name="password1"]');
+                    if (password1 && input.value !== password1.value) {
+                        input.classList.add('error');
+                        input.classList.remove('is-valid');
+                        return false;
+                    }
+                }
+                
+                input.classList.remove('error');
+                if (input.value.trim()) {
+                    input.classList.add('is-valid');
+                }
+                return true;
+            }
+            
+            // Form submission
+            signupForm.addEventListener('submit', function(e) {
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalHTML = submitBtn.innerHTML;
+                
+                // Validate all fields
+                let isValid = true;
+                const inputs = this.querySelectorAll('.form-control');
+                inputs.forEach(input => {
+                    if (!validateField(input)) {
+                        isValid = false;
+                    }
+                });
+                
+                if (!isValid) {
+                    e.preventDefault();
+                    // Scroll to first error
+                    const firstError = this.querySelector('.form-control.error');
+                    if (firstError) {
+                        firstError.focus();
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> {% trans "در حال ثبت‌نام..." %}';
+                submitBtn.classList.add('loading');
+                
+                // Remove loading state after submission (will be replaced by actual response)
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalHTML;
+                    submitBtn.classList.remove('loading');
+                }, 3000);
+            });
+        }
+
+        // ========================================
+        // 4. REVEAL ON SCROLL
+        // ========================================
+        const revealElements = document.querySelectorAll('.reveal-left, .reveal-right');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        revealElements.forEach(el => {
+            // Add base styles
+            if (el.classList.contains('reveal-left')) {
+                el.style.transform = 'translateX(-40px)';
+                el.style.opacity = '0';
+                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            } else if (el.classList.contains('reveal-right')) {
+                el.style.transform = 'translateX(40px)';
+                el.style.opacity = '0';
+                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            }
+            
+            revealObserver.observe(el);
+        });
+
+        // ========================================
+        // 5. INPUT FOCUS EFFECTS
+        // ========================================
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function() {
+                const wrapper = this.closest('.input-wrapper');
+                if (wrapper) {
+                    wrapper.style.transform = 'scale(1.01)';
+                    wrapper.style.transition = 'transform 0.3s var(--transition-smooth)';
+                }
+            });
+            
+            input.addEventListener('blur', function() {
+                const wrapper = this.closest('.input-wrapper');
+                if (wrapper) {
+                    wrapper.style.transform = 'scale(1)';
+                }
+            });
+        });
+
+        // ========================================
+        // 6. BENEFIT ITEM HOVER EFFECT
+        // ========================================
+        document.querySelectorAll('.benefit-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.benefit-icon-wrapper');
+                if (icon) {
+                    icon.style.transform = 'scale(1.1) rotate(-10deg)';
+                    icon.style.transition = 'all 0.4s var(--transition-spring)';
+                }
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.benefit-icon-wrapper');
+                if (icon) {
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                }
+            });
+        });
+
+        console.log('🖤 Karno Signup Page v1.0');
+        console.log('✨ Premium Signup Experience Loaded');
+    });
+</script>
+
+{% endblock content1 %}

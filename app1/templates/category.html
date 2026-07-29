@@ -3,92 +3,292 @@
 {% load humanize %}
 {% load static %}
 
-{% block title %}{% trans "دسته بندی" %} | {{ category }}{% endblock %}
+{% block title %}{% trans "دسته‌بندی" %} | {{ category }}{% endblock %}
 
 {% block content1 %}
-<section class="category-head">
-    <div class="category-header">
-        <h1 class="category-title">{{ category }}</h1>
-        <p class="category-description">{% trans 'محصولات ویژه و با کیفیت در این دسته بندی' %}</p>
-        <div class="category-back">
-            <a href="{% url 'index' %}" class="back-link">← {% trans 'بازگشت' %}</a>
-            <span>/</span>
-            <span>{{ category }}</span>
+
+<!-- ============================================
+     KARNO CATEGORY PAGE - PREMIUM LUXURY EXPERIENCE
+     ============================================ -->
+
+<!-- ===== 1. CATEGORY HEADER ===== -->
+<section class="category-hero-section" id="categoryHero">
+    <div class="category-hero-container">
+        <div class="category-hero-content reveal">
+            <div class="category-breadcrumb">
+                <a href="{% url 'index' %}" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    {% trans 'خانه' %}
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">{{ category }}</span>
+            </div>
+            
+            <h1 class="category-hero-title">{{ category }}</h1>
+            <p class="category-hero-description">
+                {% trans 'مجموعه‌ای از بهترین و باکیفیت‌ترین محصولات در دسته‌بندی' %} {{ category }}
+            </p>
+            
+            <div class="category-stats">
+                <span class="stat-badge">
+                    <i class="fas fa-box"></i>
+                    {{ products.paginator.count }} {% trans 'محصول' %}
+                </span>
+            </div>
         </div>
-    </div>
+        
+        <div class="category-hero-decoration">
+            <div class="decoration-shape"></div>
+            <div class="decoration-shape shape-2"></div>
+        </div>
     </div>
 </section>
 
-<section class="category-products py-5">
-    <div class="container">
-        <div class="row g-4">
-            {% for item in products %}
-            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="product-card">
-                    {% if item.sale %}
-                    <div class="product-badge">{% trans 'بازگشت' %}</div>
-                    <div class="product-sale-badge">{{ item.discount_percent }}%</div>
-                    {% endif %}
-
-                    <div class="product-img-container">
-                        <img src="{{ item.picture.url }}" alt="{{ item.name }}" class="product-img">
-                        <div class="product-overlay">
-                            <a href="{% url 'product' item.id %}" class="quick-view-btn">
-                                <i class="bi bi-eye"></i> {% trans 'مشاهده محصول' %}
-                            </a>
+<!-- ===== 2. PRODUCTS GRID ===== -->
+<section class="category-products-section" id="categoryProducts">
+    <div class="category-products-container">
+        
+        <!-- ===== Filter Bar ===== -->
+        <div class="products-filter-bar reveal">
+            <div class="filter-left">
+                <span class="filter-label">
+                    <i class="fas fa-sliders-h"></i>
+                    {% trans 'مرتب‌سازی:' %}
+                </span>
+                <select class="filter-select" id="sortSelect">
+                    <option value="newest">{% trans 'جدیدترین' %}</option>
+                    <option value="price-low">{% trans 'قیمت: کم به زیاد' %}</option>
+                    <option value="price-high">{% trans 'قیمت: زیاد به کم' %}</option>
+                    <option value="popular">{% trans 'محبوب‌ترین' %}</option>
+                </select>
+            </div>
+            
+            <div class="filter-right">
+                <span class="product-count">
+                    {% trans 'نمایش' %} {{ products.start_index }} - {{ products.end_index }} 
+                    {% trans 'از' %} {{ products.paginator.count }} {% trans 'محصول' %}
+                </span>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid" aria-label="{% trans 'نمایش گرید' %}">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list" aria-label="{% trans 'نمایش لیست' %}">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ===== Products Grid ===== -->
+        <div class="products-grid-wrapper">
+            <div class="products-grid" id="productsGrid">
+                {% for item in products %}
+                <div class="product-card-wrapper reveal">
+                    <div class="product-card-luxury">
+                        {% if item.is_sale %}
+                        <div class="product-badge sale-badge">
+                            <span class="badge-text">{% trans 'تخفیف' %}</span>
+                            <span class="badge-percent">{{ item.discount_percent }}%</span>
                         </div>
-                    </div>
-
-                    <div class="product-body">
-                        <h3 class="product-title">{{ item.name }}</h3>
-
-                        <div class="cat-product-price">
-                            {% if item.sale %}
-                            <span class="price-old">{{ item.price|intcomma }} {% trans 'تومان' %}</span>
-                            <span class="price-new">{{ item.sale_price|intcomma }} {% trans 'تومان' %}</span>
-                            {% else %}
-                            <span class="price-current">{{ item.price|intcomma }} {% trans 'تومان' %}</span>
-                            {% endif %}
+                        {% endif %}
+                        
+                        <div class="product-card-image">
+                            <img src="{{ item.picture.url }}" alt="{{ item.name }}" loading="lazy">
+                            <div class="product-card-actions">
+                                <a href="{% url 'product' item.id %}" class="quick-view-btn" title="{% trans 'مشاهده محصول' %}">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <button class="wishlist-btn" data-product-id="{{ item.id }}" title="{% trans 'افزودن به علاقه‌مندی‌ها' %}">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
                         </div>
-
-                        <div class="card-footer bg-transparent border-top-0">
-                            <a href="{% url 'product' item.id %}" class="btn btn-outline-primary w-100">
-                                <i class="bi bi-eye me-2"></i> {% trans 'مشاهده محصول' %}
+                        
+                        <div class="product-card-info">
+                            <h3 class="product-name">{{ item.name }}</h3>
+                            
+                            <div class="product-price-wrapper">
+                                {% if item.is_sale %}
+                                <span class="product-price-original">{{ item.price|intcomma }}</span>
+                                <span class="product-price-sale">{{ item.sale_price|intcomma }}</span>
+                                <span class="product-price-currency">{% trans 'تومان' %}</span>
+                                {% else %}
+                                <span class="product-price">{{ item.price|intcomma }}</span>
+                                <span class="product-price-currency">{% trans 'تومان' %}</span>
+                                {% endif %}
+                            </div>
+                            
+                            <a href="{% url 'product' item.id %}" class="product-detail-link">
+                                {% trans 'مشاهده محصول' %}
+                                <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+                {% empty %}
+                <!-- Empty State -->
+                <div class="empty-products">
+                    <div class="empty-products-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>{% trans 'محصولی یافت نشد' %}</h3>
+                    <p>{% trans 'متاسفانه در این دسته‌بندی محصولی وجود ندارد.' %}</p>
+                    <a href="{% url 'index' %}" class="btn-karno btn-karno-primary">
+                        {% trans 'بازگشت به صفحه اصلی' %}
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
-
-        <div class="pagination-container mt-5">
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
+        
+        <!-- ===== Pagination ===== -->
+        {% if products.paginator.num_pages > 1 %}
+        <div class="pagination-wrapper reveal">
+            <nav class="pagination-nav" aria-label="{% trans 'صفحه‌بندی' %}">
+                <ul class="pagination-list">
                     {% if products.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ products.previous_page_number }}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
+                    <li class="pagination-item">
+                        <a href="?page={{ products.previous_page_number }}" class="pagination-link" aria-label="{% trans 'قبلی' %}">
+                            <i class="fas fa-chevron-right"></i>
                         </a>
                     </li>
                     {% endif %}
-
+                    
                     {% for num in products.paginator.page_range %}
-                    <li class="page-item {% if products.number == num %}active{% endif %}">
-                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                    </li>
+                        {% if num == products.number %}
+                        <li class="pagination-item active">
+                            <span class="pagination-link">{{ num }}</span>
+                        </li>
+                        {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                        <li class="pagination-item">
+                            <a href="?page={{ num }}" class="pagination-link">{{ num }}</a>
+                        </li>
+                        {% endif %}
                     {% endfor %}
-
+                    
                     {% if products.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ products.next_page_number }}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
+                    <li class="pagination-item">
+                        <a href="?page={{ products.next_page_number }}" class="pagination-link" aria-label="{% trans 'بعدی' %}">
+                            <i class="fas fa-chevron-left"></i>
                         </a>
                     </li>
                     {% endif %}
                 </ul>
             </nav>
+            
+            <div class="pagination-info">
+                {% trans 'صفحه' %} {{ products.number }} {% trans 'از' %} {{ products.paginator.num_pages }}
+            </div>
         </div>
+        {% endif %}
     </div>
 </section>
-{% endblock %}
+
+
+<!-- ============================================
+     CATEGORY PAGE JAVASCRIPT
+     ============================================ -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        'use strict';
+
+        // ========================================
+        // 1. VIEW TOGGLE (Grid/List)
+        // ========================================
+        const viewButtons = document.querySelectorAll('.view-btn');
+        const productsGrid = document.getElementById('productsGrid');
+
+        viewButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const view = this.getAttribute('data-view');
+                
+                // Update active state
+                viewButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update grid class
+                if (view === 'list') {
+                    productsGrid.classList.add('list-view');
+                } else {
+                    productsGrid.classList.remove('list-view');
+                }
+            });
+        });
+
+        // ========================================
+        // 2. SORTING
+        // ========================================
+        const sortSelect = document.getElementById('sortSelect');
+        
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function() {
+                const value = this.value;
+                // Reload page with sort parameter
+                const url = new URL(window.location.href);
+                url.searchParams.set('sort', value);
+                window.location.href = url.toString();
+            });
+        }
+
+        // ========================================
+        // 3. WISHLIST BUTTON
+        // ========================================
+        document.querySelectorAll('.wishlist-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const icon = this.querySelector('i');
+                icon.classList.toggle('far');
+                icon.classList.toggle('fas');
+                this.classList.toggle('active');
+                
+                // Visual feedback
+                this.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+
+        // ========================================
+        // 4. REVEAL ON SCROLL
+        // ========================================
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        revealElements.forEach(el => {
+            el.style.transform = 'translateY(40px)';
+            el.style.opacity = '0';
+            el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            revealObserver.observe(el);
+        });
+
+        // ========================================
+        // 5. PRODUCT CARD ENHANCED HOVER
+        // ========================================
+        document.querySelectorAll('.product-card-luxury').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const image = this.querySelector('.product-card-image img');
+                if (image) {
+                    image.style.transition = 'transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                }
+            });
+        });
+
+        console.log('🖤 Karno Category Page v1.0');
+        console.log('✨ Premium Category Experience Loaded');
+    });
+</script>
+
+{% endblock content1 %}

@@ -8,94 +8,361 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1A1A1A">
+    <meta name="description" content="{% trans 'کارنو - تجربه لوکس خرید کفش' %}">
+    
     <title>{% block title %}{% trans "کارنو" %}{% endblock %}</title>
 
+    <!-- ===== Fonts ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- ===== Icons ===== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
+    <!-- ===== Styles ===== -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+    
+    <!-- ===== Bootstrap (RTL/LTR) ===== -->
     {% if LANGUAGE_CODE|slice:":2" == 'fa' or LANGUAGE_CODE|slice:":2" == 'ar' %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     {% else %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     {% endif %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    {% block extra_head %}{% endblock %}
 </head>
 
 <body>
+    <!-- ===== Preloader ===== -->
+    <div id="karno-preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">K</div>
+            <div class="preloader-line"></div>
+            <div class="preloader-text">Loading</div>
+        </div>
+    </div>
+
+    <!-- ===== Cursor ===== -->
+    <div class="custom-cursor" id="customCursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- ===== Navbar ===== -->
     {% include 'navbar.html' %}
 
+    <!-- ===== Messages ===== -->
     {% if messages %}
-    <div class="cart-alerts mb-4 ">
+    <div class="message-container">
         {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-            <div class="alert-content">
-                <i class="alert-icon fas 
-                            {% if message.tags == 'success' %}fa-check-circle{% endif %}
-                            {% if message.tags == 'error' %}fa-exclamation-circle{% endif %}
-                            {% if message.tags == 'warning' %}fa-exclamation-triangle{% endif %}"></i>
-                <span>{{ message }}</span>
+        <div class="message-item message-{{ message.tags }}" role="alert">
+            <div class="message-content">
+                <span class="message-icon">
+                    {% if message.tags == 'success' %}
+                    <i class="fas fa-check-circle"></i>
+                    {% elif message.tags == 'error' %}
+                    <i class="fas fa-exclamation-circle"></i>
+                    {% elif message.tags == 'warning' %}
+                    <i class="fas fa-exclamation-triangle"></i>
+                    {% else %}
+                    <i class="fas fa-info-circle"></i>
+                    {% endif %}
+                </span>
+                <span class="message-text">{{ message }}</span>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="بستن"></button>
+            <button type="button" class="message-close" data-dismiss="message" aria-label="{% trans 'بستن' %}">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
         {% endfor %}
     </div>
     {% endif %}
 
-    <div class="container">
+    <!-- ===== Main Content ===== -->
+    <main class="main-content" id="mainContent">
         {% block content1 %}
         {% endblock content1 %}
-    </div>
+    </main>
 
-</body>
-
-<footer class="custom-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h3 class="footer-title">{% trans 'تماس با ما' %}</h3>
-
-                <div class="contact-info">
-                    <p>
-                        <i class="fas fa-map-marker-alt"></i>
-                    <h3>{% trans "آدرس" %}</h3>
-                    <p>{% trans 'قم, بلوار خلیج فارس, جاده کاشان بعد از پل بقیع اولین دور برگردان جنب باسکول زمرد' %}
+    <!-- ===== Footer ===== -->
+    <footer class="footer" id="mainFooter">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <h2 class="footer-logo">Karno</h2>
+                    <p class="footer-tagline">{% trans 'Premium Footwear Since 2024' %}</p>
+                    <p class="footer-description">
+                        {% trans 'سال‌ها تجربه را به خدمت گرفته‌ایم و سخت تلاش کرده‌ایم برای بهتر بودن.' %}
                     </p>
-                    </p>
-                    <p>
-                        <i class="fas fa-envelope"></i>
-                        {% trans 'ایمیل' %}: karnoo.shoes@gmail.com
-                    </p>
-                    <p>
-                        <i class="fas fa-phone"></i>
-                        +989300080027 | +989300040028
-                    </p>
+                    <div class="footer-social">
+                        <a href="https://t.me/KarnoShoes_2024" class="social-link" title="Telegram" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/989300080027" class="social-link" title="WhatsApp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="divider"></div>
-
-                <div class="social-links">
-                    <a href="https://t.me/KarnoShoes_2024" class="social-link" title="telegram">
-                        <i class="fab fa-telegram"></i>
-                    </a>
-                    <a href="#" class="social-link" title="instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://wa.me/989300080027" class="social-link" title="whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
+                <!-- Contact Column -->
+                <div class="footer-contact">
+                    <h4 class="footer-heading">{% trans 'تماس با ما' %}</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{% trans 'قم، بلوار خلیج فارس، جاده کاشان' %}</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+989300080027 | +989300040028</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>karnoo.shoes@gmail.com</span>
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="about-text">
-                    <p><strong>{% trans 'گروه تولیدی کفش کارنو' %}</strong></p>
-                    <p>{% trans 'سال ها تجربه را به خدمت گرفته ایم و سخت تلاش کرده ایم برای بهتر بودن.' %}</p>
-                    <p>{% trans 'ما اولین نیستیم ولی بهترینیم' %}</p>
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h4 class="footer-heading">{% trans 'دسترسی سریع' %}</h4>
+                    <ul>
+                        <li><a href="{% url 'index' %}">{% trans 'خانه' %}</a></li>
+                        <li><a href="">{% trans 'محصولات' %}</a></li>
+                        <li><a href="{% url 'about' %}">{% trans 'درباره ما' %}</a></li>
+                        <li><a href="{% url 'contact' %}">{% trans 'تماس با ما' %}</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-newsletter">
+                    <h4 class="footer-heading">{% trans 'خبرنامه' %}</h4>
+                    <p>{% trans 'از جدیدترین مجموعه‌ها مطلع شوید' %}</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="{% trans 'ایمیل شما' %}" class="newsletter-input">
+                        <button type="submit" class="newsletter-button">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-divider"></div>
+                <div class="footer-bottom-content">
+                    <span>&copy; 2026 {% trans 'کارنو' %}. {% trans 'تمامی حقوق محفوظ است' %}.</span>
+                    <span class="footer-made-with">
+                        {% trans 'ساخته شده با' %} <i class="fas fa-heart"></i> {% trans 'در قم' %}
+                    </span>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
+
+    <!-- ===== Scripts ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- ===== Custom Scripts ===== -->
+    <script>
+        // ============================================
+        // KARNO - Premium Design System
+        // All JavaScript Inside HTML for Production
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // ========================================
+            // 1. PRELOADER
+            // ========================================
+            const preloader = document.getElementById('karno-preloader');
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.classList.add('preloader-hidden');
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 600);
+                }, 800);
+            }
+
+            // ========================================
+            // 2. CUSTOM CURSOR
+            // ========================================
+            const cursor = document.getElementById('customCursor');
+            if (cursor && window.innerWidth > 1024) {
+                const dot = cursor.querySelector('.cursor-dot');
+                const ring = cursor.querySelector('.cursor-ring');
+                
+                let mouseX = 0, mouseY = 0;
+                let ringX = 0, ringY = 0;
+                
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+                });
+                
+                function animateRing() {
+                    ringX += (mouseX - ringX) * 0.15;
+                    ringY += (mouseY - ringY) * 0.15;
+                    ring.style.transform = `translate(${ringX - 15}px, ${ringY - 15}px)`;
+                    requestAnimationFrame(animateRing);
+                }
+                animateRing();
+                
+                // Hover effects on interactive elements
+                document.querySelectorAll('a, button, .product-card, .interactive').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        ring.style.width = '50px';
+                        ring.style.height = '50px';
+                        ring.style.borderColor = '#E31B23';
+                        ring.style.opacity = '1';
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        ring.style.width = '30px';
+                        ring.style.height = '30px';
+                        ring.style.borderColor = 'rgba(26, 26, 26, 0.3)';
+                        ring.style.opacity = '0.5';
+                    });
+                });
+            }
+
+            // ========================================
+            // 3. SMOOTH SCROLL
+            // ========================================
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // ========================================
+            // 4. MESSAGES AUTO-DISMISS
+            // ========================================
+            const messages = document.querySelectorAll('.message-item');
+            messages.forEach(msg => {
+                setTimeout(() => {
+                    msg.classList.add('message-exit');
+                    setTimeout(() => {
+                        msg.remove();
+                    }, 500);
+                }, 5000);
+                
+                const closeBtn = msg.querySelector('.message-close');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', () => {
+                        msg.classList.add('message-exit');
+                        setTimeout(() => {
+                            msg.remove();
+                        }, 500);
+                    });
+                }
+            });
+
+            // ========================================
+            // 5. NEWSLETTER FORM
+            // ========================================
+            const newsletterForm = document.getElementById('newsletterForm');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const input = this.querySelector('.newsletter-input');
+                    const button = this.querySelector('.newsletter-button');
+                    
+                    if (input.value && input.value.includes('@')) {
+                        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                        setTimeout(() => {
+                            button.innerHTML = '<i class="fas fa-check"></i>';
+                            input.value = '';
+                            setTimeout(() => {
+                                button.innerHTML = '<i class="fas fa-arrow-right"></i>';
+                            }, 2000);
+                        }, 1500);
+                    } else {
+                        input.classList.add('newsletter-error');
+                        setTimeout(() => {
+                            input.classList.remove('newsletter-error');
+                        }, 2000);
+                    }
+                });
+            }
+
+            // ========================================
+            // 6. OBSERVER - REVEAL ON SCROLL
+            // ========================================
+            const revealElements = document.querySelectorAll('.reveal, .section-title, .product-card');
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // ========================================
+            // 7. NAVBAR SCROLL EFFECT
+            // ========================================
+            const navbar = document.querySelector('.navbar-custom');
+            if (navbar) {
+                let lastScroll = 0;
+                window.addEventListener('scroll', () => {
+                    const currentScroll = window.pageYOffset;
+                    if (currentScroll > 50) {
+                        navbar.classList.add('navbar-scrolled');
+                    } else {
+                        navbar.classList.remove('navbar-scrolled');
+                    }
+                    lastScroll = currentScroll;
+                });
+            }
+
+            // ========================================
+            // 8. CURSOR TRAIL - Interactive Elements
+            // ========================================
+            document.querySelectorAll('.magnetic-btn, .product-card, .nav-link').forEach(el => {
+                el.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    this.style.transform = `perspective(1000px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg)`;
+                });
+                
+                el.addEventListener('mouseleave', function() {
+                    this.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+                });
+            });
+
+            console.log('🖤 Karno Design System v1.0');
+            console.log('✨ Luxury Footwear Experience');
+        });
+    </script>
+
+    <!-- ===== Additional JavaScript ===== -->
+    {% block extra_scripts %}{% endblock %}
+
+</body>
 
 </html>

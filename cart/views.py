@@ -7,22 +7,22 @@ from django.utils.translation import gettext as _
 from django.utils.translation import get_language
 
 def my_view(request):
-    print("Current language:", get_language())
-
-def add_to_cart(request, product_id):
+    print("Current language:", get_language()) #این خط زبان فعلی سایت رو چاپ می‌کنه،
+ 
+def add_to_cart(request, product_id): # این خط تلاش می‌کنه یک شیء از مدل Product با id مشخص‌شده پیدا کنه
     product = get_object_or_404(Product, id=product_id)
     
     if request.method == 'POST':
-        form = CartAddProductForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
+        form = CartAddProductForm(request.POST) #شیئی از فرم CartAddProductForm می‌سازه و request.POST رو بهش میده تا داده‌ها رو پردازش کنه
+        if form.is_valid(): #بررسی می‌کنه که داده‌های فرم معتبر هستن یا نه
+            cd = form.cleaned_data # داده‌های تمیز و تاییدشده فرم رو در یک دیکشنری به نام cd ذخیره می‌کنه
             cart = SessionCart(request)
-            cart.add(
-                product=product,
-                quantity=cd['quantity'],
-                update_quantity=cd['update']
+            cart.add( # متد ادد فراخوانی میشه و سخ پارامتر بهش داده میشه
+                product=product, # شی محصول که باید به سبد خرید اضافه شود
+                quantity=cd['quantity'], # تعداد مورد نظر از فرم
+                update_quantity=cd['update'] # مقدار ها رو جایگزین ین اضافه میکنه برر اساس true/false
             )
-            messages.success(request, _('محصول با موفقیت به سبد خرید اضافه شد'))
+            messages.success(request, _('محصول با موفقیت به سبد خرید اضافه شد')) # پیام موفقعیت آمیز
     return redirect('cart_detail')
 
 def cart_detail(request):

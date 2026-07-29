@@ -1,93 +1,312 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
-{% block title %}{% trans 'ورود به ناحیه کاربری' %}{% endblock %}
+
+{% block title %}{% trans 'ورود به حساب کاربری - کارنو' %}{% endblock %}
 
 {% block content1 %}
-<section class="login-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="login-card shadow-lg">
-                    <div class="row g-0">
-                        <div class="col-md-6 login-image d-none d-md-block">
-                            <div class="login-overlay d-flex flex-column">
-                                <h2 class="mb-4">{% trans 'به فروشگاه کفش کارنو خوش آمدید!' %}</h2>
-                                <p class="mb-5">{% trans 'با ورود به حساب خود از مزایای ویژه ما بهره مند شوید' %}</p>
 
-                                <div class="login-features mt-auto">
-                                    <div class="feature-item d-flex align-items-center mb-3">
-                                        <i class="bi bi-check-circle-fill me-2"></i>
-                                        <span>{% trans 'تخفیف‌های ویژه اعضا' %}</span>
-                                    </div>
-                                    <div class="feature-item d-flex align-items-center mb-3">
-                                        <i class="bi bi-check-circle-fill me-2"></i>
-                                        <span>{% trans 'پیگیری سفارشات' %}</span>
-                                    </div>
-                                    <div class="feature-item d-flex align-items-center">
-                                        <i class="bi bi-check-circle-fill me-2"></i>
-                                        <span>{% trans 'تاریخچه خرید' %}</span>
-                                    </div>
-                                </div>
+<!-- ============================================
+     KARNO LOGIN PAGE - PREMIUM LUXURY EXPERIENCE
+     ============================================ -->
+
+<!-- ===== LOGIN SECTION ===== -->
+<section class="login-section" id="loginSection">
+    <div class="login-container">
+        <div class="login-grid">
+            
+            <!-- Left: Brand Image & Features -->
+            <div class="login-brand-side reveal-left">
+                <div class="login-brand-content">
+                    <div class="brand-badge">
+                        <span class="badge-dot"></span>
+                        {% trans 'عضویت ویژه' %}
+                    </div>
+                    
+                    <h1 class="brand-title">
+                        {% trans 'به کارنو' %}
+                        <span class="brand-highlight">{% trans 'خوش آمدید' %}</span>
+                    </h1>
+                    
+                    <p class="brand-description">
+                        {% trans 'وارد حساب خود شوید و از تجربه‌ای لوکس در خرید کفش لذت ببرید.' %}
+                    </p>
+                    
+                    <div class="brand-features">
+                        <div class="brand-feature">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <div>
+                                <h4>{% trans 'تخفیف‌های ویژه' %}</h4>
+                                <p>{% trans 'تا ۳۰٪ تخفیف برای اعضا' %}</p>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="login-form p-4 p-md-5">
-                                <a href="{% url 'index' %}">
-                                    <img src="{% static 'img/karnoo.png' %}" alt="کارنو" class="logo mb-3" width="120">
-                                </a>
-                                <div class="text-center mb-5">
-                                    <h3 class="login-title position-relative">{% trans 'ورود به حساب' %}</h3>
-                                </div>
-
-                                <form method="POST" action="{% url 'login' %}">
-                                    {% csrf_token %}
-                                    <div class="mb-4">
-                                        <label for="username" class="form-label d-flex align-items-center">
-                                            <i class="bi bi-person me-2"></i> {% trans 'نام کاربری یا ایمیل' %}
-                                        </label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-transparent"><i
-                                                    class="bi bi-person"></i></span>
-                                            <input type="text" class="form-control" id="username" name="username"
-                                                placeholder="{% trans 'نام کاربری یا ایمیل' %}" required>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label d-flex align-items-center">
-                                            <i class="bi bi-lock me-2"></i> {% trans 'رمز عبور' %}
-                                        </label>
-                                        <div class="input-group">
-                                            <span class="input-group-text bg-transparent"><i
-                                                    class="bi bi-lock"></i></span>
-                                            <input type="password" class="form-control" id="password" name="password"
-                                                placeholder="{% trans 'رمز عبور' %}" required>
-                                            <button class="btn btn-outline-secondary toggle-password" type="button">
-                                                <i class="bi bi-eye"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="d-grid mb-4">
-                                        <button type="submit" class="btn btn-primary login-btn">
-                                            <i class="bi bi-box-arrow-in-right me-2"></i> {% trans 'ورود به حساب' %}
-                                        </button>
-                                    </div>
-                                </form>
-                                <div class="text-center mt-4">
-                                    <p class="register-text">
-                                        {% trans 'حساب ندارید؟' %}
-                                        <a href="{% url 'signup' %}" class="text-decoration-none register-link">
-                                            {% trans 'ثبت نام کنید' %}
-                                        </a>
-                                    </p>
-                                </div>
+                        
+                        <div class="brand-feature">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-truck-fast"></i>
+                            </div>
+                            <div>
+                                <h4>{% trans 'ارسال رایگان' %}</h4>
+                                <p>{% trans 'برای سفارشات بالای ۱ میلیون' %}</p>
                             </div>
                         </div>
+                        
+                        <div class="brand-feature">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <div>
+                                <h4>{% trans 'تاریخچه خرید' %}</h4>
+                                <p>{% trans 'مشاهده سفارشات گذشته' %}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="brand-stats">
+                        <div class="brand-stat">
+                            <span class="stat-number">10K+</span>
+                            <span class="stat-label">{% trans 'کاربران فعال' %}</span>
+                        </div>
+                        <div class="brand-stat-divider"></div>
+                        <div class="brand-stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">{% trans 'محصولات' %}</span>
+                        </div>
+                        <div class="brand-stat-divider"></div>
+                        <div class="brand-stat">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">{% trans 'رضایت' %}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right: Login Form -->
+            <div class="login-form-side reveal-right">
+                <div class="login-form-card">
+                    <!-- Logo -->
+                    <div class="form-logo-wrapper">
+                        <a href="{% url 'index' %}" class="form-logo">
+                            <span class="logo-text">Karno</span>
+                            <span class="logo-dot"></span>
+                        </a>
+                    </div>
+                    
+                    <div class="form-header">
+                        <h2 class="form-title">{% trans 'ورود به حساب' %}</h2>
+                        <p class="form-subtitle">{% trans 'خوشحالیم که دوباره می‌بینیمتان' %}</p>
+                    </div>
+                    
+                    <form method="POST" action="{% url 'login' %}" class="login-form" id="loginForm">
+                        {% csrf_token %}
+                        
+                        <!-- Username/Email -->
+                        <div class="form-group">
+                            <label for="username" class="form-label">
+                                <i class="fas fa-user"></i>
+                                {% trans 'نام کاربری یا ایمیل' %}
+                            </label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="username" 
+                                       name="username" 
+                                       placeholder="{% trans 'نام کاربری یا ایمیل خود را وارد کنید' %}" 
+                                       required
+                                       autocomplete="username">
+                            </div>
+                        </div>
+                        
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password" class="form-label">
+                                <i class="fas fa-lock"></i>
+                                {% trans 'رمز عبور' %}
+                            </label>
+                            <div class="input-wrapper password-wrapper">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" 
+                                       class="form-control" 
+                                       id="password" 
+                                       name="password" 
+                                       placeholder="{% trans 'رمز عبور خود را وارد کنید' %}" 
+                                       required
+                                       autocomplete="current-password">
+                                <button type="button" class="password-toggle" aria-label="{% trans 'نمایش رمز عبور' %}">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Remember Me & Forgot Password -->
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="remember" id="remember">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label">{% trans 'مرا به خاطر بسپار' %}</span>
+                            </label>
+                            <a href="#" class="forgot-link">{% trans 'رمز عبور را فراموش کرده‌اید؟' %}</a>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn-karno btn-karno-primary btn-karno-lg submit-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            {% trans 'ورود به حساب' %}
+                        </button>
+                    </form>
+                    
+                    <!-- Divider -->
+                    <div class="form-divider">
+                        <span>{% trans 'یا' %}</span>
+                    </div>
+                    
+                    <!-- Register Link -->
+                    <div class="form-footer">
+                        <p class="register-text">
+                            {% trans 'حساب کاربری ندارید؟' %}
+                            <a href="{% url 'signup' %}" class="register-link">
+                                {% trans 'ثبت نام کنید' %}
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </p>
+                    </div>
+                    
+                    <!-- Back to Home -->
+                    <div class="form-back">
+                        <a href="{% url 'index' %}" class="back-link">
+                            <i class="fas fa-arrow-right"></i>
+                            {% trans 'بازگشت به صفحه اصلی' %}
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section><br>
+</section>
+
+
+<!-- ============================================
+     LOGIN PAGE JAVASCRIPT
+     ============================================ -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        'use strict';
+
+        // ========================================
+        // 1. PASSWORD TOGGLE
+        // ========================================
+        const passwordToggles = document.querySelectorAll('.password-toggle');
+        
+        passwordToggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const input = this.closest('.input-wrapper').querySelector('.form-control');
+                const icon = this.querySelector('i');
+                
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                    this.setAttribute('aria-label', '{% trans "مخفی کردن رمز عبور" %}');
+                } else {
+                    input.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                    this.setAttribute('aria-label', '{% trans "نمایش رمز عبور" %}');
+                }
+            });
+        });
+
+        // ========================================
+        // 2. FORM SUBMISSION
+        // ========================================
+        const loginForm = document.getElementById('loginForm');
+        
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalHTML = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> {% trans "در حال ورود..." %}';
+                submitBtn.classList.add('loading');
+                
+                // Remove loading state after submission (will be replaced by actual response)
+                // This is just for UX feedback - actual loading will be handled by Django
+                setTimeout(() => {
+                    // Reset if not redirected (in case of error)
+                    submitBtn.innerHTML = originalHTML;
+                    submitBtn.classList.remove('loading');
+                }, 3000);
+            });
+        }
+
+        // ========================================
+        // 3. REVEAL ON SCROLL
+        // ========================================
+        const revealElements = document.querySelectorAll('.reveal-left, .reveal-right');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        revealElements.forEach(el => {
+            // Add base styles
+            if (el.classList.contains('reveal-left')) {
+                el.style.transform = 'translateX(-40px)';
+                el.style.opacity = '0';
+                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            } else if (el.classList.contains('reveal-right')) {
+                el.style.transform = 'translateX(40px)';
+                el.style.opacity = '0';
+                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            }
+            
+            revealObserver.observe(el);
+        });
+
+        // ========================================
+        // 4. INPUT FOCUS EFFECTS
+        // ========================================
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.closest('.input-wrapper').style.transform = 'scale(1.01)';
+                this.closest('.input-wrapper').style.transition = 'transform 0.3s var(--transition-smooth)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.closest('.input-wrapper').style.transform = 'scale(1)';
+            });
+        });
+
+        // ========================================
+        // 5. BRAND FEATURE HOVER EFFECT
+        // ========================================
+        document.querySelectorAll('.brand-feature').forEach(feature => {
+            feature.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.feature-icon-wrapper');
+                icon.style.transform = 'scale(1.1) rotate(-10deg)';
+                icon.style.transition = 'all 0.4s var(--transition-spring)';
+            });
+            
+            feature.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.feature-icon-wrapper');
+                icon.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        console.log('🖤 Karno Login Page v1.0');
+        console.log('✨ Premium Login Experience Loaded');
+    });
+</script>
+
 {% endblock content1 %}
