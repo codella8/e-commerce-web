@@ -10,6 +10,7 @@ from django.utils.translation import get_language
 
 def my_view(request):
     print("Current language:", get_language())
+    # ...
 
 def payment_success(request):
     return render(request, 'payment/payment_success.html')
@@ -95,6 +96,7 @@ def process_order(request):
         amount_paid=total,
         status='pending'
     )
+
 
         for item in items:
             OrderItem.objects.create(

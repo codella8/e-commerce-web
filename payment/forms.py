@@ -52,7 +52,7 @@ class PaymentAddressForm(forms.ModelForm):
     )
     
     
-    shipping_zipcode = forms.CharField( 
+    shipping_zipcode = forms.CharField(
         label= '',
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Zipcode'}),
         required=False

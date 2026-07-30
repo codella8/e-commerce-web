@@ -1,8 +1,6 @@
 from django.contrib.auth.models import User
-#از ماژول فرم‌های احراز هویت Django، فرم‌های ساخت و ویرایش کاربر و تعیین رمز عبور جدید را وارد می‌کنیم.
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from .models import ProductMessage, AdditionalProductMessage, Profile
-#ماژول فرم‌های جنگو برای ساخت فرم‌های دلخواه وارد می‌شود
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
@@ -41,7 +39,7 @@ class UpdateUserInfo(forms.ModelForm):
 class UpdatePasswordForm(SetPasswordForm):
     new_password1 = forms.CharField(
         label="",
-        widget=forms.PasswordInput( # مشخص میکند که قالب یک ورودی از نوع رمز نمایش داده شود و محتوا به صورت نقطه و مخفی باشد
+        widget=forms.PasswordInput(
             attrs={
                 'class': 'form-control',
                 'placeholder': _('رمز جدید را وارد کنید')

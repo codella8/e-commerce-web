@@ -4,16 +4,20 @@
 
 {% block title %}{% trans 'ثبت‌نام - کارنو' %}{% endblock %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
 {% block content1 %}
 
 <!-- ============================================
-     KARNO SIGNUP PAGE - PREMIUM LUXURY EXPERIENCE
+     KARNO SIGNUP PAGE - LIGHT PREMIUM EXPERIENCE
      ============================================ -->
 
 <section class="signup-section" id="signupSection">
     <div class="signup-container">
         <div class="signup-grid">
-            
+
             <!-- Left: Brand Benefits -->
             <div class="signup-brand-side reveal-left">
                 <div class="signup-brand-content">
@@ -21,17 +25,17 @@
                         <span class="badge-dot"></span>
                         {% trans 'عضویت ویژه' %}
                     </div>
-                    
+
                     <h1 class="brand-title">
                         {% trans 'به خانواده' %}
                         <span class="brand-highlight">{% trans 'کارنو' %}</span>
                         {% trans 'بپیوندید' %}
                     </h1>
-                    
+
                     <p class="brand-description">
                         {% trans 'با ثبت‌نام در کارنو، از مزایای ویژه و تجربه‌ای لوکس در خرید کفش بهره‌مند شوید.' %}
                     </p>
-                    
+
                     <div class="brand-benefits">
                         <div class="benefit-item">
                             <div class="benefit-icon-wrapper">
@@ -42,7 +46,7 @@
                                 <p>{% trans 'تا ۳۰٪ تخفیف برای خریدهای اول و ویژه‌های ماهانه' %}</p>
                             </div>
                         </div>
-                        
+
                         <div class="benefit-item">
                             <div class="benefit-icon-wrapper">
                                 <i class="fas fa-box-open"></i>
@@ -52,7 +56,7 @@
                                 <p>{% trans 'مشاهده لحظه‌ای وضعیت سفارشات و تاریخچه کامل خرید' %}</p>
                             </div>
                         </div>
-                        
+
                         <div class="benefit-item">
                             <div class="benefit-icon-wrapper">
                                 <i class="fas fa-bell"></i>
@@ -62,7 +66,7 @@
                                 <p>{% trans 'اولین نفری باشید که از جدیدترین محصولات و تخفیف‌ها مطلع می‌شوید' %}</p>
                             </div>
                         </div>
-                        
+
                         <div class="benefit-item">
                             <div class="benefit-icon-wrapper">
                                 <i class="fas fa-headset"></i>
@@ -73,7 +77,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="brand-cta">
                         <div class="brand-stat">
                             <span class="stat-number">10K+</span>
@@ -87,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Right: Signup Form -->
             <div class="signup-form-side reveal-right">
                 <div class="signup-form-card">
@@ -98,15 +102,15 @@
                             <span class="logo-dot"></span>
                         </a>
                     </div>
-                    
+
                     <div class="form-header">
                         <h2 class="form-title">{% trans 'ایجاد حساب کاربری' %}</h2>
                         <p class="form-subtitle">{% trans 'اطلاعات خود را وارد کنید تا ثبت‌نام کنید' %}</p>
                     </div>
-                    
+
                     <form method="POST" action="{% url 'signup' %}" class="signup-form" id="signupForm" novalidate>
                         {% csrf_token %}
-                        
+
                         <div class="form-fields">
                             {% for field in form %}
                             <div class="form-group">
@@ -135,7 +139,7 @@
                             </div>
                             {% endfor %}
                         </div>
-                        
+
                         <!-- Password Strength Indicator -->
                         <div class="password-strength" id="passwordStrength">
                             <div class="strength-bar">
@@ -143,19 +147,19 @@
                             </div>
                             <span class="strength-text" id="strengthText">{% trans 'قدرت رمز عبور' %}</span>
                         </div>
-                        
+
                         <!-- Submit Button -->
                         <button type="submit" class="btn-karno btn-karno-primary btn-karno-lg submit-btn">
                             <i class="fas fa-user-plus"></i>
                             {% trans 'ثبت‌نام' %}
                         </button>
                     </form>
-                    
+
                     <!-- Divider -->
                     <div class="form-divider">
                         <span>{% trans 'قبلاً حساب دارید؟' %}</span>
                     </div>
-                    
+
                     <!-- Login Link -->
                     <div class="form-footer">
                         <p class="login-text">
@@ -166,7 +170,7 @@
                             </a>
                         </p>
                     </div>
-                    
+
                     <!-- Back to Home -->
                     <div class="form-back">
                         <a href="{% url 'index' %}" class="back-link">
@@ -180,6 +184,9 @@
     </div>
 </section>
 
+{% endblock content1 %}
+
+{% block extra_scripts %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         'use strict';
@@ -188,12 +195,12 @@
         // 1. PASSWORD TOGGLE
         // ========================================
         const passwordToggles = document.querySelectorAll('.password-toggle');
-        
+
         passwordToggles.forEach(toggle => {
             toggle.addEventListener('click', function() {
                 const input = this.closest('.input-wrapper').querySelector('.form-control');
                 const icon = this.querySelector('i');
-                
+
                 if (input.type === 'password') {
                     input.type = 'text';
                     icon.classList.remove('fa-eye');
@@ -219,13 +226,12 @@
             passwordInput.addEventListener('input', function() {
                 const password = this.value;
                 const strength = checkPasswordStrength(password);
-                
+
                 strengthProgress.style.width = strength.percentage + '%';
                 strengthProgress.style.background = strength.color;
                 strengthText.textContent = strength.label;
                 strengthText.style.color = strength.color;
-                
-                // Update password input class
+
                 if (password.length > 0) {
                     if (strength.percentage >= 80) {
                         this.classList.remove('error');
@@ -244,43 +250,34 @@
 
         function checkPasswordStrength(password) {
             let score = 0;
-            
-            // Length check
+
             if (password.length >= 8) score += 1;
             if (password.length >= 12) score += 1;
-            
-            // Contains number
             if (/\d/.test(password)) score += 1;
-            
-            // Contains lowercase
             if (/[a-z]/.test(password)) score += 1;
-            
-            // Contains uppercase
             if (/[A-Z]/.test(password)) score += 1;
-            
-            // Contains special character
             if (/[^a-zA-Z0-9]/.test(password)) score += 1;
-            
+
             const percentage = Math.min((score / 6) * 100, 100);
-            
+
             let label, color;
             if (percentage <= 20) {
                 label = '{% trans "ضعیف" %}';
-                color = '#E31B23';
+                color = '#E53935';
             } else if (percentage <= 40) {
                 label = '{% trans "ضعیف" %}';
-                color = '#E85D3A';
+                color = '#E5673F';
             } else if (percentage <= 60) {
                 label = '{% trans "متوسط" %}';
-                color = '#F5A623';
+                color = '#E8A63A';
             } else if (percentage <= 80) {
                 label = '{% trans "قوی" %}';
-                color = '#4A90D9';
+                color = '#4C8C5B';
             } else {
                 label = '{% trans "بسیار قوی" %}';
-                color = '#2D7D46';
+                color = '#2E7D32';
             }
-            
+
             return { percentage, label, color };
         }
 
@@ -288,30 +285,29 @@
         // 3. FORM VALIDATION
         // ========================================
         const signupForm = document.getElementById('signupForm');
-        
+
         if (signupForm) {
-            // Real-time validation on blur
             const formInputs = signupForm.querySelectorAll('.form-control');
-            
+
             formInputs.forEach(input => {
                 input.addEventListener('blur', function() {
                     validateField(this);
                 });
-                
+
                 input.addEventListener('input', function() {
                     if (this.classList.contains('error') || this.classList.contains('is-valid')) {
                         validateField(this);
                     }
                 });
             });
-            
+
             function validateField(input) {
                 if (input.hasAttribute('required') && !input.value.trim()) {
                     input.classList.add('error');
                     input.classList.remove('is-valid');
                     return false;
                 }
-                
+
                 if (input.type === 'email' && input.value.trim()) {
                     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                     if (!emailPattern.test(input.value.trim())) {
@@ -320,8 +316,7 @@
                         return false;
                     }
                 }
-                
-                // Password match validation for confirm password
+
                 if (input.name === 'password2') {
                     const password1 = document.querySelector('input[name="password1"]');
                     if (password1 && input.value !== password1.value) {
@@ -330,20 +325,18 @@
                         return false;
                     }
                 }
-                
+
                 input.classList.remove('error');
                 if (input.value.trim()) {
                     input.classList.add('is-valid');
                 }
                 return true;
             }
-            
-            // Form submission
+
             signupForm.addEventListener('submit', function(e) {
                 const submitBtn = this.querySelector('.submit-btn');
                 const originalHTML = submitBtn.innerHTML;
-                
-                // Validate all fields
+
                 let isValid = true;
                 const inputs = this.querySelectorAll('.form-control');
                 inputs.forEach(input => {
@@ -351,10 +344,9 @@
                         isValid = false;
                     }
                 });
-                
+
                 if (!isValid) {
                     e.preventDefault();
-                    // Scroll to first error
                     const firstError = this.querySelector('.form-control.error');
                     if (firstError) {
                         firstError.focus();
@@ -362,12 +354,10 @@
                     }
                     return;
                 }
-                
-                // Show loading state
+
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> {% trans "در حال ثبت‌نام..." %}';
                 submitBtn.classList.add('loading');
-                
-                // Remove loading state after submission (will be replaced by actual response)
+
                 setTimeout(() => {
                     submitBtn.innerHTML = originalHTML;
                     submitBtn.classList.remove('loading');
@@ -376,33 +366,33 @@
         }
 
         // ========================================
-        // 4. REVEAL ON SCROLL
+        // 4. REVEAL ON SCROLL (slide-in variant for this page)
         // ========================================
         const revealElements = document.querySelectorAll('.reveal-left, .reveal-right');
-        
+
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
+                    entry.target.style.transform = 'translateX(0)';
+                    entry.target.style.opacity = '1';
                 }
             });
         }, {
             threshold: 0.15,
             rootMargin: '0px 0px -50px 0px'
         });
-        
+
         revealElements.forEach(el => {
-            // Add base styles
             if (el.classList.contains('reveal-left')) {
                 el.style.transform = 'translateX(-40px)';
                 el.style.opacity = '0';
-                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             } else if (el.classList.contains('reveal-right')) {
                 el.style.transform = 'translateX(40px)';
                 el.style.opacity = '0';
-                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             }
-            
+            el.style.transition = 'transform 0.8s var(--karno-ease), opacity 0.8s var(--karno-ease)';
+
             revealObserver.observe(el);
         });
 
@@ -414,10 +404,9 @@
                 const wrapper = this.closest('.input-wrapper');
                 if (wrapper) {
                     wrapper.style.transform = 'scale(1.01)';
-                    wrapper.style.transition = 'transform 0.3s var(--transition-smooth)';
                 }
             });
-            
+
             input.addEventListener('blur', function() {
                 const wrapper = this.closest('.input-wrapper');
                 if (wrapper) {
@@ -426,29 +415,7 @@
             });
         });
 
-        // ========================================
-        // 6. BENEFIT ITEM HOVER EFFECT
-        // ========================================
-        document.querySelectorAll('.benefit-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                const icon = this.querySelector('.benefit-icon-wrapper');
-                if (icon) {
-                    icon.style.transform = 'scale(1.1) rotate(-10deg)';
-                    icon.style.transition = 'all 0.4s var(--transition-spring)';
-                }
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                const icon = this.querySelector('.benefit-icon-wrapper');
-                if (icon) {
-                    icon.style.transform = 'scale(1) rotate(0deg)';
-                }
-            });
-        });
-
-        console.log('🖤 Karno Signup Page v1.0');
-        console.log('✨ Premium Signup Experience Loaded');
+        console.log('%cKARNO Signup', 'color:#E53935;font-weight:bold;');
     });
 </script>
-
-{% endblock content1 %}
+{% endblock %}

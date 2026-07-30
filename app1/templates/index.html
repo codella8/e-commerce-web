@@ -1,561 +1,250 @@
 {% extends "base.html" %}
+{% load static %}
 {% load i18n %}
 {% load humanize %}
-{% load static %}
 
-{% block title %}{% trans "کارنو - تجربه لوکس خرید کفش" %}{% endblock title %}
+{% block title %}{% trans "خانه - کارنو" %}{% endblock %}
 
 {% block content1 %}
 
-<!-- ============================================
-     KARNO HOMEPAGE - PREMIUM LUXURY EXPERIENCE
-     ============================================ -->
-
-<!-- ===== 1. HERO SECTION ===== -->
-<section class="hero-section" id="heroSection">
-    <div class="hero-container">
-        <div class="hero-grid">
-            <!-- Hero Content -->
-            <div class="hero-content">
-                <div class="hero-badge reveal">
-                    <span class="badge-dot"></span>
-                    {% trans 'مجموعه بهار ۲۰۲۶' %}
-                </div>
-                
-                <h1 class="hero-title reveal">
-                    {% trans 'زیبایی در' %}
-                    <span class="hero-highlight">{% trans 'جزئیات' %}</span>
-                    {% trans 'نهفته است' %}
+<!-- ===== HERO ===== -->
+<section class="hero-section">
+    <span class="hero-bg-text" aria-hidden="true">KARNO</span>
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6 hero-content">
+                <span class="hero-badge hero-anim" style="animation-delay:0.05s">{% trans 'مجموعه بهار ۲۰۲۶' %}</span>
+                <h1 class="hero-title">
+                    <span class="hero-anim-line" style="animation-delay:0.15s">{% trans 'زیبایی در' %}</span>
+                    <span class="text-accent hero-anim-line" style="animation-delay:0.28s">{% trans 'جزئیات' %}</span>
+                    <br>
+                    <span class="hero-anim-line" style="animation-delay:0.4s">{% trans 'نهفته است' %}</span>
                 </h1>
-                
-                <p class="hero-description reveal">
-                    {% trans 'هر قدم با کارنو، داستانی از ظرافت و کیفیت را روایت می‌کند. تجربه‌ای لوکس در هر گام.' %}
+                <p class="hero-description hero-anim" style="animation-delay:0.55s">
+                    {% trans 'هر قدم با کارنو، داستانی از ظرافت و کیفیت را روایت می‌کند.' %}
                 </p>
-                
-                <div class="hero-actions reveal">
-                    <a href="" class="btn-karno btn-karno-primary btn-karno-lg magnetic-btn">
-                        <i class="fas fa-arrow-right"></i>
-                        {% trans 'کشف مجموعه' %}
+                <div class="hero-actions hero-anim" style="animation-delay:0.68s">
+                    <a href="" class="btn-karno btn-karno-primary btn-karno-lg">
+                        {% trans 'کشف مجموعه' %} <i class="fas fa-arrow-right"></i>
                     </a>
                     <a href="{% url 'about' %}" class="btn-karno btn-karno-text">
-                        {% trans 'داستان ما' %}
-                        <i class="fas fa-arrow-right"></i>
+                        {% trans 'داستان ما' %} <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                
-                <div class="hero-stats reveal">
-                    <div class="hero-stat">
-                        <span class="stat-number" data-count="10000">0</span>
-                        <span class="stat-label">+ {% trans 'جفت کفش' %}</span>
-                    </div>
-                    <div class="hero-stat-divider"></div>
-                    <div class="hero-stat">
-                        <span class="stat-number" data-count="500">0</span>
-                        <span class="stat-label">+ {% trans 'مشتری راضی' %}</span>
-                    </div>
-                    <div class="hero-stat-divider"></div>
-                    <div class="hero-stat">
-                        <span class="stat-number" data-count="50">0</span>
-                        <span class="stat-label">+ {% trans 'مدل مختلف' %}</span>
-                    </div>
-                </div>
             </div>
-            
-            <!-- Hero Image -->
-            <div class="hero-image-wrapper reveal">
-                <div class="hero-image-container">
-                    <div class="hero-image-glow"></div>
-                    <img src="{% static 'img/hero-shoe.png' %}" alt="{% trans 'کفش لوکس کارنو' %}" class="hero-image">
-                    <div class="hero-image-shape"></div>
-                </div>
-                <div class="hero-floating-badge floating-badge-1">
-                    <i class="fas fa-star"></i>
-                    <span>{% trans 'کیفیت برتر' %}</span>
-                </div>
-                <div class="hero-floating-badge floating-badge-2">
-                    <i class="fas fa-truck"></i>
-                    <span>{% trans 'ارسال رایگان' %}</span>
+            <div class="col-lg-6 hero-image-wrapper text-center">
+                <div class="hero-image-stage hero-anim" style="animation-delay:0.3s">
+                    <img src="{% static 'img/karno.png' %}" alt="{% trans 'کفش لوکس کارنو' %}" class="hero-image img-fluid">
+
+                    <!-- Rotating badge -->
+                    <div class="hero-rotating-badge" aria-hidden="true">
+                        <svg viewBox="0 0 140 140" class="hero-rotating-badge-ring">
+                            <defs>
+                                <path id="heroBadgeCircle" d="M 70,70 m -58,0 a 58,58 0 1,1 116,0 a 58,58 0 1,1 -116,0" />
+                            </defs>
+                            <text font-size="10.6" letter-spacing="2" fill="var(--karno-black)">
+                                <textPath href="#heroBadgeCircle">
+                                    {% trans 'مجموعه جدید' %} • 2026 • {% trans 'مجموعه جدید' %} • 2026 •
+                                </textPath>
+                            </text>
+                        </svg>
+                        <span class="hero-rotating-badge-center">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                        </span>
+                    </div>
+
+                    <!-- Floating stat card -->
+                    <div class="hero-floating-card hero-anim" style="animation-delay:0.85s">
+                        <i class="fas fa-star"></i>
+                        <div>
+                            <strong>۴.۹/۵</strong>
+                            <span>{% trans 'رضایت مشتریان' %}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="hero-scroll-indicator">
-        <span>{% trans 'اسکرول' %}</span>
-        <div class="scroll-line"></div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll-indicator hero-anim" style="animation-delay:1s">
+        <span>{% trans 'اسکرول کنید' %}</span>
+        <div class="hero-scroll-line"><div class="hero-scroll-dot"></div></div>
     </div>
 </section>
 
-<!-- ===== 2. CATEGORIES SECTION ===== -->
-<section class="categories-section" id="categoriesSection">
-    <div class="container-fluid">
-        <div class="section-header reveal">
+<!-- Marquee strip -->
+<div class="hero-marquee" aria-hidden="true">
+    <div class="hero-marquee-track">
+        <span>{% trans 'مجموعه بهار ۲۰۲۶' %}</span><span class="hero-marquee-dot">•</span>
+        <span>{% trans 'چرم مرغوب ایتالیایی' %}</span><span class="hero-marquee-dot">•</span>
+        <span>{% trans 'ساخت دستی' %}</span><span class="hero-marquee-dot">•</span>
+        <span>{% trans 'ارسال به سراسر کشور' %}</span><span class="hero-marquee-dot">•</span>
+        <span>{% trans 'مجموعه بهار ۲۰۲۶' %}</span><span class="hero-marquee-dot">•</span>
+        <span>{% trans 'چرم مرغوب ایتالیایی' %}</span><span class="hero-marquee-dot">•</span>
+        <span>{% trans 'ساخت دستی' %}</span><span class="hero-marquee-dot">•</span>
+        <span>{% trans 'ارسال به سراسر کشور' %}</span><span class="hero-marquee-dot">•</span>
+    </div>
+</div>
+
+<!-- ===== CATEGORIES ===== -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5 reveal">
             <span class="section-tag">{% trans 'دسته‌بندی‌ها' %}</span>
-            <h2 class="section-title">{% trans 'مجموعه‌های ویژه' %}</h2>
-            <p class="section-subtitle">{% trans 'از میان دسته‌بندی‌های متنوع ما انتخاب کنید' %}</p>
+            <h2 class="section-title">{% trans 'مجموعه‌های' %} <span class="highlight">{% trans 'ویژه' %}</span></h2>
         </div>
-        
-        <div class="categories-grid">
-            <!-- Men -->
-            <a href="{% url 'category' 'men' %}" class="category-card category-card-men reveal">
-                <div class="category-card-image">
-                    <img src="{% static 'img/men.png' %}" alt="{% trans 'کفش مردانه' %}">
-                    <div class="category-card-overlay">
-                        <div class="category-card-content">
-                            <h3>{% trans 'مردانه' %}</h3>
-                            <span class="category-count">{% trans 'مشاهده مجموعه' %}</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <!-- Women -->
-            <a href="{% url 'category' 'women' %}" class="category-card category-card-women reveal">
-                <div class="category-card-image">
-                    <img src="{% static 'img/women.png' %}" alt="{% trans 'کفش زنانه' %}">
-                    <div class="category-card-overlay">
-                        <div class="category-card-content">
-                            <h3>{% trans 'زنانه' %}</h3>
-                            <span class="category-count">{% trans 'مشاهده مجموعه' %}</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <!-- Kids -->
-            <a href="{% url 'category' 'kids' %}" class="category-card category-card-kids reveal">
-                <div class="category-card-image">
-                    <img src="{% static 'img/kids.png' %}" alt="{% trans 'کفش بچگانه' %}">
-                    <div class="category-card-overlay">
-                        <div class="category-card-content">
-                            <h3>{% trans 'بچگانه' %}</h3>
-                            <span class="category-count">{% trans 'مشاهده مجموعه' %}</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        
-        <!-- Sub-categories -->
-        <div class="sub-categories reveal">
-            <div class="sub-categories-wrapper">
-                {% for category in categories %}
-                <a href="{% url 'category' category.slug %}" class="sub-category-item">
-                    <span class="sub-category-icon"><i class="fas fa-tag"></i></span>
-                    <span class="sub-category-name">{{ category.name }}</span>
+        <div class="row g-4">
+            <div class="col-md-4 reveal">
+                <a href="{% url 'category' 'men' %}" class="category-card">
+                    <img src="{% static 'img/men.png' %}" alt="{% trans 'کفش‌های مردانه' %}" loading="lazy">
+                    <div class="category-overlay"><h3>{% trans 'مردانه' %}</h3></div>
                 </a>
-                {% endfor %}
+            </div>
+            <div class="col-md-4 reveal" style="transition-delay: 0.1s;">
+                <a href="{% url 'category' 'women' %}" class="category-card">
+                    <img src="{% static 'img/women.png' %}" alt="{% trans 'کفش‌های زنانه' %}" loading="lazy">
+                    <div class="category-overlay"><h3>{% trans 'زنانه' %}</h3></div>
+                </a>
+            </div>
+            <div class="col-md-4 reveal" style="transition-delay: 0.2s;">
+                <a href="{% url 'category' 'kids' %}" class="category-card">
+                    <img src="{% static 'img/men.png' %}" alt="{% trans 'کفش‌های بچگانه' %}" loading="lazy">
+                    <div class="category-overlay"><h3>{% trans 'بچگانه' %}</h3></div>
+                </a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===== 3. FEATURED PRODUCTS ===== -->
-<section class="products-section" id="productsSection">
-    <div class="container-fluid">
-        <div class="section-header reveal">
+<!-- ===== PRODUCTS ===== -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5 reveal">
             <span class="section-tag">{% trans 'محصولات ویژه' %}</span>
-            <h2 class="section-title">{% trans 'برترین انتخاب‌ها' %}</h2>
-            <p class="section-subtitle">{% trans 'محصولات برگزیده با بهترین کیفیت و طراحی' %}</p>
+            <h2 class="section-title">{% trans 'برترین' %} <span class="highlight">{% trans 'انتخاب‌ها' %}</span></h2>
         </div>
-        
-        <div class="products-grid">
+        <div class="row g-4">
             {% for item in products|slice:":8" %}
-            <div class="product-card-wrapper reveal">
-                <div class="product-card-luxury">
-                    {% if item.is_sale %}
-                    <div class="product-badge sale-badge">{% trans 'تخفیف' %}</div>
-                    {% endif %}
-                    
-                    <div class="product-card-image">
-                        <img src="{{ item.picture.url }}" alt="{{ item.name }}" loading="lazy">
-                        <div class="product-card-actions">
-                            <a href="{% url 'product' item.id %}" class="quick-view-btn">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <button class="wishlist-btn" data-product-id="{{ item.id }}">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="product-card-info">
-                        <h3 class="product-name">{{ item.name }}</h3>
-                        <div class="product-price-wrapper">
+            <div class="col-6 col-md-3 reveal" style="transition-delay: {{ forloop.counter0|divisibleby:4 }}s;">
+                <div class="product-card">
+                    {% if item.is_sale %}<div class="product-badge">{% trans 'تخفیف' %}</div>{% endif %}
+                    <img src="{{ item.picture.url }}" alt="{{ item.name }}" loading="lazy">
+                    <div class="product-info">
+                        <h5>{{ item.name }}</h5>
+                        <div class="product-price">
                             {% if item.is_sale %}
-                            <span class="product-price-original">{{ item.price|intcomma }}</span>
-                            <span class="product-price-sale">{{ item.sale_price|intcomma }}</span>
-                            <span class="product-price-currency">{% trans 'تومان' %}</span>
+                            <del>{{ item.price|intcomma }}</del>
+                            <span>{{ item.sale_price|intcomma }}</span>
                             {% else %}
-                            <span class="product-price">{{ item.price|intcomma }}</span>
-                            <span class="product-price-currency">{% trans 'تومان' %}</span>
+                            <span>{{ item.price|intcomma }}</span>
                             {% endif %}
+                            <small>{% trans 'تومان' %}</small>
                         </div>
-                        <a href="{% url 'product' item.id %}" class="product-detail-link">
-                            {% trans 'مشاهده محصول' %}
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="{% url 'product' item.id %}" class="btn-karno btn-karno-primary btn-karno-sm w-100">
+                            {% trans 'مشاهده' %} <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-        
-        <div class="products-view-all reveal">
-            <a href="{% url 'additionalproduct' %}" class="btn-karno btn-karno-outline btn-karno-lg">
-                {% trans 'مشاهده همه محصولات' %}
-                <i class="fas fa-arrow-right"></i>
+        <div class="text-center mt-5 reveal">
+            <a href="" class="btn-karno btn-karno-gold">
+                {% trans 'مشاهده همه محصولات' %} <i class="fas fa-arrow-right"></i>
             </a>
         </div>
     </div>
 </section>
 
-<!-- ===== 4. BRAND STORY SECTION ===== -->
-<section class="brand-story-section" id="brandStory">
-    <div class="brand-story-container">
-        <div class="brand-story-grid">
-            <div class="brand-story-image reveal-left">
-                <div class="brand-story-image-wrapper">
-                    <img src="{% static 'img/brand-story.jpg' %}" alt="{% trans 'داستان کارنو' %}">
-                    <div class="brand-story-image-overlay"></div>
-                    <div class="brand-story-experience">
-                        <span class="experience-number">10+</span>
-                        <span class="experience-label">{% trans 'سال تجربه' %}</span>
-                    </div>
+<!-- ===== STATS ===== -->
+<section class="stats-section">
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-6 col-md-3 reveal">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="1000">0</span>
+                    <span class="stat-label">{% trans 'جفت کفش تولیدی' %}</span>
+                    <div class="stat-bar"></div>
                 </div>
             </div>
-            
-            <div class="brand-story-content reveal-right">
-                <span class="section-tag">{% trans 'داستان ما' %}</span>
-                <h2 class="brand-story-title">{% trans 'هر کفش، یک داستان' %}</h2>
-                <div class="brand-story-text">
-                    <p>{% trans 'کارنو با عشق به جزئیات و کیفیت متولد شد. ما معتقدیم هر قدمی که برمی‌دارید، باید با ظرافت و اعتماد همراه باشد.' %}</p>
-                    <p>{% trans 'از انتخاب بهترین چرم‌های ایتالیایی تا دوخت‌های دستی دقیق، همه چیز برای خلق تجربه‌ای بی‌نظیر است.' %}</p>
+            <div class="col-6 col-md-3 reveal" style="transition-delay: 0.1s;">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="500">0</span>
+                    <span class="stat-label">{% trans 'مشتری راضی' %}</span>
+                    <div class="stat-bar"></div>
                 </div>
-                <div class="brand-story-features">
-                    <div class="story-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>{% trans 'چرم مرغوب' %}</span>
-                    </div>
-                    <div class="story-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>{% trans 'دوخت دستی' %}</span>
-                    </div>
-                    <div class="story-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>{% trans 'طراحی ایتالیایی' %}</span>
-                    </div>
+            </div>
+            <div class="col-6 col-md-3 reveal" style="transition-delay: 0.2s;">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="50">0</span>
+                    <span class="stat-label">{% trans 'مدل مختلف' %}</span>
+                    <div class="stat-bar"></div>
                 </div>
-                <a href="{% url 'about' %}" class="btn-karno btn-karno-primary">
-                    {% trans 'بیشتر بدانید' %}
-                    <i class="fas fa-arrow-right"></i>
-                </a>
+            </div>
+            <div class="col-6 col-md-3 reveal" style="transition-delay: 0.3s;">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="10">0</span>
+                    <span class="stat-label">{% trans 'سال سابقه' %}</span>
+                    <div class="stat-bar"></div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===== 5. FEATURES SECTION ===== -->
-<section class="features-section" id="featuresSection">
-    <div class="container-fluid">
-        <div class="section-header reveal">
-            <span class="section-tag">{% trans 'چرا کارنو' %}</span>
-            <h2 class="section-title">{% trans 'دلیل اعتماد شما' %}</h2>
-        </div>
-        
-        <div class="features-grid">
-            <div class="feature-card reveal">
-                <div class="feature-card-icon">
-                    <i class="fas fa-medal"></i>
-                </div>
-                <h3>{% trans 'کیفیت بی‌نظیر' %}</h3>
-                <p>{% trans 'استفاده از بهترین مواد اولیه و استانداردهای جهانی' %}</p>
-            </div>
-            
-            <div class="feature-card reveal">
-                <div class="feature-card-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>{% trans 'ضمانت ۲۴ ماهه' %}</h3>
-                <p>{% trans 'گارانتی تعویض و بازگشت کالا برای اطمینان شما' %}</p>
-            </div>
-            
-            <div class="feature-card reveal">
-                <div class="feature-card-icon">
-                    <i class="fas fa-truck-fast"></i>
-                </div>
-                <h3>{% trans 'ارسال سریع' %}</h3>
-                <p>{% trans 'تحویل فوری و بسته‌بندی لوکس برای هر سفارش' %}</p>
-            </div>
-            
-            <div class="feature-card reveal">
-                <div class="feature-card-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h3>{% trans 'پشتیبانی ۲۴/۷' %}</h3>
-                <p>{% trans 'تیم حرفه‌ای برای پاسخگویی به سوالات شما' %}</p>
-            </div>
-        </div>
-    </div>
-</section>
+{% endblock %}
 
-<!-- ===== 6. STATS SECTION ===== -->
-<section class="stats-section-v2" id="statsSection">
-    <div class="stats-container">
-        <div class="stats-grid">
-            <div class="stat-item reveal">
-                <div class="stat-number" data-count="10000">0</div>
-                <div class="stat-label">{% trans 'جفت کفش تولیدی' %}</div>
-                <div class="stat-bar"></div>
-            </div>
-            <div class="stat-item reveal">
-                <div class="stat-number" data-count="500">0</div>
-                <div class="stat-label">{% trans 'مشتری راضی' %}</div>
-                <div class="stat-bar"></div>
-            </div>
-            <div class="stat-item reveal">
-                <div class="stat-number" data-count="50">0</div>
-                <div class="stat-label">{% trans 'مدل مختلف' %}</div>
-                <div class="stat-bar"></div>
-            </div>
-            <div class="stat-item reveal">
-                <div class="stat-number" data-count="10">0</div>
-                <div class="stat-label">{% trans 'سال سابقه' %}</div>
-                <div class="stat-bar"></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== 7. NEWSLETTER SECTION ===== -->
-<section class="newsletter-section" id="newsletterSection">
-    <div class="newsletter-container">
-        <div class="newsletter-content reveal">
-            <span class="section-tag">{% trans 'خبرنامه' %}</span>
-            <h2 class="newsletter-title">{% trans 'از جدیدترین مجموعه‌ها مطلع شوید' %}</h2>
-            <p class="newsletter-description">
-                {% trans 'اولین نفری باشید که از تخفیف‌های ویژه و محصولات جدید با خبر می‌شوید.' %}
-            </p>
-            <form class="newsletter-form-v2" id="homeNewsletterForm">
-                <div class="newsletter-input-wrapper">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" placeholder="{% trans 'ایمیل شما' %}" required>
-                    <button type="submit" class="newsletter-submit-btn">
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </form>
-            <p class="newsletter-note">
-                <i class="fas fa-lock"></i>
-                {% trans 'ما به حریم خصوصی شما احترام می‌گذاریم' %}
-            </p>
-        </div>
-    </div>
-</section>
-<!-- ============================================
-     HOMEPAGE JAVASCRIPT
-     ============================================ -->
+{% block extra_scripts %}
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        'use strict';
+(function() {
+    'use strict';
 
-        // ========================================
-        // 1. COUNTER ANIMATION
-        // ========================================
-        const counterElements = document.querySelectorAll('.stat-number[data-count]');
-        
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+    // ===== Counter Animation =====
+    const counters = document.querySelectorAll('.stat-number[data-count]');
+    if (counters.length) {
+        const counterObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     const el = entry.target;
-                    const target = parseInt(el.getAttribute('data-count'));
-                    const duration = 2000;
-                    const startTime = performance.now();
-                    
-                    function updateCounter(currentTime) {
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        const eased = 1 - Math.pow(1 - progress, 3);
-                        const current = Math.floor(eased * target);
-                        el.textContent = current.toLocaleString();
-                        
-                        if (progress < 1) {
-                            requestAnimationFrame(updateCounter);
+                    const target = parseInt(el.getAttribute('data-count'), 10);
+                    const steps = 60;
+                    const increment = target / steps;
+                    let current = 0;
+                    let step = 0;
+
+                    function update() {
+                        step++;
+                        current = Math.min(current + increment, target);
+                        el.textContent = Math.floor(current).toLocaleString();
+                        if (step < steps) {
+                            requestAnimationFrame(update);
                         } else {
                             el.textContent = target.toLocaleString();
                         }
                     }
-                    
-                    requestAnimationFrame(updateCounter);
+                    update();
                     counterObserver.unobserve(el);
                 }
             });
         }, { threshold: 0.5 });
-        
-        counterElements.forEach(el => counterObserver.observe(el));
 
-        // ========================================
-        // 2. WISHLIST BUTTON
-        // ========================================
-        document.querySelectorAll('.wishlist-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const icon = this.querySelector('i');
-                icon.classList.toggle('far');
-                icon.classList.toggle('fas');
-                this.classList.toggle('active');
-                
-                // Visual feedback
-                this.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 200);
-            });
+        counters.forEach(function(el) { counterObserver.observe(el); });
+    }
+
+    // ===== Product Card Hover =====
+    document.querySelectorAll('.product-card').forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+            this.style.boxShadow = '0 24px 60px rgba(17, 17, 17, 0.08)';
         });
-
-        // ========================================
-        // 3. NEWSLETTER FORM
-        // ========================================
-        const newsletterForm = document.getElementById('homeNewsletterForm');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const input = this.querySelector('input');
-                const btn = this.querySelector('.newsletter-submit-btn');
-                
-                if (input.value && input.value.includes('@')) {
-                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-                    btn.style.pointerEvents = 'none';
-                    
-                    setTimeout(() => {
-                        btn.innerHTML = '<i class="fas fa-check"></i>';
-                        input.value = '';
-                        input.placeholder = '✅ ثبت شد!';
-                        
-                        setTimeout(() => {
-                            btn.innerHTML = '<i class="fas fa-arrow-right"></i>';
-                            btn.style.pointerEvents = 'auto';
-                            input.placeholder = 'ایمیل شما';
-                        }, 2000);
-                    }, 1500);
-                } else {
-                    input.style.borderColor = 'var(--color-error)';
-                    input.placeholder = '⚠️ لطفاً ایمیل معتبر وارد کنید';
-                    input.style.color = 'var(--color-error)';
-                    
-                    setTimeout(() => {
-                        input.style.borderColor = '';
-                        input.placeholder = 'ایمیل شما';
-                        input.style.color = '';
-                    }, 2000);
-                }
-            });
-        }
-
-        // ========================================
-        // 4. HERO IMAGE PARALLAX
-        // ========================================
-        const heroImage = document.querySelector('.hero-image');
-        const heroSection = document.querySelector('.hero-section');
-        
-        if (heroImage && heroSection) {
-            document.addEventListener('mousemove', (e) => {
-                const rect = heroSection.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width - 0.5;
-                const y = (e.clientY - rect.top) / rect.height - 0.5;
-                
-                heroImage.style.transform = `rotateY(${x * 4}deg) rotateX(${-y * 4}deg) scale(1.02)`;
-            });
-            
-            heroSection.addEventListener('mouseleave', () => {
-                heroImage.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
-            });
-        }
-
-        // ========================================
-        // 5. REVEAL ON SCROLL (Enhanced)
-        // ========================================
-        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-        
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
         });
-        
-        revealElements.forEach(el => {
-            // Add base styles if not present
-            if (el.classList.contains('reveal-left')) {
-                el.style.transform = 'translateX(-40px)';
-                el.style.opacity = '0';
-                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            } else if (el.classList.contains('reveal-right')) {
-                el.style.transform = 'translateX(40px)';
-                el.style.opacity = '0';
-                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            } else if (el.classList.contains('reveal')) {
-                el.style.transform = 'translateY(40px)';
-                el.style.opacity = '0';
-                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            }
-            
-            // Add revealed class style
-            const revealObserverInner = new MutationObserver((mutations) => {
-                mutations.forEach(mutation => {
-                    if (mutation.target.classList.contains('revealed')) {
-                        mutation.target.style.transform = 'translate(0)';
-                        mutation.target.style.opacity = '1';
-                    }
-                });
-            });
-            
-            revealObserverInner.observe(el, { attributes: true, attributeFilter: ['class'] });
-            revealObserver.observe(el);
-        });
-
-        // ========================================
-        // 6. PARALLAX SCROLL EFFECT
-        // ========================================
-        const parallaxElements = document.querySelectorAll('.hero-image-wrapper, .brand-story-image-wrapper');
-        
-        window.addEventListener('scroll', () => {
-            parallaxElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                const speed = 0.1;
-                const y = rect.top * speed;
-                const img = el.querySelector('img');
-                if (img) {
-                    img.style.transform = `translateY(${y}px)`;
-                }
-            });
-        });
-
-        // ========================================
-        // 7. HERO STATS HOVER EFFECT
-        // ========================================
-        document.querySelectorAll('.hero-stat').forEach(stat => {
-            stat.addEventListener('mouseenter', function() {
-                const number = this.querySelector('.stat-number');
-                number.style.color = 'var(--color-primary)';
-                number.style.transform = 'scale(1.1)';
-                number.style.transition = 'all 0.3s var(--transition-spring)';
-            });
-            
-            stat.addEventListener('mouseleave', function() {
-                const number = this.querySelector('.stat-number');
-                number.style.color = '';
-                number.style.transform = 'scale(1)';
-            });
-        });
-
-        console.log('🖤 Karno Homepage v1.0');
-        console.log('✨ Premium Luxury Experience Loaded');
     });
-</script>
 
-{% endblock content1 %}
+    console.log('%cKARNO Home', 'color:#E53935;font-weight:bold;');
+})();
+</script>
+{% endblock %}

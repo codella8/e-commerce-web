@@ -7,7 +7,7 @@ from . import models
 @admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug') 
-    search_fields = ('name',) 
+    search_fields = ('name',)
     prepopulated_fields = {'slug': ('name',)} 
 
 @admin.register(models.Product)
@@ -31,9 +31,8 @@ class ProfileInline(admin.StackedInline):
     can_delete = False
 
 class CustomUserAdmin(BaseUserAdmin):
-    #یعنی وقتی یک ادمین داره کاربری رو توی پنل جنگو می‌بینه یا ویرایش می‌کنه، پروفایل اون کاربر هم دقیقاً زیرش نمایش داده می‌شه.
     inlines = [ProfileInline]
     list_display = ['username', 'email', 'first_name', 'last_name', 'is_staff']
 
-admin.site.unregister(User) #مدیریت پیش‌فرض مدل کاربر از پنل مدیریت جنگو حذف شود.
-admin.site.register(User, CustomUserAdmin) # دوباره به پنل ادمین اضافه میشود با کلاس سفارشی 
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)

@@ -2,136 +2,54 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "درباره ما - کارنو" %}{% endblock title %}
+{% block title %}{% trans "درباره ما - کارنو" %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
 
 {% block content1 %}
 
-<!-- ============================================
-     KARNO ABOUT PAGE - PREMIUM LUXURY EXPERIENCE
-     ============================================ -->
+<!-- ===== HERO ===== -->
+<section class="about-hero">
+    <span class="about-hero-bg-text" aria-hidden="true">KARNO</span>
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 reveal">
+                <div class="about-hero-rule"></div>
+                <span class="section-tag">{% trans 'درباره کارنو' %}</span>
+                <h1 class="about-title">{% trans 'پیشتازان' %} <span class="text-accent">{% trans 'آریا' %}</span></h1>
+                <p class="lead">{% trans 'شرکت کفش کارنو با سال‌ها تخصص در تولید کفش‌های باکیفیت' %}</p>
 
-<!-- ===== 1. HERO SECTION ===== -->
-<section class="about-hero-section" id="aboutHero">
-    <div class="about-hero-container">
-        <div class="about-hero-content reveal">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                {% trans 'درباره کارنو' %}
-            </div>
-            
-            <h1 class="hero-title">
-                {% trans 'پیشتازان' %}
-                <span class="hero-highlight">{% trans 'آریا' %}</span>
-            </h1>
-            
-            <p class="hero-description">
-                {% trans 'شرکت کفش کارنو با سالها تخصص و سابقه درخشان در زمینه تولید کفش‌های باکیفیت فعالیت دارد.' %}
-            </p>
-            
-            <div class="hero-actions">
-                <a href="" class="btn-karno btn-karno-primary btn-karno-lg">
-                    <i class="fas fa-shoe-prints"></i>
-                    {% trans 'مشاهده محصولات' %}
-                </a>
-                <a href="{% url 'contact' %}" class="btn-karno btn-karno-text">
-                    {% trans 'تماس با ما' %}
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-        
-        <div class="hero-image-wrapper reveal">
-            <div class="hero-image-container">
-                <img src="{% static 'img/header.jfif' %}" alt="{% trans 'کارنو - تولید کفش' %}" class="hero-image">
-                <div class="hero-image-overlay"></div>
-                <div class="hero-experience-badge">
-                    <span class="experience-number">10+</span>
-                    <span class="experience-label">{% trans 'سال تجربه' %}</span>
+                <div class="about-hero-stats">
+                    <div class="about-hero-stat">
+                        <span class="about-hero-stat-number">10<sup>+</sup></span>
+                        <span class="about-hero-stat-label">{% trans 'سال سابقه' %}</span>
+                    </div>
+                    <div class="about-hero-stat">
+                        <span class="about-hero-stat-number">50<sup>+</sup></span>
+                        <span class="about-hero-stat-label">{% trans 'مدل مختلف' %}</span>
+                    </div>
+                    <div class="about-hero-stat">
+                        <span class="about-hero-stat-number">1000<sup>+</sup></span>
+                        <span class="about-hero-stat-label">{% trans 'مشتری راضی' %}</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <a href="" class="btn-karno btn-karno-primary">
+                        {% trans 'مشاهده محصولات' %} <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== 2. ABOUT CONTENT ===== -->
-<section class="about-content-section" id="aboutContent">
-    <div class="about-content-container">
-        <div class="about-grid">
-            
-            <!-- Left: Image -->
-            <div class="about-image-wrapper reveal-left">
-                <div class="about-image-card">
-                    <img src="{% static 'img/karnoo.png' %}" alt="{% trans 'درباره کارنو' %}" class="about-image">
-                    <div class="about-image-badge">
+            <div class="col-lg-6 reveal" style="transition-delay: 0.1s;">
+                <div class="about-hero-image-frame">
+                    <img src="{% static 'img/header.jfif' %}" alt="{% trans 'کارنو' %}" class="img-fluid">
+                    <div class="about-hero-floating-badge">
                         <i class="fas fa-medal"></i>
-                        <span>{% trans 'برند معتبر' %}</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Right: Text -->
-            <div class="about-text-wrapper reveal-right">
-                <div class="about-text-content">
-                    <span class="content-tag">{% trans 'داستان ما' %}</span>
-                    <h2 class="content-title">{% trans 'درباره شرکت کفش کارنو' %}</h2>
-                    
-                    <div class="content-body">
-                        <p>
-                            {% trans 'کارنو یک برند تخصصی در زمینه طراحی و تولید صندل‌های باکیفیت مردانه، زنانه و میانه (نقلی) است.' %}
-                            {% trans 'با رویکردی نوین در صنعت پوشاک پا، تلاش دارد ترکیبی از راحتی، دوام و زیبایی را در اختیار مشتریان خود قرار دهد.' %}
-                        </p>
-                        <p>
-                            {% trans 'ما در کارنو با بهره‌گیری از مواد اولیه مرغوب، تکنولوژی روز و طراحی‌های کاربردی، محصولاتی تولید می‌کنیم که نه‌تنها پاسخ‌گوی نیاز روزمره مصرف‌کننده باشند، بلکه تجربه‌ای لذت‌بخش و ماندگار از پوشیدن یک صندل استاندارد و خوش‌دوخت را فراهم کنند.' %}
-                        </p>
-                        <p>
-                            {% trans 'صندل‌های کارنو به‌گونه‌ای طراحی شده‌اند که در کنار سبُکی و راحتی، استایلی شیک و چشم‌نواز را نیز به همراه داشته باشند؛ چه برای استفاده روزمره، چه برای سفر، پیاده‌روی یا محیط‌های نیمه‌رسمی.' %}
-                        </p>
-                        <p>
-                            <strong>{% trans 'کیفیت تولید، احترام به نیاز مشتری و طراحی متعهدانه،' %}</strong>
-                            {% trans 'که برند کارنو از ابتدای مسیر بر آن‌ها پایبند بوده و همواره در تلاش است تا با ارتقاء مستمر محصولات، رضایت و اعتماد مصرف‌کنندگان را حفظ کند.' %}
-                        </p>
-                        <p class="content-signature">
-                            <strong>{% trans 'کارنو؛ همراهی مطمئن در هر قدم.' %}</strong>
-                        </p>
-                    </div>
-                    
-                    <!-- Features -->
-                    <div class="content-features">
-                        <div class="feature-item">
-                            <div class="feature-icon-wrapper">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div>
-                                <h4>{% trans 'کیفیت بالا' %}</h4>
-                                <p>{% trans 'استفاده از بهترین مواد اولیه' %}</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon-wrapper">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div>
-                                <h4>{% trans 'رضایت مشتری' %}</h4>
-                                <p>{% trans 'اولویت اصلی ما رضایت شماست' %}</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon-wrapper">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div>
-                                <h4>{% trans 'تولید سریع' %}</h4>
-                                <p>{% trans 'ارسال به موقع محصولات' %}</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon-wrapper">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div>
-                                <h4>{% trans 'تضمین کیفیت' %}</h4>
-                                <p>{% trans 'گارانتی تمام محصولات' %}</p>
-                            </div>
+                        <div>
+                            <strong>{% trans 'ساخت دستی' %}</strong>
+                            <span>{% trans 'با چرم مرغوب ایتالیایی' %}</span>
                         </div>
                     </div>
                 </div>
@@ -140,196 +58,80 @@
     </div>
 </section>
 
-<!-- ===== 3. MISSION & VISION ===== -->
-<section class="mission-vision-section" id="missionVision">
-    <div class="mission-vision-container">
-        <div class="section-header reveal">
+<!-- ===== STORY ===== -->
+<section class="story-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 reveal">
+                <img src="{% static 'img/karnoo.png' %}" alt="{% trans 'برند کارنو' %}" class="img-fluid rounded-4 shadow-lg">
+            </div>
+            <div class="col-lg-6 reveal" style="transition-delay: 0.1s;">
+                <span class="section-tag">{% trans 'داستان ما' %}</span>
+                <h2 class="section-title">{% trans 'درباره شرکت کفش کارنو' %}</h2>
+                <p>{% trans 'کارنو یک برند تخصصی در زمینه طراحی و تولید صندل‌های باکیفیت است.' %}</p>
+                <p>{% trans 'ما در کارنو با بهره‌گیری از مواد اولیه مرغوب، تکنولوژی روز و طراحی‌های کاربردی، محصولاتی تولید می‌کنیم.' %}</p>
+                <div class="row g-3 mt-3">
+                    <div class="col-6">
+                        <div class="feature-box">
+                            <i class="fas fa-check-circle"></i>
+                            <h6>{% trans 'کیفیت بالا' %}</h6>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="feature-box">
+                            <i class="fas fa-users"></i>
+                            <h6>{% trans 'رضایت مشتری' %}</h6>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="feature-box">
+                            <i class="fas fa-bolt"></i>
+                            <h6>{% trans 'تولید سریع' %}</h6>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="feature-box">
+                            <i class="fas fa-shield-alt"></i>
+                            <h6>{% trans 'تضمین کیفیت' %}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MISSION / VISION ===== -->
+<section class="mission-vision-section">
+    <div class="container">
+        <div class="text-center mb-5 reveal">
             <span class="section-tag">{% trans 'ماموریت و چشم‌انداز' %}</span>
             <h2 class="section-title">{% trans 'مسیر حرکت ما' %}</h2>
-            <p class="section-subtitle">{% trans 'اهداف و چشم‌انداز کارنو برای آینده‌ای بهتر' %}</p>
         </div>
-        
-        <div class="mission-vision-grid">
-            <div class="mission-card reveal">
-                <div class="card-icon-wrapper">
-                    <i class="fas fa-bullseye"></i>
+        <div class="row g-4">
+            <div class="col-md-6 reveal">
+                <div class="mission-card p-4 text-center">
+                    <i class="fas fa-bullseye fa-3x mb-3"></i>
+                    <h4>{% trans 'ماموریت ما' %}</h4>
+                    <p>{% trans 'تولید کفش با کیفیت با استفاده از بهترین مواد اولیه' %}</p>
                 </div>
-                <h3>{% trans 'ماموریت ما' %}</h3>
-                <p>{% trans 'تولید کفش با کیفیت با استفاده از بهترین مواد اولیه و تکنولوژی روز دنیا' %}</p>
-                <div class="card-decoration"></div>
             </div>
-            
-            <div class="vision-card reveal">
-                <div class="card-icon-wrapper">
-                    <i class="fas fa-eye"></i>
+            <div class="col-md-6 reveal" style="transition-delay: 0.1s;">
+                <div class="vision-card p-4 text-center">
+                    <i class="fas fa-eye fa-3x mb-3"></i>
+                    <h4>{% trans 'چشم‌انداز ما' %}</h4>
+                    <p>{% trans 'تبدیل شدن به برند پیشرو در صنعت کفش کشور' %}</p>
                 </div>
-                <h3>{% trans 'چشم‌انداز ما' %}</h3>
-                <p>{% trans 'تبدیل شدن به برند پیشرو در صنعت کفش کشور و حضور در بازارهای بین‌المللی' %}</p>
-                <div class="card-decoration"></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===== 4. STATS SECTION ===== -->
-<section class="about-stats-section" id="aboutStats">
-    <div class="about-stats-container">
-        <div class="stats-grid">
-            <div class="stat-item reveal">
-                <div class="stat-number" data-count="10000">0</div>
-                <div class="stat-label">{% trans 'جفت کفش تولیدی' %}</div>
-                <div class="stat-bar"></div>
-            </div>
-            <div class="stat-item reveal">
-                <div class="stat-number" data-count="500">0</div>
-                <div class="stat-label">{% trans 'مشتری راضی' %}</div>
-                <div class="stat-bar"></div>
-            </div>
-            <div class="stat-item reveal">
-                <div class="stat-number" data-count="50">0</div>
-                <div class="stat-label">{% trans 'مدل مختلف' %}</div>
-                <div class="stat-bar"></div>
-            </div>
-            <div class="stat-item reveal">
-                <div class="stat-number" data-count="10">0</div>
-                <div class="stat-label">{% trans 'سال سابقه' %}</div>
-                <div class="stat-bar"></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== 5. BACK TO HOME ===== -->
-<div class="back-section">
-    <div class="back-container">
-        <a href="{% url 'index' %}" class="back-link">
-            <i class="fas fa-arrow-right"></i>
-            {% trans 'بازگشت به صفحه اصلی' %}
-        </a>
-    </div>
+<!-- ===== BACK LINK ===== -->
+<div class="text-center about-back-link">
+    <a href="{% url 'index' %}" class="btn-karno btn-karno-text">
+        <i class="fas fa-arrow-right"></i> {% trans 'بازگشت به صفحه اصلی' %}
+    </a>
 </div>
 
-<!-- ============================================
-     ABOUT PAGE JAVASCRIPT
-     ============================================ -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        'use strict';
-
-        // ========================================
-        // 1. COUNTER ANIMATION
-        // ========================================
-        const counterElements = document.querySelectorAll('.stat-number[data-count]');
-        
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const target = parseInt(el.getAttribute('data-count'));
-                    const duration = 2000;
-                    const startTime = performance.now();
-                    
-                    function updateCounter(currentTime) {
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        const eased = 1 - Math.pow(1 - progress, 3);
-                        const current = Math.floor(eased * target);
-                        el.textContent = current.toLocaleString();
-                        
-                        if (progress < 1) {
-                            requestAnimationFrame(updateCounter);
-                        } else {
-                            el.textContent = target.toLocaleString();
-                        }
-                    }
-                    
-                    requestAnimationFrame(updateCounter);
-                    counterObserver.unobserve(el);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        counterElements.forEach(el => counterObserver.observe(el));
-
-        // ========================================
-        // 2. REVEAL ON SCROLL
-        // ========================================
-        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-        
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        
-        revealElements.forEach(el => {
-            if (el.classList.contains('reveal-left')) {
-                el.style.transform = 'translateX(-40px)';
-                el.style.opacity = '0';
-                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            } else if (el.classList.contains('reveal-right')) {
-                el.style.transform = 'translateX(40px)';
-                el.style.opacity = '0';
-                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            } else if (el.classList.contains('reveal')) {
-                el.style.transform = 'translateY(40px)';
-                el.style.opacity = '0';
-                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            }
-            
-            revealObserver.observe(el);
-        });
-
-        // ========================================
-        // 3. STATS HOVER EFFECT
-        // ========================================
-        document.querySelectorAll('.stat-item').forEach(stat => {
-            stat.addEventListener('mouseenter', function() {
-                const number = this.querySelector('.stat-number');
-                if (number) {
-                    number.style.color = 'var(--color-primary)';
-                    number.style.transform = 'scale(1.1)';
-                    number.style.transition = 'all 0.3s var(--transition-spring)';
-                }
-            });
-            
-            stat.addEventListener('mouseleave', function() {
-                const number = this.querySelector('.stat-number');
-                if (number) {
-                    number.style.color = '';
-                    number.style.transform = 'scale(1)';
-                }
-            });
-        });
-
-        // ========================================
-        // 4. FEATURE ITEMS HOVER
-        // ========================================
-        document.querySelectorAll('.feature-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                const icon = this.querySelector('.feature-icon-wrapper');
-                if (icon) {
-                    icon.style.transform = 'scale(1.1) rotate(-10deg)';
-                    icon.style.transition = 'all 0.4s var(--transition-spring)';
-                }
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                const icon = this.querySelector('.feature-icon-wrapper');
-                if (icon) {
-                    icon.style.transform = 'scale(1) rotate(0deg)';
-                }
-            });
-        });
-
-        console.log('🖤 Karno About Page v1.0');
-        console.log('✨ Premium About Experience Loaded');
-    });
-</script>
-
-{% endblock content1 %}
+{% endblock %}
