@@ -184,17 +184,37 @@ An external payment gateway and provider webhook integration are not currently i
 
 Orders can be created and stored with their corresponding status.
 
-Recommended screenshots:
+## Screenshots
 
-Homepage
-Product listing
-Product detail
-Shopping cart
-Checkout
-Admin dashboard
+### Homepage
 
-Screenshots can be stored in:
-docs/screenshots/
+![Karnoo Homepage](docs/screenshots/homepage.png)
+
+### Product Listing
+
+![Karnoo Product Listing](docs/screenshots/product.png)
+
+### Product Detail
+
+![Karnoo Product Detail](docs/screenshots/product-detail.png)
+
+### Shopping Cart
+
+![Karnoo Shopping Cart](docs/screenshots/cart.png)
+
+### Checkout
+
+![Karnoo Checkout](docs/screenshots/contact.png)
+
+### About
+![Karnoo Checkout](docs/screenshots/about.png)
+
+### Login
+![Karnoo Checkout](docs/screenshots/login.png)
+
+### Admin Dashboard
+
+![Karnoo Admin Dashboard](docs/screenshots/admin-dashboard.png)
 
 Active development / portfolio project.
 Future Improvements
